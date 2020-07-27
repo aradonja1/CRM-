@@ -16,7 +16,7 @@ import java.time.LocalTime;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
-public class Controller {
+public class LoginController {
 
     public Label dateLabel;
     public Label timeLabel;
