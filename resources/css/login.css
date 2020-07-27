@@ -1,0 +1,10 @@
+#loginWindow {
+    -fx-background-image: url("../img/back.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 100%;
+    -fx-background-color: transparent;
+}
+
+#loginVBox {
+    -fx-background-color: lightyellow;
+}
