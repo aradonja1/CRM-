@@ -47,8 +47,8 @@
    <center>
       <TableView fx:id="tblView" prefHeight="264.0" prefWidth="425.0" stylesheets="@../css/%20customers.css" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="75.0" text="Name" />
-          <TableColumn prefWidth="75.0" text="Surname" />
+          <TableColumn fx:id="colName" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="colSurname" prefWidth="75.0" text="Surname" />
         </columns>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

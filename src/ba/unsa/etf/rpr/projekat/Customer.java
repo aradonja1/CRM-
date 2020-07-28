@@ -3,11 +3,13 @@ package ba.unsa.etf.rpr.projekat;
 import java.time.LocalDate;
 
 public class Customer {
+    private int id;
     private String name, surname, email, adress, contact;
     private LocalDate beginContract, endContract;
     private Service service;
 
-    public Customer(String name, String surname, String email, String adress, String contact, LocalDate beginContract, LocalDate endContract, Service service) {
+    public Customer(int id, String name, String surname, String email, String adress, String contact, LocalDate beginContract, LocalDate endContract, Service service) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -16,6 +18,14 @@ public class Customer {
         this.beginContract = beginContract;
         this.endContract = endContract;
         this.service = service;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
