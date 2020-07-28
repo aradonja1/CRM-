@@ -14,7 +14,7 @@
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
    <bottom>
-      <HBox prefHeight="33.0" prefWidth="580.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="33.0" prefWidth="580.0" style="-fx-background-color: #009EE3;" stylesheets="@../css/login.css" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="dateLabel">
                <padding>
@@ -33,9 +33,9 @@
       <ColorAdjust brightness="0.36" contrast="0.02" hue="-0.02" saturation="-0.05" />
    </effect>
    <left>
-      <VBox fx:id="loginVBox" prefHeight="200.0" prefWidth="104.0" BorderPane.alignment="CENTER">
+      <VBox fx:id="loginVBox" prefHeight="222.0" prefWidth="117.0" style="-fx-background-color: #3F2B63;" stylesheets="@../css/login.css" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="17.0" prefWidth="102.0" text="Username:">
+            <Label prefHeight="17.0" prefWidth="102.0" text="Username:" textFill="#fcf9f9">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -47,7 +47,7 @@
             </TextField>
             <Separator prefWidth="200.0" />
             <Separator prefWidth="200.0" />
-            <Label text="Password:">
+            <Label text="Password:" textFill="#f8f4f4">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>

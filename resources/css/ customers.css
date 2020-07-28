@@ -1,0 +1,8 @@
+#tblView {
+    -fx-border-color:  #1BB4EA;
+    -fx-border-width: 5;
+}
+
+#rightSide {
+    -fx-background-color: #393351;
+}
