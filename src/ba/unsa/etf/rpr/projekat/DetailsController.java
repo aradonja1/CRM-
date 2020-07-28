@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.projekat;
 
+import javafx.beans.Observable;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -18,6 +20,8 @@ public class DetailsController {
     public DatePicker dpEnd;
     public TextField fldAdress;
 
+    private ObservableList<Package> listPackages;
+    private Customer customer;
 
     @FXML
     public void initialize() {
@@ -97,5 +101,13 @@ public class DetailsController {
 
     public void onActionSave(ActionEvent actionEvent) {
 
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
