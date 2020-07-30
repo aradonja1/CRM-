@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Service {
     private int id;
     private String name;
-    private ArrayList<Package> packages = new ArrayList<>();
+    private Package aPackage;
 
-    public Service(int id, String name, ArrayList<Package> packages) {
+    public Service(int id, String name, Package aPackage) {
         this.id = id;
         this.name = name;
-        this.packages = packages;
+        this.aPackage = aPackage;
     }
 
     public Service() {
@@ -32,11 +32,11 @@ public class Service {
         this.name = name;
     }
 
-    public ArrayList<Package> getPackages() {
-        return packages;
+    public Package getaPackage() {
+        return aPackage;
     }
 
-    public void setPackages(ArrayList<Package> packages) {
-        this.packages = packages;
+    public void setaPackage(Package aPackage) {
+        this.aPackage = aPackage;
     }
 }
