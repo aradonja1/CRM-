@@ -25,6 +25,7 @@ public class LoginController {
     public TextField fldUsername;
     public PasswordField fldPassword;
 
+    private AdminDAO adminDAO = new AdminDAO();
 
     @FXML
     public void initialize() {
@@ -33,7 +34,6 @@ public class LoginController {
     }
 
     private boolean loginCorrect(String username, String password) {
-        AdminDAO adminDAO = new AdminDAO();
         ArrayList<Admin> listAdmins = adminDAO.admins();
         ArrayList<Employee> listEmployees = adminDAO.employees();
         for (Admin a : listAdmins) {

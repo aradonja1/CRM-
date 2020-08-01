@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.CustomersController">
+   <top>
+      <TableView fx:id="tableView" prefHeight="400.0" prefWidth="525.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="coloumnName" text="Name" />
+          <TableColumn fx:id="coloumnSurname" text="Surname" />
+            <TableColumn fx:id="coloumnEmail" text="Email" />
+            <TableColumn fx:id="coloumnBeginContract" prefWidth="90.0" text="Begin contract" />
+            <TableColumn fx:id="coloumnEndContract" prefWidth="87.0" text="End contract" />
+        </columns>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </TableView>
+   </top>
+</BorderPane>
