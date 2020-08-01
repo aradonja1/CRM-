@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class CustomerDAO {
     private DatabaseConnection db = DatabaseConnection.getInstance();
@@ -21,7 +22,8 @@ public class CustomerDAO {
 
     private PreparedStatement allCustomersStatement, getConnectionFromIdStatement, getServiceFromIdStatement, getPackageFromIdStatement,
             getAllContractsForCustomerStatement, addCustomerStatement, getConnectionFromServiceAndPackageIdStatement, getIdForNewCustomerStatement,
-            addContractStatement, getIdForNewContractStatement, editCustomerStatement, getCurrentContractStatement, editCurrentContract;
+            addContractStatement, getIdForNewContractStatement, editCustomerStatement, getCurrentContractStatement, editCurrentContract,
+            deleteCustomerStatement, deleteContractsForCustomerStatement;
 
     public CustomerDAO() {
         conn = db.getConn();
@@ -44,14 +46,18 @@ public class CustomerDAO {
             getIdForNewContractStatement = conn.prepareStatement("SELECT MAX(id)+1 FROM contract");
 
             editCustomerStatement = conn.prepareStatement("UPDATE customer SET first_name=?, last_name=?, email=?, adress=?, contact=?, begin_contract=?, end_contract=?, connection=? WHERE id=? ");
-            getCurrentContractStatement = conn.prepareStatement("SELECT *.a FROM contract a, customer b WHERE b.id=a.customer_id AND b.id=?");
+            getCurrentContractStatement = conn.prepareStatement("SELECT a.id, a.customer_id, a.begin_contract, a.end_contract, a.connection FROM contract a, customer b WHERE b.id=a.customer_id AND b.id=?");
             editCurrentContract = conn.prepareStatement("UPDATE contract SET customer_id=?, begin_contract=?, end_contract=?, connection=? WHERE id=?");
+
+            deleteCustomerStatement = conn.prepareStatement("DELETE FROM customer WHERE id=?");
+            deleteContractsForCustomerStatement = conn.prepareStatement("DELETE FROM contract WHERE customer_id=?");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
 
+    //daje sve korisnike iz baze
     public ArrayList<Customer> customers() {
         ArrayList<Customer> result = new ArrayList<>();
         try {
@@ -150,6 +156,12 @@ public class CustomerDAO {
             }
         }
         return result;
+
+     /*
+     ArrayList<Contract> result = getContractsFromCustomer(customer);
+     return result.stream().filter(c -> {
+         return c.getEndContract().isBefore(LocalDate.now());
+     }).collect(Collectors.toCollection(ArrayList::new));*/
     }
 
     //kada se dodaje novi ugovor dodaje se i u tabelu contract ne samo customer
@@ -228,8 +240,18 @@ public class CustomerDAO {
         }
     }
 
-    public void editCurrentContract(Contract contract) {
-        //...
+    public void editCurrentContract(Customer customer) {
+        try {
+            editCurrentContract.setInt(1, customer.getId());
+            editCurrentContract.setString(2, customer.getBeginContract().format(formatter));
+            editCurrentContract.setString(3, customer.getEndContract().format(formatter));
+            getConnectionFromIdStatement.setInt(1, getConnectionId(customer));
+            ResultSet rs = getConnectionFromIdStatement.executeQuery();
+            editCurrentContract.setInt(4, rs.getInt(1));
+            editCurrentContract.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private Contract getContractFromResultSet(ResultSet rs) {
@@ -263,5 +285,14 @@ public class CustomerDAO {
          return 0;
      }
 
-
+     public void deleteCustomer(Customer customer) {
+         try {
+             deleteCustomerStatement.setInt(1, customer.getId());
+             deleteContractsForCustomerStatement.setInt(1, customer.getId());
+             deleteContractsForCustomerStatement.execute();
+             deleteCustomerStatement.execute();
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
+     }
 }
