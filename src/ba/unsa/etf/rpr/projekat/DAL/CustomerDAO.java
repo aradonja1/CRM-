@@ -23,7 +23,7 @@ public class CustomerDAO {
     private PreparedStatement allCustomersStatement, getConnectionFromIdStatement, getServiceFromIdStatement, getPackageFromIdStatement,
             getAllContractsForCustomerStatement, addCustomerStatement, getConnectionFromServiceAndPackageIdStatement, getIdForNewCustomerStatement,
             addContractStatement, getIdForNewContractStatement, editCustomerStatement, getCurrentContractStatement, editCurrentContract,
-            deleteCustomerStatement, deleteContractsForCustomerStatement;
+            deleteCustomerStatement, deleteContractsForCustomerStatement, allPackagesStatement, allServicesStatement, getPackagesForServiceStatement;
 
     public CustomerDAO() {
         conn = db.getConn();
@@ -37,6 +37,7 @@ public class CustomerDAO {
             getConnectionFromIdStatement = conn.prepareStatement("SELECT * FROM connection WHERE id=?");
             getServiceFromIdStatement = conn.prepareStatement("SELECT * FROM service WHERE id=?");
             getPackageFromIdStatement = conn.prepareStatement("SELECT * FROM package WHERE id=?");
+            getPackagesForServiceStatement = conn.prepareStatement("SELECT package_id FROM connection WHERE service_id=?");
             getAllContractsForCustomerStatement = conn.prepareStatement("SELECT * FROM contract WHERE customer_id=?");
 
             addCustomerStatement = conn.prepareStatement("INSERT INTO customer VALUES(?,?,?,?,?,?,?,?,?)");
@@ -51,6 +52,9 @@ public class CustomerDAO {
 
             deleteCustomerStatement = conn.prepareStatement("DELETE FROM customer WHERE id=?");
             deleteContractsForCustomerStatement = conn.prepareStatement("DELETE FROM contract WHERE customer_id=?");
+
+            allPackagesStatement = conn.prepareStatement("SELECT * FROM package");
+            allServicesStatement = conn.prepareStatement("SELECT * FROM service");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -104,7 +108,16 @@ public class CustomerDAO {
         try {
             getServiceFromIdStatement.setInt(1, serviceId);
             ResultSet rs = getServiceFromIdStatement.executeQuery();
-            return new Service(rs.getInt(1), rs.getString(2), aPackage);
+            getPackagesForServiceStatement.setInt(1, serviceId);
+            ResultSet rs2 = getPackagesForServiceStatement.executeQuery();
+            ArrayList<Package> listPackages = new ArrayList<>();
+            while (rs2.next()) {
+                int packageId = rs2.getInt(1);
+                getPackageFromIdStatement.setInt(1, packageId);
+                ResultSet rs3 = getPackageFromIdStatement.executeQuery();
+                listPackages.add(new Package(rs3.getInt(1), rs3.getString(2)));
+            }
+            return new Service(rs.getInt(1), rs.getString(2), listPackages);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -272,7 +285,7 @@ public class CustomerDAO {
     }
 
     private int getConnectionId(Customer customer) {
-         int packageId = customer.getService().getaPackage().getId();
+         int packageId = customer.getService().getListPackages().get(0).getId();
          int serviceId = customer.getService().getId();
          try {
              getConnectionFromServiceAndPackageIdStatement.setInt(1, serviceId);
@@ -295,4 +308,54 @@ public class CustomerDAO {
              e.printStackTrace();
          }
      }
+
+    public ArrayList<Service> services() {
+        ArrayList<Service> result = new ArrayList<>();
+        try {
+            ResultSet rs = allServicesStatement.executeQuery();
+            while (rs.next()) {
+                Service s = new Service(rs.getInt(1), rs.getString(2), null);
+                s.setListPackages(getPackagesForService(s));
+                result.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    private ArrayList<Package> getPackagesForService(Service service) {
+        ArrayList<Package> result = new ArrayList<>();
+        try {
+            getPackagesForServiceStatement.setInt(1, service.getId());
+            ResultSet rs = getPackagesForServiceStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                getPackageFromIdStatement.setInt(1, id);
+                ResultSet rs2 = getPackageFromIdStatement.executeQuery();
+                result.add(new Package(rs2.getInt(1), rs2.getString(2)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //malo logike ovdje!!!!
+        return result;
+    }
+
+    public ArrayList<Package> packages(Service service) {
+        ArrayList<Package> result = new ArrayList<>();
+        try {
+            getPackagesForServiceStatement.setInt(1, service.getId());
+            ResultSet rs = getPackagesForServiceStatement.executeQuery();
+            while (rs.next()) {
+                int packageId = rs.getInt(1);
+                getPackageFromIdStatement.setInt(1, packageId);
+                ResultSet rs2 = getPackageFromIdStatement.executeQuery();
+                result.add(new Package(rs2.getInt(1), rs2.getString(2)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

@@ -30,7 +30,7 @@ class CustomerDAOTest {
         ArrayList<Customer> customers = c.customers();
         assertEquals("Rijad", customers.get(0).getFirstName());
         assertEquals("Paketi prometa interneta", customers.get(0).getService().getName());
-        assertEquals("Neo", customers.get(0).getService().getaPackage().getName());
+        assertEquals("Neo", customers.get(0).getService().getListPackages().get(0).getName());
     }
 
     @Test
@@ -45,7 +45,10 @@ class CustomerDAOTest {
     void addCustomer() {
         CustomerDAO c = new CustomerDAO();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        Service s = new Service(1, "Paketi prometa razgovora", new Package(5, "Mobilna telefonija"));
+        Package p = new Package(5, "Mobilna telefonija");
+        ArrayList<Package> listPackages = new ArrayList<>();
+        listPackages.add(p);
+        Service s = new Service(1, "Paketi prometa razgovora", listPackages);
         Customer customer = new Customer(2, "Arman", "Radonja", "arman.radonja@gmail.com", "Sarajevo", "555555", LocalDate.now(), LocalDate.parse("27/02/2025", formatter), s, null);
         c.addCustomer(customer);
         ArrayList<Customer> customers = c.customers();
@@ -56,7 +59,10 @@ class CustomerDAOTest {
     void editCustomer() {
         CustomerDAO c = new CustomerDAO();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        Service s = new Service(1, "Paketi prometa razgovora", new Package(5, "Mobilna telefonija"));
+        Package p = new Package(5, "Mobilna telefonija");
+        ArrayList<Package> listPackages = new ArrayList<>();
+        listPackages.add(p);
+        Service s = new Service(1, "Paketi prometa razgovora", listPackages);
         Customer customer = new Customer(1, "Arman", "Radonja", "arman.radonja@gmail.com", "Sarajevo", "555555", LocalDate.now(), LocalDate.parse("27/02/2025", formatter), s, null);
         c.editCustomer(customer);
         ArrayList<Customer> customers = c.customers();
@@ -67,7 +73,10 @@ class CustomerDAOTest {
     void deleteCustomer() {
         CustomerDAO c = new CustomerDAO();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        Service s = new Service(1, "Paketi prometa razgovora", new Package(5, "Mobilna telefonija"));
+        Package p = new Package(5, "Mobilna telefonija");
+        ArrayList<Package> listPackages = new ArrayList<>();
+        listPackages.add(p);
+        Service s = new Service(1, "Paketi prometa razgovora", listPackages);
         Customer customer = new Customer(2, "Arman", "Radonja", "arman.radonja@gmail.com", "Sarajevo", "555555", LocalDate.now(), LocalDate.parse("27/02/2025", formatter), s, null);
         c.addCustomer(customer);
         ArrayList<Customer> customers = c.customers();
@@ -77,4 +86,27 @@ class CustomerDAOTest {
         assertEquals(1, customers.size());
     }
 
+    @Test
+    void services() {
+        CustomerDAO c = new CustomerDAO();
+        ArrayList<Service> listServices = c.services();
+        assertEquals(3, listServices.size());
+        assertEquals("Paketi prometa razgovora", listServices.get(0).getName());
+        assertEquals("Paketi prometa interneta", listServices.get(1).getName());
+        assertEquals("Prodaja uređaja", listServices.get(2).getName());
+
+    }
+
+    @Test
+    void packages() {
+        CustomerDAO c = new CustomerDAO();
+        ArrayList<Package> listPackages = new ArrayList<>();
+        ArrayList<Service> listServices = c.services();
+        listPackages = c.packages(listServices.get(0));
+        assertEquals(2, listPackages.size());
+        listPackages = c.packages(listServices.get(1));
+        assertEquals(4, listPackages.size());
+        listPackages = c.packages(listServices.get(2));
+        assertEquals(2, listPackages.size());
+    }
 }
