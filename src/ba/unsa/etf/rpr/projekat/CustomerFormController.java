@@ -35,37 +35,73 @@ public class CustomerFormController {
 
     @FXML
     public void initialize() {
-        fldName.textProperty().addListener((obs, oldName, newName) -> {
-            if (fldName.getText().isEmpty() || !isAlpha(newName)) {
-                fldName.getStyleClass().removeAll("correctField");
-                fldName.getStyleClass().add("incorrectField");
-                ok = false;
-            } else {
-                fldName.getStyleClass().removeAll("incorrectField");
-                fldName.getStyleClass().add("correctField");
-                ok = true;
-            }
-        });
-
-        fldSurname.textProperty().addListener((obs, oldName, newName) -> {
-            if (fldSurname.getText().isEmpty() || !isAlpha(newName)) {
-                fldSurname.getStyleClass().removeAll("correctField");
-                fldSurname.getStyleClass().add("incorrectField");
-                ok = false;
-            } else {
-                fldSurname.getStyleClass().removeAll("incorrectField");
-                fldSurname.getStyleClass().add("correctField");
-                ok = true;
-            }
-        });
-
-
         cbService.setItems(FXCollections.observableArrayList(customerDAO.services()));
-        if (cbService.getValue() == null) {
-            cbService.getSelectionModel().selectFirst();
+
+        if (customer != null) {
+            fldName.setText(customer.getFirstName());
+            fldSurname.setText(customer.getLastName());
+            fldAdress.setText(customer.getAdress());
+            fldContact.setText(customer.getContact());
+            fldEmail.setText(customer.getEmail());
+            dpBeginContract.setValue(customer.getBeginContract());
+            dpEndContract.setValue(customer.getEndContract());
+
+            for (Service s : listServices)
+                if (s.getId() == customer.getService().getId())
+                    cbService.getSelectionModel().select(s);
+
             cbPackage.setItems(FXCollections.observableArrayList(customerDAO.packages(cbService.getValue())));
-            cbPackage.getSelectionModel().selectFirst();
+            for (Package p : listPackages)
+                if (p.getId() == customer.getService().getListPackages().get(0).getId())
+                    cbPackage.getSelectionModel().select(p);
+
+            ok = true;
+        } else {
+            fldName.textProperty().addListener((obs, oldName, newName) -> {
+                if (fldName.getText().isEmpty() || !isAlpha(newName)) {
+                    fldName.getStyleClass().removeAll("correctField");
+                    fldName.getStyleClass().add("incorrectField");
+                    ok = false;
+                } else {
+                    fldName.getStyleClass().removeAll("incorrectField");
+                    fldName.getStyleClass().add("correctField");
+                    ok = true;
+                }
+            });
+
+            fldSurname.textProperty().addListener((obs, oldName, newName) -> {
+                if (fldSurname.getText().isEmpty() || !isAlpha(newName)) {
+                    fldSurname.getStyleClass().removeAll("correctField");
+                    fldSurname.getStyleClass().add("incorrectField");
+                    ok = false;
+                } else {
+                    fldSurname.getStyleClass().removeAll("incorrectField");
+                    fldSurname.getStyleClass().add("correctField");
+                    ok = true;
+                }
+            });
+
+            fldContact.textProperty().addListener((obs, oldContact, newContact) -> {
+                if (!isNumber(fldContact.getText()) || fldContact.getText().isEmpty()) {
+                    fldContact.getStyleClass().removeAll("correctField");
+                    fldContact.getStyleClass().add("incorrectField");
+                    ok = false;
+                } else {
+                    fldContact.getStyleClass().removeAll("incorrectField");
+                    fldContact.getStyleClass().add("correctField");
+                    ok = true;
+                }
+            });
+
+
+
+            if (cbService.getValue() == null) {
+                cbService.getSelectionModel().selectFirst();
+                cbPackage.setItems(FXCollections.observableArrayList(customerDAO.packages(cbService.getValue())));
+                cbPackage.getSelectionModel().selectFirst();
+            }
         }
+
         cbService.getSelectionModel().selectedItemProperty().addListener((obs, o, n) -> {
             cbPackage.setItems(FXCollections.observableArrayList(customerDAO.packages(cbService.getValue())));
             cbPackage.getSelectionModel().selectFirst();
@@ -75,6 +111,14 @@ public class CustomerFormController {
     private boolean isAlpha(String string) {
         for (int i = 0; i < string.length(); i++) {
             if (!Character.isLetter(string.charAt(i)) && string.charAt(i) != ' ')
+                return false;
+        }
+        return true;
+    }
+
+    private boolean isNumber(String string) {
+        for (int i = 0; i < string.length(); i++) {
+            if (!Character.isDigit(string.charAt(i)) && string.charAt(i) != ' ')
                 return false;
         }
         return true;
@@ -92,8 +136,11 @@ public class CustomerFormController {
         customer.setEmail(fldEmail.getText());
         customer.setBeginContract(dpBeginContract.getValue());
         customer.setEndContract(dpEndContract.getValue());
-        //probajmo ovaj nacin
-        customer.setService(cbService.getValue());
+        Service service = cbService.getValue();
+        ArrayList<Package> p = new ArrayList<>();
+        p.add(cbPackage.getValue());
+        service.setListPackages(p);
+        customer.setService(service);
         Stage stage = (Stage) btnOk.getScene().getWindow();
         stage.close();
     }
@@ -110,5 +157,6 @@ public class CustomerFormController {
     public CustomerFormController(Customer customer, ArrayList<Service> services) {
         this.customer = customer;
         listServices = FXCollections.observableArrayList(services);
+        listPackages = FXCollections.observableArrayList(customerDAO.packages());
     }
 }

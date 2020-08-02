@@ -9,20 +9,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.PopupControl;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 public class CustomersController {
-    public TableView tableView;
+    public TableView<Customer> tableView;
     public TableColumn<Customer, String> coloumnName;
     public TableColumn<Customer, String> coloumnSurname;
     public TableColumn<Customer, String> coloumnEmail;
@@ -59,23 +58,12 @@ public class CustomersController {
     }
 
     public void onActionAdd(ActionEvent actionEvent) throws IOException {
- /*       Stage primaryStage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/grad.fxml"));
-        GradController ctrl = new GradController(null, dao.drzave());
-        loader.setController(ctrl);
-        Parent root = loader.load();
-        primaryStage.setTitle("Grad");
-        primaryStage.setScene(new Scene(root, PopupControl.USE_COMPUTED_SIZE, PopupControl.USE_COMPUTED_SIZE));
-        primaryStage.setResizable(false);
-        primaryStage.show();
-
-*/
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/customerform.fxml"));
         CustomerFormController ctrl = new CustomerFormController(null, customerDAO.services());
         loader.setController(ctrl);
         Parent root = loader.load();
-        stage.setTitle("Customer form");
+        stage.setTitle("Add customer form");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(false);
         stage.show();
@@ -89,9 +77,46 @@ public class CustomersController {
         });
     }
 
-    public void onActionEdit(ActionEvent actionEvent) {
+    public void onActionEdit(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/customerform.fxml"));
+
+        Customer currentCustomer =  tableView.getSelectionModel().getSelectedItem();
+        if (currentCustomer == null) return;
+
+        CustomerFormController ctrl = new CustomerFormController(currentCustomer, customerDAO.services());
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        stage.setTitle("Edit customer form");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(false);
+        stage.show();
+
+        stage.setOnHiding(event -> {
+            Customer customer = ctrl.getCustomer();
+            customer.setId(currentCustomer.getId());
+            if (customer != null) {
+                customerDAO.editCustomer(customer);
+                listCustomers.setAll(customerDAO.customers());
+            }
+        });
+
     }
 
     public void onActionDelete(ActionEvent actionEvent) {
+        Customer customer = tableView.getSelectionModel().getSelectedItem();
+        if (customer == null) return;
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete");
+        alert.setHeaderText("Delete customer "+customer.getFirstName() + " " +customer.getLastName());
+        alert.setContentText("Are you sure you want to delete customer " +customer.getFirstName() + " " +customer.getLastName()+"?");
+        alert.setResizable(true);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            customerDAO.deleteCustomer(customer);
+            listCustomers.setAll(customerDAO.customers());
+        }
     }
 }

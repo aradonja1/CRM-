@@ -115,7 +115,9 @@ public class CustomerDAO {
                 int packageId = rs2.getInt(1);
                 getPackageFromIdStatement.setInt(1, packageId);
                 ResultSet rs3 = getPackageFromIdStatement.executeQuery();
-                listPackages.add(new Package(rs3.getInt(1), rs3.getString(2)));
+                if (aPackage.getId() == rs3.getInt(1)) {
+                    listPackages.add(new Package(rs3.getInt(1), rs3.getString(2)));
+                }
             }
             return new Service(rs.getInt(1), rs.getString(2), listPackages);
         } catch (SQLException e) {
@@ -358,4 +360,18 @@ public class CustomerDAO {
         }
         return result;
     }
+
+    public ArrayList<Package> packages() {
+        ArrayList<Package> result = new ArrayList<>();
+        try {
+            ResultSet rs = allPackagesStatement.executeQuery();
+            while (rs.next()) {
+                result.add(new Package(rs.getInt(1), rs.getString(2)));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 }

@@ -1,6 +1,8 @@
 package ba.unsa.etf.rpr.projekat;
 
-public class Employee {
+import javafx.beans.property.SimpleObjectProperty;
+
+public class Employee extends SimpleObjectProperty<Employee> {
     private int id;
     private String firstName, lastName, username, password;
 
@@ -53,5 +55,10 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return this.getFirstName() + " " + this.getLastName();
     }
 }

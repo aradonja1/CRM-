@@ -32,4 +32,15 @@ public class Package {
     public String toString() {
         return name;
     }
+
+    @Override
+    public boolean equals(Object object){
+        if(this == object) return true;
+
+        if(!(object instanceof Package)) return false;
+
+        Package p = (Package) object;
+
+        return this.getId() == p.getId();
+    }
 }

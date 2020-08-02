@@ -72,4 +72,5 @@ class AdminDAOTest {
         ArrayList<Admin>  listAdmins = a.admins();
         assertEquals(listAdmins.get(0).getFirstName(), "Adnan");
     }
+
 }

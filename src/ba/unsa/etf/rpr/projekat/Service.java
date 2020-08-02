@@ -44,4 +44,15 @@ public class Service {
     public String toString() {
         return name;
     }
+
+    @Override
+    public boolean equals(Object object){
+        if(this == object) return true;
+
+        if(!(object instanceof Service)) return false;
+
+        Service s = (Service) object;
+
+        return this.getId() == s.getId();
+    }
 }
