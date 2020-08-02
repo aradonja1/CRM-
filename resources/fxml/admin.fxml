@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import java.net.URL?>
 <BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.AdminController">
     <stylesheets>
-        <URL value = "@/css/admin.css" />
+        <URL value="@/css/admin.css" />
     </stylesheets>
    <center>
       <GridPane hgap="4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
@@ -56,13 +56,15 @@
       </VBox>
    </left>
    <right>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="230.0" prefWidth="117.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="40.0" prefWidth="100.0" />
-            <Button mnemonicParsing="false" onAction="#onActionAdd" prefHeight="33.0" prefWidth="99.0" text="Add" />
-            <Button mnemonicParsing="false" onAction="#onActionEdit" prefHeight="33.0" prefWidth="99.0" text="Edit" />
-            <Button mnemonicParsing="false" onAction="#onActionDelete" prefHeight="33.0" prefWidth="99.0" text="Delete" />
-            <Button mnemonicParsing="false" onAction="#onActionCustomers" prefHeight="33.0" prefWidth="99.0" text="Customers" />
+            <Label prefHeight="30.0" prefWidth="117.0" />
+            <Button mnemonicParsing="false" onAction="#onActionAdd" prefHeight="33.0" prefWidth="117.0" text="Add employee" />
+            <Button mnemonicParsing="false" onAction="#onActionEdit" prefHeight="33.0" prefWidth="117.0" text="Edit employee" />
+            <Button mnemonicParsing="false" onAction="#onActionDelete" prefHeight="33.0" prefWidth="117.0" text="Delete employee" />
+            <Button mnemonicParsing="false" onAction="#onActionCustomers" prefHeight="33.0" prefWidth="117.0" text="Customers" />
+            <Button mnemonicParsing="false" onAction="#onActionAddService" prefHeight="33.0" prefWidth="117.0" text="Add service" />
+            <Button mnemonicParsing="false" onAction="#onActionAddPackage" prefHeight="33.0" prefWidth="117.0" text="Add package" />
          </children>
       </VBox>
    </right>
