@@ -119,4 +119,49 @@ class CustomerDAOTest {
         listPackages = c.packages(listServices.get(2));
         assertEquals(2, listPackages.size());
     }
+
+    @Test
+    void oneMoreMonthContract() {
+        CustomerDAO c = new CustomerDAO();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        Package p = new Package(5, "Mobilna telefonija");
+        ArrayList<Package> listPackages = new ArrayList<>();
+        listPackages.add(p);
+        Service s = new Service(1, "Paketi prometa razgovora", listPackages);
+        Customer customer = new Customer(2, "Arman", "Radonja", "arman.radonja@gmail.com", "Sarajevo", "555555", LocalDate.now(), LocalDate.parse("03/09/2020", formatter), s, null);
+        c.addCustomer(customer);
+        ArrayList<Customer> customers = c.customers();
+        ArrayList<Customer> result = c.oneMoreMonthContract();
+        assertEquals(1, result.size());
+    }
+
+    @Test
+    void twoMoreMonthContract() {
+        CustomerDAO c = new CustomerDAO();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        Package p = new Package(5, "Mobilna telefonija");
+        ArrayList<Package> listPackages = new ArrayList<>();
+        listPackages.add(p);
+        Service s = new Service(1, "Paketi prometa razgovora", listPackages);
+        Customer customer = new Customer(2, "Arman", "Radonja", "arman.radonja@gmail.com", "Sarajevo", "555555", LocalDate.now(), LocalDate.parse("03/10/2020", formatter), s, null);
+        c.addCustomer(customer);
+        ArrayList<Customer> customers = c.customers();
+        ArrayList<Customer> result = c.twoMoreMonthContract();
+        assertEquals(1, result.size());
+    }
+
+    @Test
+    void threeMoreMonthContract() {
+        CustomerDAO c = new CustomerDAO();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        Package p = new Package(5, "Mobilna telefonija");
+        ArrayList<Package> listPackages = new ArrayList<>();
+        listPackages.add(p);
+        Service s = new Service(1, "Paketi prometa razgovora", listPackages);
+        Customer customer = new Customer(2, "Arman", "Radonja", "arman.radonja@gmail.com", "Sarajevo", "555555", LocalDate.now(), LocalDate.parse("03/11/2020", formatter), s, null);
+        c.addCustomer(customer);
+        ArrayList<Customer> customers = c.customers();
+        ArrayList<Customer> result = c.threeMoreMonthContract();
+        assertEquals(1, result.size());
+    }
 }

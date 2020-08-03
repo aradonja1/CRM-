@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -222,9 +223,6 @@ public class CustomerDAO {
             Contract c = getContractFromResultSet(rs);
             concludeContract(c, connId, customer.getId());
 
-            ArrayList<Contract> lista = getContractsFromCustomer(customer);
-            String s =(c.getEndContract().format(formatter));
-
             editCustomerStatement.setString(1, customer.getFirstName());
             editCustomerStatement.setString(2, customer.getLastName());
             editCustomerStatement.setString(3, customer.getEmail());
@@ -375,4 +373,44 @@ public class CustomerDAO {
         return result;
     }
 
+    private LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
+    private LocalDate dayInFewNextMonths(int few) {
+        final Calendar cal = Calendar.getInstance();
+        if (LocalDate.now().getMonthValue() == 1 || LocalDate.now().getMonthValue() == 3 || LocalDate.now().getMonthValue() == 5 || LocalDate.now().getMonthValue() == 7 ||
+                LocalDate.now().getMonthValue() == 8 || LocalDate.now().getMonthValue() == 10 || LocalDate.now().getMonthValue() == 12)
+            cal.add(Calendar.DATE, +31 * few);
+        else if (LocalDate.now().getMonthValue() == 4 || LocalDate.now().getMonthValue() == 6 || LocalDate.now().getMonthValue() == 9 || LocalDate.now().getMonthValue() == 11)
+            cal.add(Calendar.DATE, +30 * few);
+        else if (LocalDate.now().isLeapYear())
+            cal.add(Calendar.DATE, +29 * few);
+        else
+            cal.add(Calendar.DATE, +28 * few);
+        return convertToLocalDateViaInstant(cal.getTime());
+    }
+
+    public ArrayList<Customer> oneMoreMonthContract() {
+        ArrayList<Customer> result = customers();
+        return result.stream().filter(customer -> {
+            return customer.getEndContract().isBefore(dayInFewNextMonths(1)) || customer.getEndContract().isEqual(dayInFewNextMonths(1));
+        }).collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public ArrayList<Customer> twoMoreMonthContract() {
+        ArrayList<Customer> result = customers();
+        return result.stream().filter(customer -> {
+            return customer.getEndContract().isBefore(dayInFewNextMonths(2))|| customer.getEndContract().isEqual(dayInFewNextMonths(2));
+        }).collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public ArrayList<Customer> threeMoreMonthContract() {
+        ArrayList<Customer> result = customers();
+        return result.stream().filter(customer -> {
+            return customer.getEndContract().isBefore(dayInFewNextMonths(3))|| customer.getEndContract().isEqual(dayInFewNextMonths(3));
+        }).collect(Collectors.toCollection(ArrayList::new));
+    }
 }
