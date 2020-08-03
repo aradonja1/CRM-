@@ -27,6 +27,13 @@ public class CustomersController {
     public TableColumn<Customer, String> coloumnEmail;
     public TableColumn<Customer, String> coloumnBeginContract;
     public TableColumn<Customer, String> coloumnEndContract;
+    public TableColumn<Customer, String > coloumnPackage;
+    public TableColumn<Customer, String> coloumnService;
+    public Button btnSendEmail;
+    public Button btnAllCustomers;
+    public Button btnOneMonth;
+    public Button btnTwoMonths;
+    public Button btnThreeMonths;
 
     private ObservableList<Customer> listCustomers = FXCollections.observableArrayList();
     private CustomerDAO customerDAO;
@@ -49,7 +56,17 @@ public class CustomersController {
             property.setValue(tableData.getValue().getEndContract().format(formatter));
             return property;
         });
-
+        coloumnService.setCellValueFactory(tableData -> {
+            SimpleStringProperty property = new SimpleStringProperty();
+            property.setValue(tableData.getValue().getService().getName());
+            return property;
+        });
+        coloumnPackage.setCellValueFactory(tableData -> {
+            SimpleStringProperty property = new SimpleStringProperty();
+            property.setValue(tableData.getValue().getService().getListPackages().get(0).getName());
+            return property;
+        });
+        btnSendEmail.setVisible(false);
     }
 
     public CustomersController() {
@@ -133,5 +150,30 @@ public class CustomersController {
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(false);
         stage.show();
+    }
+
+    public void onActionAllCustomers(ActionEvent actionEvent) {
+        listCustomers = FXCollections.observableArrayList(customerDAO.customers());
+        tableView.setItems(listCustomers);
+        btnSendEmail.setVisible(false);
+    }
+
+    public void onActionOneMonth(ActionEvent actionEvent) {
+        listCustomers = FXCollections.observableArrayList(customerDAO.oneMoreMonthContract());
+        tableView.setItems(listCustomers);
+        btnSendEmail.setVisible(true);
+    }
+
+    public void onActionTwoMonths(ActionEvent actionEvent) {
+        listCustomers = FXCollections.observableArrayList(customerDAO.twoMoreMonthContract());
+        tableView.setItems(listCustomers);
+    }
+
+    public void onActionThreeMonths(ActionEvent actionEvent) {
+        listCustomers = FXCollections.observableArrayList(customerDAO.threeMoreMonthContract());
+        tableView.setItems(listCustomers);
+    }
+
+    public void onActionSendEmail(ActionEvent actionEvent) {
     }
 }

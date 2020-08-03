@@ -4,15 +4,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.CustomersController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="500.0" minWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.CustomersController">
    <center>
-      <TableView fx:id="tableView" prefHeight="400.0" prefWidth="525.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" prefHeight="400.0" prefWidth="345.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="coloumnName" text="Name" />
-          <TableColumn fx:id="coloumnSurname" text="Surname" />
-            <TableColumn fx:id="coloumnEmail" text="Email" />
-            <TableColumn fx:id="coloumnBeginContract" prefWidth="90.0" text="Begin contract" />
+          <TableColumn fx:id="coloumnName" prefWidth="100.0" text="Name" />
+          <TableColumn fx:id="coloumnSurname" prefWidth="100.0" text="Surname" />
+            <TableColumn fx:id="coloumnEmail" prefWidth="177.0" text="Email" />
+            <TableColumn fx:id="coloumnBeginContract" prefWidth="98.0" text="Begin contract" />
             <TableColumn fx:id="coloumnEndContract" prefWidth="87.0" text="End contract" />
+            <TableColumn fx:id="coloumnService" prefWidth="200.0" text="Service" />
+            <TableColumn fx:id="coloumnPackage" prefWidth="220.0" text="Package" />
         </columns>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -22,7 +24,7 @@
    <left>
       <VBox prefHeight="400.0" prefWidth="129.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="53.0" prefWidth="129.0" />
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="129.0" />
             <Button mnemonicParsing="false" onAction="#onActionAdd" prefHeight="51.0" prefWidth="129.0" text="Add" />
             <Button mnemonicParsing="false" onAction="#onActionEdit" prefHeight="51.0" prefWidth="129.0" text="Edit " />
             <Button mnemonicParsing="false" onAction="#onActionDelete" prefHeight="51.0" prefWidth="129.0" text="Delete" />
@@ -30,4 +32,15 @@
          </children>
       </VBox>
    </left>
+   <right>
+      <VBox prefHeight="400.0" prefWidth="129.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#onActionAllCustomers" fx:id="btnAllCustomers" prefHeight="59.0" prefWidth="133.0" text="All customers" />
+            <Button mnemonicParsing="false" onAction="#onActionOneMonth" fx:id="btnOneMonth" prefHeight="59.0" prefWidth="133.0" text="One month" />
+            <Button mnemonicParsing="false" onAction="#onActionTwoMonths" fx:id="btnTwoMonths" prefHeight="59.0" prefWidth="133.0" text="Two months" />
+            <Button mnemonicParsing="false" onAction="#onActionThreeMonths" fx:id="btnThreeMonths" prefHeight="59.0" prefWidth="133.0" text="Three months" />
+            <Button mnemonicParsing="false" onAction="#onActionSendEmail" fx:id="btnSendEmail" prefHeight="59.0" prefWidth="133.0" text="Send Email" />
+         </children>
+      </VBox>
+   </right>
 </BorderPane>

@@ -45,7 +45,7 @@
       <TextField fx:id="fldContact" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <DatePicker fx:id="dpBeginContract" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       <DatePicker fx:id="dpEndContract" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <ChoiceBox fx:id="cbService" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <ChoiceBox fx:id="cbService" prefHeight="25.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
       <TextField fx:id="fldEmail" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="10">
         <buttons>
@@ -54,6 +54,6 @@
         </buttons>
       </ButtonBar>
       <Label text="Package:" GridPane.rowIndex="9" />
-      <ChoiceBox fx:id="cbPackage" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <ChoiceBox fx:id="cbPackage" prefHeight="25.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
    </children>
 </GridPane>

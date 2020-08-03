@@ -217,11 +217,13 @@ public class CustomerDAO {
 
     public void editCustomer(Customer customer) {
         try {
+            //conlcude current contract when change parameters of contract
             getCurrentContractStatement.setInt(1, customer.getId());
             ResultSet rs = getCurrentContractStatement.executeQuery();
             int connId = rs.getInt(5);
             Contract c = getContractFromResultSet(rs);
-            concludeContract(c, connId, customer.getId());
+            if (!c.getEndContract().equals(customer.getEndContract()) || !c.getService().getName().equals(customer.getService().getName()) || !c.getService().getListPackages().get(0).getName().equals(customer.getService().getListPackages().get(0).getName()))
+                concludeContract(c, connId, customer.getId());
 
             editCustomerStatement.setString(1, customer.getFirstName());
             editCustomerStatement.setString(2, customer.getLastName());
@@ -235,10 +237,8 @@ public class CustomerDAO {
             editCustomerStatement.setInt(9, customer.getId());
             editCustomerStatement.execute();
 
-            //razmisli sta uraditi sa ugovorom kad izmjenjujes korisnika...
-            //zakljuci trenutni i kreiraj novi
-
-            addContract(customer, connectionId);
+            if (!c.getEndContract().equals(customer.getEndContract()) || !c.getService().getName().equals(customer.getService().getName()) || !c.getService().getListPackages().get(0).getName().equals(customer.getService().getListPackages().get(0).getName()))
+                addContract(customer, connectionId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -403,14 +403,14 @@ public class CustomerDAO {
     public ArrayList<Customer> twoMoreMonthContract() {
         ArrayList<Customer> result = customers();
         return result.stream().filter(customer -> {
-            return customer.getEndContract().isBefore(dayInFewNextMonths(2))|| customer.getEndContract().isEqual(dayInFewNextMonths(2));
+            return customer.getEndContract().isBefore(dayInFewNextMonths(2)) || customer.getEndContract().isEqual(dayInFewNextMonths(2));
         }).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<Customer> threeMoreMonthContract() {
         ArrayList<Customer> result = customers();
         return result.stream().filter(customer -> {
-            return customer.getEndContract().isBefore(dayInFewNextMonths(3))|| customer.getEndContract().isEqual(dayInFewNextMonths(3));
+            return customer.getEndContract().isBefore(dayInFewNextMonths(3)) || customer.getEndContract().isEqual(dayInFewNextMonths(3));
         }).collect(Collectors.toCollection(ArrayList::new));
     }
 }
