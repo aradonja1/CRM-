@@ -28,18 +28,18 @@
             <Button mnemonicParsing="false" onAction="#onActionAdd" prefHeight="51.0" prefWidth="129.0" text="Add" />
             <Button mnemonicParsing="false" onAction="#onActionEdit" prefHeight="51.0" prefWidth="129.0" text="Edit " />
             <Button mnemonicParsing="false" onAction="#onActionDelete" prefHeight="51.0" prefWidth="129.0" text="Delete" />
-            <Button mnemonicParsing="false" onAction="#onActionContracts" prefHeight="51.0" prefWidth="129.0" text="Contracts" />
+            <Button fx:id="btnContracts" mnemonicParsing="false" onAction="#onActionContracts" prefHeight="51.0" prefWidth="129.0" text="Contracts" />
          </children>
       </VBox>
    </left>
    <right>
       <VBox prefHeight="400.0" prefWidth="129.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#onActionAllCustomers" fx:id="btnAllCustomers" prefHeight="59.0" prefWidth="133.0" text="All customers" />
-            <Button mnemonicParsing="false" onAction="#onActionOneMonth" fx:id="btnOneMonth" prefHeight="59.0" prefWidth="133.0" text="One month" />
-            <Button mnemonicParsing="false" onAction="#onActionTwoMonths" fx:id="btnTwoMonths" prefHeight="59.0" prefWidth="133.0" text="Two months" />
-            <Button mnemonicParsing="false" onAction="#onActionThreeMonths" fx:id="btnThreeMonths" prefHeight="59.0" prefWidth="133.0" text="Three months" />
-            <Button mnemonicParsing="false" onAction="#onActionSendEmail" fx:id="btnSendEmail" prefHeight="59.0" prefWidth="133.0" text="Send Email" />
+            <Button fx:id="btnAllCustomers" mnemonicParsing="false" onAction="#onActionAllCustomers" prefHeight="59.0" prefWidth="133.0" text="All customers" />
+            <Button fx:id="btnOneMonth" mnemonicParsing="false" onAction="#onActionOneMonth" prefHeight="59.0" prefWidth="133.0" text="One month" />
+            <Button fx:id="btnTwoMonths" mnemonicParsing="false" onAction="#onActionTwoMonths" prefHeight="59.0" prefWidth="133.0" text="Two months" />
+            <Button fx:id="btnThreeMonths" mnemonicParsing="false" onAction="#onActionThreeMonths" prefHeight="59.0" prefWidth="133.0" text="Three months" />
+            <Button fx:id="btnSendEmail" mnemonicParsing="false" onAction="#onActionSendEmail" prefHeight="59.0" prefWidth="133.0" text="Send Email" />
          </children>
       </VBox>
    </right>

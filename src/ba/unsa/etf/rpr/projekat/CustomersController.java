@@ -34,12 +34,20 @@ public class CustomersController {
     public Button btnOneMonth;
     public Button btnTwoMonths;
     public Button btnThreeMonths;
+    public Button btnContracts;
 
     private ObservableList<Customer> listCustomers = FXCollections.observableArrayList();
     private CustomerDAO customerDAO;
 
     @FXML
     public void initialize() {
+
+        btnAllCustomers.setTooltip(new Tooltip("All customers in system"));
+        btnOneMonth.setTooltip(new Tooltip("Customers whose contract expires in a month"));
+        btnTwoMonths.setTooltip(new Tooltip("Customers whose contract expires in two month"));
+        btnThreeMonths.setTooltip(new Tooltip("Customers whose contract expires in three month"));
+        btnContracts.setTooltip(new Tooltip("Archived contracts for selected customer"));
+
         tableView.setItems(listCustomers);
         coloumnName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         coloumnSurname.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -72,6 +80,7 @@ public class CustomersController {
     public CustomersController() {
         customerDAO = new CustomerDAO();
         listCustomers = FXCollections.observableArrayList(customerDAO.customers());
+
     }
 
     public void onActionAdd(ActionEvent actionEvent) throws IOException {
