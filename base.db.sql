@@ -53,8 +53,9 @@ CREATE TABLE IF NOT EXISTS "service" (
 );
 INSERT INTO "admin" VALUES (1,'Adnan','Radonja','aradonja1','123456');
 INSERT INTO "employee" VALUES (1,'Senid','Hodžić','shodzic4','senid');
-INSERT INTO "customer" VALUES (1,'Rijad','Fejzić','rfejzic1@etf.unsa.ba','Sarajevo','123456','27/02/2019','27/02/2022',1);
-INSERT INTO "contract" VALUES (1,1,'27/02/2019','27/02/2022',2);
+INSERT INTO "customer" VALUES (1,'Rijad','Fejzić','rfejzic1@etf.unsa.ba','Sarajevo','555555','30/06/2020','30/06/2025',1);
+INSERT INTO "contract" VALUES (1,1,'20/01/2010','20/01/2015',8);
+INSERT INTO "contract" VALUES (2,1,'30/06/2020','30/06/2025',1);
 INSERT INTO "connection" VALUES (1,2,1);
 INSERT INTO "connection" VALUES (2,2,2);
 INSERT INTO "connection" VALUES (3,2,3);

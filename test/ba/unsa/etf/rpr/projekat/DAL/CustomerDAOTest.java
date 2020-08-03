@@ -38,7 +38,7 @@ class CustomerDAOTest {
         CustomerDAO c = new CustomerDAO();
         ArrayList<Customer> customers = c.customers();
         ArrayList<Contract> result = c.getArchivedContracts(customers.get(0));
-        assertEquals(0, result.size());
+        assertEquals(1, result.size());
     }
 
     @Test
@@ -65,8 +65,18 @@ class CustomerDAOTest {
         Service s = new Service(1, "Paketi prometa razgovora", listPackages);
         Customer customer = new Customer(1, "Arman", "Radonja", "arman.radonja@gmail.com", "Sarajevo", "555555", LocalDate.now(), LocalDate.parse("27/02/2025", formatter), s, null);
         c.editCustomer(customer);
+        ArrayList<Contract> contracts = c.getContractsFromCustomer(customer);
+        ArrayList<Contract> archivedContracts = c.getArchivedContracts(customer);
         ArrayList<Customer> customers = c.customers();
+        assertEquals(1, customers.size());
+        assertEquals(3, contracts.size());
+        assertEquals(2, archivedContracts.size());
         assertEquals("Arman", customers.get(0).getFirstName());
+        customer.setFirstName("Rijad");
+        c.editCustomer(customer);
+        contracts = c.getContractsFromCustomer(customer);
+        archivedContracts = c.getArchivedContracts(customer);
+        int n = 2;
     }
 
     @Test

@@ -9,9 +9,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 public class CustomerDAO {
@@ -47,7 +51,7 @@ public class CustomerDAO {
             getIdForNewContractStatement = conn.prepareStatement("SELECT MAX(id)+1 FROM contract");
 
             editCustomerStatement = conn.prepareStatement("UPDATE customer SET first_name=?, last_name=?, email=?, adress=?, contact=?, begin_contract=?, end_contract=?, connection=? WHERE id=? ");
-            getCurrentContractStatement = conn.prepareStatement("SELECT a.id, a.customer_id, a.begin_contract, a.end_contract, a.connection FROM contract a, customer b WHERE b.id=a.customer_id AND b.id=?");
+            getCurrentContractStatement = conn.prepareStatement("SELECT a.id, a.customer_id, a.begin_contract, a.end_contract, a.connection FROM contract a, customer b WHERE b.id=a.customer_id AND b.id=? AND a.begin_contract=b.begin_contract AND a.end_contract=b.end_contract");
             editCurrentContract = conn.prepareStatement("UPDATE contract SET customer_id=?, begin_contract=?, end_contract=?, connection=? WHERE id=?");
 
             deleteCustomerStatement = conn.prepareStatement("DELETE FROM customer WHERE id=?");
@@ -140,7 +144,7 @@ public class CustomerDAO {
 
 
 
-    private ArrayList<Contract> getContractsFromCustomer(Customer customer) {
+    public ArrayList<Contract> getContractsFromCustomer(Customer customer) {
         ArrayList<Contract> result = new ArrayList<>();
         try {
             getAllContractsForCustomerStatement.setInt(1, customer.getId());
@@ -162,21 +166,10 @@ public class CustomerDAO {
     }
 
     public ArrayList<Contract> getArchivedContracts(Customer customer) {
-        ArrayList<Contract> all = getContractsFromCustomer(customer);
-        ArrayList<Contract> all2 = customer.getContracts();
-        ArrayList<Contract> result = new ArrayList<>();
-        for (Contract c : all) {
-            if (c.getEndContract().isBefore(LocalDate.now())) {
-                result.add(c);
-            }
-        }
-        return result;
-
-     /*
      ArrayList<Contract> result = getContractsFromCustomer(customer);
      return result.stream().filter(c -> {
          return c.getEndContract().isBefore(LocalDate.now());
-     }).collect(Collectors.toCollection(ArrayList::new));*/
+     }).collect(Collectors.toCollection(ArrayList::new));
     }
 
     //kada se dodaje novi ugovor dodaje se i u tabelu contract ne samo customer
@@ -223,6 +216,15 @@ public class CustomerDAO {
 
     public void editCustomer(Customer customer) {
         try {
+            getCurrentContractStatement.setInt(1, customer.getId());
+            ResultSet rs = getCurrentContractStatement.executeQuery();
+            int connId = rs.getInt(5);
+            Contract c = getContractFromResultSet(rs);
+            concludeContract(c, connId, customer.getId());
+
+            ArrayList<Contract> lista = getContractsFromCustomer(customer);
+            String s =(c.getEndContract().format(formatter));
+
             editCustomerStatement.setString(1, customer.getFirstName());
             editCustomerStatement.setString(2, customer.getLastName());
             editCustomerStatement.setString(3, customer.getEmail());
@@ -234,40 +236,39 @@ public class CustomerDAO {
             editCustomerStatement.setInt(8, connectionId);
             editCustomerStatement.setInt(9, customer.getId());
             editCustomerStatement.execute();
+
             //razmisli sta uraditi sa ugovorom kad izmjenjujes korisnika...
             //zakljuci trenutni i kreiraj novi
-            getCurrentContractStatement.setInt(1, customer.getId());
-            ResultSet rs = getCurrentContractStatement.executeQuery();
-            Contract c = getContractFromResultSet(rs);
-            concludeCurrentContract(c);
+
             addContract(customer, connectionId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
      }
 
-    private void concludeCurrentContract(Contract contract) {
-        try {
-            editCurrentContract.setString(3, LocalDate.now().format(formatter));
-            editCurrentContract.setInt(5, contract.getId());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    private Date yesterday() {
+        final Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        return cal.getTime();
     }
 
-    public void editCurrentContract(Customer customer) {
-        try {
-            editCurrentContract.setInt(1, customer.getId());
-            editCurrentContract.setString(2, customer.getBeginContract().format(formatter));
-            editCurrentContract.setString(3, customer.getEndContract().format(formatter));
-            getConnectionFromIdStatement.setInt(1, getConnectionId(customer));
-            ResultSet rs = getConnectionFromIdStatement.executeQuery();
-            editCurrentContract.setInt(4, rs.getInt(1));
-            editCurrentContract.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    private String getYesterdayDateString() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormat.format(yesterday());
     }
+
+    private void concludeContract(Contract c, int connId, int customerId) {
+         try {
+             editCurrentContract.setInt(1, customerId);
+             editCurrentContract.setString(2, c.getStartContract().format(formatter));
+             editCurrentContract.setString(3, getYesterdayDateString());
+             editCurrentContract.setInt(4, connId);
+             editCurrentContract.setInt(5, c.getId());
+             editCurrentContract.execute();
+         } catch (SQLException e) {
+             e.printStackTrace();
+         }
+     }
 
     private Contract getContractFromResultSet(ResultSet rs) {
         try {

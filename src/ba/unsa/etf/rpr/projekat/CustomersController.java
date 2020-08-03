@@ -119,4 +119,19 @@ public class CustomersController {
             listCustomers.setAll(customerDAO.customers());
         }
     }
+
+    public void onActionContracts(ActionEvent actionEvent) throws IOException {
+        Customer customer = tableView.getSelectionModel().getSelectedItem();
+        if (customer == null) return;
+
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contracts.fxml"));
+        ContractController  ctrl = new ContractController(customer);
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        stage.setTitle("Contracts");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(false);
+        stage.show();
+    }
 }

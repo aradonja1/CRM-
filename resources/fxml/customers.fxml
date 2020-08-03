@@ -26,6 +26,7 @@
             <Button mnemonicParsing="false" onAction="#onActionAdd" prefHeight="51.0" prefWidth="129.0" text="Add" />
             <Button mnemonicParsing="false" onAction="#onActionEdit" prefHeight="51.0" prefWidth="129.0" text="Edit " />
             <Button mnemonicParsing="false" onAction="#onActionDelete" prefHeight="51.0" prefWidth="129.0" text="Delete" />
+            <Button mnemonicParsing="false" onAction="#onActionContracts" prefHeight="51.0" prefWidth="129.0" text="Contracts" />
          </children>
       </VBox>
    </left>
