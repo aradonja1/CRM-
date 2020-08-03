@@ -176,13 +176,29 @@ public class CustomersController {
     public void onActionTwoMonths(ActionEvent actionEvent) {
         listCustomers = FXCollections.observableArrayList(customerDAO.twoMoreMonthContract());
         tableView.setItems(listCustomers);
+        btnSendEmail.setVisible(true);
     }
 
     public void onActionThreeMonths(ActionEvent actionEvent) {
         listCustomers = FXCollections.observableArrayList(customerDAO.threeMoreMonthContract());
         tableView.setItems(listCustomers);
+        btnSendEmail.setVisible(true);
     }
 
-    public void onActionSendEmail(ActionEvent actionEvent) {
+    public void onActionSendEmail(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/email.fxml"));
+
+        Customer currentCustomer =  tableView.getSelectionModel().getSelectedItem();
+        if (currentCustomer == null) return;
+
+        EmailController ctrl = new EmailController(currentCustomer);
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        stage.setTitle("Email");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(false);
+        stage.show();
+
     }
 }
