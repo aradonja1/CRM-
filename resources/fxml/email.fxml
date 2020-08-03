@@ -10,6 +10,9 @@
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -18,18 +21,23 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="To:" />
-      <Label text="Subject:" GridPane.rowIndex="1" />
-      <TextArea fx:id="fldMessage" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2" />
-      <Label text="Mesage:" GridPane.rowIndex="2" />
-      <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="5">
+      <Label text="To:" GridPane.rowIndex="3" />
+      <Label text="Subject:" GridPane.rowIndex="4" />
+      <TextArea fx:id="fldMessage" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.rowSpan="2" />
+      <Label text="Mesage:" GridPane.rowIndex="5" />
+      <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="8">
         <buttons>
           <Button defaultButton="true" mnemonicParsing="false" onAction="#onActionSend" text="Send" />
             <Button cancelButton="true" mnemonicParsing="false" onAction="#onActionCancel" text="Cancel" />
         </buttons>
       </ButtonBar>
-      <Label fx:id="labelEmail" GridPane.columnIndex="1" />
-      <TextField fx:id="fldSubject" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label fx:id="labelEmail" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextField fx:id="fldSubject" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Label text="Your Email:" />
+      <TextField fx:id="fldYourEmail" GridPane.columnIndex="1" />
+      <Label text="Your Password:" GridPane.rowIndex="1" />
+      <PasswordField fx:id="fldYourPassword" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
