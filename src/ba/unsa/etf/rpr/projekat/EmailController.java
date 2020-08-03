@@ -22,6 +22,8 @@ public class EmailController {
     @FXML
     public void initialize() {
         labelEmail.setText(customer.getEmail());
+        fldYourEmail.setText("crmetfrpr2020@gmail.com");
+        fldYourPassword.setText("RazvojProgramskihRjesenja2020");
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Sending Email");
@@ -56,6 +58,11 @@ public class EmailController {
             msg.setSubject(fldSubject.getText());
             msg.setText(fldMessage.getText());
             Transport.send(msg);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Sending Email");
+            alert.setHeaderText("Message sent successfully");
+            alert.showAndWait();
+
         } catch (MessagingException e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
