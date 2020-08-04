@@ -14,7 +14,7 @@ public class ServiceDAO {
     private Connection conn;
 
     private PreparedStatement allServicesStatement, getPackagesForServiceStatement, getPackageFromIdStatement, addServiceStatement, getIdForNewServiceStatement,
-                              editServiceStatement;
+                              editServiceStatement, addNewConnectionStatement, getIdForNewConnection;
 
     public ServiceDAO() {
         conn = db.getConn();
@@ -30,6 +30,8 @@ public class ServiceDAO {
 
             addServiceStatement = conn.prepareStatement("INSERT INTO service VALUES(?,?)");
             getIdForNewServiceStatement = conn.prepareStatement("SELECT MAX(id)+1 FROM service");
+            getIdForNewConnection = conn.prepareStatement("SELECT MAX(id)+1 FROM connection");
+            addNewConnectionStatement = conn.prepareStatement("INSERT INTO connection VALUES(?,?,?)");
 
             editServiceStatement = conn.prepareStatement("UPDATE service SET name=? WHERE id=?");
         } catch (SQLException e) {
@@ -74,16 +76,31 @@ public class ServiceDAO {
             service.setId(rs.getInt(1));
             addServiceStatement.setInt(1, service.getId());
             addServiceStatement.setString(2, service.getName());
+            addPackageForService(service, service.getListPackages().get(0));
             addServiceStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void editService(Service service) {
+    private void addPackageForService(Service service, Package newPackage) {
+        try {
+            ResultSet rs = getIdForNewConnection.executeQuery();
+            addNewConnectionStatement.setInt(1, rs.getInt(1));
+            addNewConnectionStatement.setInt(2, service.getId());
+            addNewConnectionStatement.setInt(3, newPackage.getId());
+            addNewConnectionStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void editService(Service service, boolean addPackage) {
         try {
             editServiceStatement.setString(1, service.getName());
             editServiceStatement.setInt(2, service.getId());
+            if (addPackage)
+                addPackageForService(service, service.getListPackages().get(service.getListPackages().size() - 1));
             editServiceStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();

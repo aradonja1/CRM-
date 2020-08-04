@@ -31,10 +31,21 @@ class ServiceDAOTest {
         ServiceDAO serviceDAO = new ServiceDAO();
         ArrayList<Service> services = serviceDAO.services();
         Service s = new Service(1, "Nova usluga", null);
+//        serviceDAO.addService(s);
+  //      services = serviceDAO.services();
+    //    assertEquals(4, services.size());
+      //  assertEquals("Nova usluga", services.get(3).getName());
+        Package p = new Package(1,"Novi paket");
+        PackageDAO packageDAO = new PackageDAO();
+        packageDAO.addPackage(p);
+        ArrayList<Package> list = new ArrayList<>();
+        list.add(p);
+        s.setListPackages(list);
         serviceDAO.addService(s);
         services = serviceDAO.services();
         assertEquals(4, services.size());
         assertEquals("Nova usluga", services.get(3).getName());
+        assertEquals("Novi paket", services.get(3).getListPackages().get(0).getName());
     }
 
     @Test
@@ -42,12 +53,18 @@ class ServiceDAOTest {
         ServiceDAO serviceDAO = new ServiceDAO();
         ArrayList<Service> services = serviceDAO.services();
         Service s = new Service(1, "Nova usluga", null);
+        Package p = new Package(1,"Novi paket");
+        PackageDAO packageDAO = new PackageDAO();
+        packageDAO.addPackage(p);
+        ArrayList<Package> list = new ArrayList<>();
+        list.add(p);
+        s.setListPackages(list);
         serviceDAO.addService(s);
         services = serviceDAO.services();
         assertEquals(4, services.size());
         assertEquals("Nova usluga", services.get(3).getName());
         s.setName("Izmjenjena usluga");
-        serviceDAO.editService(s);
+        serviceDAO.editService(s, false);
         services = serviceDAO.services();
         assertEquals("Izmjenjena usluga", services.get(3).getName());
     }

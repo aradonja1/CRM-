@@ -17,7 +17,7 @@ public class PackageController {
     private Package aPackage;
     private PackageDAO packageDAO = new PackageDAO();
     private ObservableList<Package> listPackages;
-    private boolean add;
+
 
     @FXML
     public void initialize() {
@@ -30,10 +30,10 @@ public class PackageController {
         }));
 
         fldName.textProperty().addListener((obs, oldName, newName) -> {
-            if (add && fldName.getText().isEmpty()) {
+            if (fldName.getText().isEmpty()) {
                 fldName.getStyleClass().removeAll("correctField");
                 fldName.getStyleClass().add("incorrectField");
-            } else if (add){
+            } else {
                 fldName.getStyleClass().removeAll("incorrectField");
                 fldName.getStyleClass().add("correctField");
             }
@@ -41,19 +41,19 @@ public class PackageController {
     }
 
     public void onActionOk(ActionEvent actionEvent) {
-       // if (!ok) return;
         if (aPackage == null) {
-            add = true;
             aPackage = new Package();
             aPackage.setName(fldName.getText());
             packageDAO.addPackage(aPackage);
         } else {
-            add = false;
             aPackage.setName(fldName.getText());
             packageDAO.editPackage(aPackage);
         }
         listPackages.setAll(packageDAO.packages());
         fldListView.refresh();
+
+        Stage stage = (Stage) fldName.getScene().getWindow();
+        stage.close();
     }
 
     public void onActionCancel(ActionEvent actionEvent) {
