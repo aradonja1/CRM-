@@ -151,6 +151,12 @@ public class AdminController {
 
     }
 
-    public void onActionAddPackage(ActionEvent actionEvent) {
+    public void onActionAddPackage(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/package.fxml"));
+        stage.setTitle("Packages");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(false);
+        stage.show();
     }
 }
