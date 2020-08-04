@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.projekat;
 
+import ba.unsa.etf.rpr.projekat.DAL.PackageDAO;
 import ba.unsa.etf.rpr.projekat.DAL.ServiceDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +11,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 public class ServiceController {
     public TextField fldName;
     public ChoiceBox<Package> cbPackages;
@@ -18,7 +22,9 @@ public class ServiceController {
 
     private ObservableList<Service> listServices;
     private ObservableList<Package> listPackages;
+    private ObservableList<Package> allPackages;
     private ServiceDAO serviceDAO = new ServiceDAO();
+    private PackageDAO packageDAO = new PackageDAO();
     private Service service;
 
     @FXML
@@ -29,11 +35,24 @@ public class ServiceController {
             service = t1;
             if (service != null) {
                 fldName.setText(service.getName());
-            }
+                listPackages = FXCollections.observableArrayList(serviceDAO.getPackagesForService(service));
+                listViewPackages.setItems(listPackages);
+                cbPackages.setItems(FXCollections.observableArrayList(listPackagesForChoiceBox()));
+            } else {
+
+             }
         }));
 
 
-
+        fldName.textProperty().addListener((obs, oldName, newName) -> {
+            if (add && fldName.getText().isEmpty()) {
+                fldName.getStyleClass().removeAll("correctField");
+                fldName.getStyleClass().add("incorrectField");
+            } else if (add){
+                fldName.getStyleClass().removeAll("incorrectField");
+                fldName.getStyleClass().add("correctField");
+            }
+        });
     }
 
     public void onActionOk(ActionEvent actionEvent) {
@@ -47,5 +66,14 @@ public class ServiceController {
 
     public ServiceController() {
         listServices = FXCollections.observableArrayList(serviceDAO.services());
+        allPackages = FXCollections.observableArrayList(packageDAO.packages());
     }
+
+    private ArrayList<Package> listPackagesForChoiceBox() {
+        ObservableList<Package> result = FXCollections.observableArrayList(allPackages);
+        return result.stream().filter(pack -> {
+            return !listPackages.contains(pack);
+        }).collect(Collectors.toCollection(ArrayList::new));
+    }
+
 }

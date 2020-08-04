@@ -1,0 +1,7 @@
+.correctField {
+    -fx-background-color: yellowgreen;
+}
+
+.incorrectField {
+    -fx-background-color: lightpink;
+}

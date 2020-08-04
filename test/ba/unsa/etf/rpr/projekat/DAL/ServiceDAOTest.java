@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.projekat.DAL;
 
+import ba.unsa.etf.rpr.projekat.Package;
 import ba.unsa.etf.rpr.projekat.Service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,5 +50,15 @@ class ServiceDAOTest {
         serviceDAO.editService(s);
         services = serviceDAO.services();
         assertEquals("Izmjenjena usluga", services.get(3).getName());
+    }
+
+    @Test
+    void getPackagesForService() {
+        ServiceDAO serviceDAO = new ServiceDAO();
+        ArrayList<Service> result = serviceDAO.services();
+        assertEquals(3, result.size());
+        ArrayList<Package> listPackages = serviceDAO.getPackagesForService(result.get(2));
+        assertEquals(2, listPackages.size());
+        assertEquals("LG K61", listPackages.get(0).getName());
     }
 }

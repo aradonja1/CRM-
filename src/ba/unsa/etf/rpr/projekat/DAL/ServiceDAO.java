@@ -52,7 +52,7 @@ public class ServiceDAO {
         return result;
     }
 
-    private ArrayList<Package> getPackagesForService(Service service) {
+    public ArrayList<Package> getPackagesForService(Service service) {
         ArrayList<Package> result = new ArrayList<>();
         try {
             getPackagesForServiceStatement.setInt(1, service.getId());
@@ -89,6 +89,7 @@ public class ServiceDAO {
             e.printStackTrace();
         }
     }
+
 
 
 }
