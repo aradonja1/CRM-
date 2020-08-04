@@ -48,4 +48,15 @@ public class Contract {
     public void setService(Service service) {
         this.service = service;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if(this == object) return true;
+
+        if(!(object instanceof Contract)) return false;
+
+        Contract c = (Contract) object;
+
+        return this.getId() == c.getId();
+    }
 }

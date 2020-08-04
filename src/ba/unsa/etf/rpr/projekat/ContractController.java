@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class ContractController {
 
@@ -28,40 +29,44 @@ public class ContractController {
 
     @FXML
     public void initialize() {
-        if (customer != null) {
-            tblView.setItems(listContracts);
-            coloumnBegin.setCellValueFactory(tableData -> {
-                SimpleStringProperty property = new SimpleStringProperty();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                property.setValue(tableData.getValue().getStartContract().format(formatter));
-                return property;
-            });
-            coloumnEnd.setCellValueFactory(tableData -> {
-                SimpleStringProperty property = new SimpleStringProperty();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                property.setValue(tableData.getValue().getEndContract().format(formatter));
-                return property;
-            });
-            coloumnService.setCellValueFactory(tableData -> {
-                SimpleStringProperty property = new SimpleStringProperty();
-                property.setValue(tableData.getValue().getService().getName());
-                return property;
-            });
-            coloumnPackage.setCellValueFactory(tableData -> {
-                SimpleStringProperty property = new SimpleStringProperty();
-                property.setValue(tableData.getValue().getService().getListPackages().get(0).getName());
-                return property;
-            });
-            coloumnState.setCellValueFactory(tableData -> {
-                SimpleStringProperty property = new SimpleStringProperty();
+        tblView.setItems(listContracts);
+        coloumnBegin.setCellValueFactory(tableData -> {
+            SimpleStringProperty property = new SimpleStringProperty();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            property.setValue(tableData.getValue().getStartContract().format(formatter));
+            return property;
+        });
+        coloumnEnd.setCellValueFactory(tableData -> {
+            SimpleStringProperty property = new SimpleStringProperty();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            property.setValue(tableData.getValue().getEndContract().format(formatter));
+            return property;
+        });
+        coloumnService.setCellValueFactory(tableData -> {
+            SimpleStringProperty property = new SimpleStringProperty();
+            property.setValue(tableData.getValue().getService().getName());
+            return property;
+        });
+        coloumnPackage.setCellValueFactory(tableData -> {
+            SimpleStringProperty property = new SimpleStringProperty();
+            property.setValue(tableData.getValue().getService().getListPackages().get(0).getName());
+            return property;
+        });
+        coloumnState.setCellValueFactory(tableData -> {
+            SimpleStringProperty property = new SimpleStringProperty();
+            property.setValue("Active");
+            if (customerDAO.getAllArchivedContracts().contains(tableData.getValue()))
                 property.setValue("Inactive");
-                return property;
-            });
-        }
+            return property;
+        });
     }
 
     public ContractController(Customer customer) {
         this.customer = customer;
         listContracts = FXCollections.observableArrayList(customerDAO.getArchivedContracts(customer));
+    }
+
+    public ContractController() {
+        listContracts = FXCollections.observableArrayList(customerDAO.contracts());
     }
 }

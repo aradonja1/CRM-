@@ -164,4 +164,18 @@ class CustomerDAOTest {
         ArrayList<Customer> result = c.threeMoreMonthContract();
         assertEquals(1, result.size());
     }
+
+    @Test
+    void contracts() {
+        CustomerDAO c = new CustomerDAO();
+        ArrayList<Contract> contracts = c.contracts();
+        assertEquals(2, contracts.size());
+    }
+
+    @Test
+    void getAllArchivedContracts() {
+        CustomerDAO c = new CustomerDAO();
+        ArrayList<Contract> result = c.getAllArchivedContracts();
+        assertEquals(1, result.size());
+    }
 }

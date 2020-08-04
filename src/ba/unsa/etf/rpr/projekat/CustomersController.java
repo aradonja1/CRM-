@@ -146,21 +146,6 @@ public class CustomersController {
         }
     }
 
-    public void onActionContracts(ActionEvent actionEvent) throws IOException {
-        Customer customer = tableView.getSelectionModel().getSelectedItem();
-        if (customer == null) return;
-
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contracts.fxml"));
-        ContractController  ctrl = new ContractController(customer);
-        loader.setController(ctrl);
-        Parent root = loader.load();
-        stage.setTitle("Contracts");
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.setResizable(false);
-        stage.show();
-    }
-
     public void onActionAllCustomers(ActionEvent actionEvent) {
         listCustomers = FXCollections.observableArrayList(customerDAO.customers());
         tableView.setItems(listCustomers);
@@ -196,6 +181,33 @@ public class CustomersController {
         loader.setController(ctrl);
         Parent root = loader.load();
         stage.setTitle("Email");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    public void onActionAllContracts(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contracts.fxml"));
+        ContractController  ctrl = new ContractController();
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        stage.setTitle("All contracts in system");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    public void onActionArchievedContracts(ActionEvent actionEvent) throws IOException {
+        Customer customer = tableView.getSelectionModel().getSelectedItem();
+        if (customer == null) return;
+
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contracts.fxml"));
+        ContractController  ctrl = new ContractController(customer);
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        stage.setTitle("Contracts");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(false);
         stage.show();

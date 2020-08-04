@@ -24,6 +24,7 @@ public class EmailController {
         labelEmail.setText(customer.getEmail());
         fldYourEmail.setText("crmetfrpr2020@gmail.com");
         fldYourPassword.setText("RazvojProgramskihRjesenja2020");
+        fldMessage.setText("Razvoj programskih rješenja 2019/2020\nCustomer Relationship Managment(CRM)\nTelekom Slovenije SL\n");
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Sending Email");

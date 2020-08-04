@@ -28,7 +28,8 @@ public class CustomerDAO {
     private PreparedStatement allCustomersStatement, getConnectionFromIdStatement, getServiceFromIdStatement, getPackageFromIdStatement,
             getAllContractsForCustomerStatement, addCustomerStatement, getConnectionFromServiceAndPackageIdStatement, getIdForNewCustomerStatement,
             addContractStatement, getIdForNewContractStatement, editCustomerStatement, getCurrentContractStatement, editCurrentContract,
-            deleteCustomerStatement, deleteContractsForCustomerStatement, allPackagesStatement, allServicesStatement, getPackagesForServiceStatement;
+            deleteCustomerStatement, deleteContractsForCustomerStatement, allPackagesStatement, allServicesStatement, getPackagesForServiceStatement,
+            getAllContractsStatement;
 
     public CustomerDAO() {
         conn = db.getConn();
@@ -60,6 +61,8 @@ public class CustomerDAO {
 
             allPackagesStatement = conn.prepareStatement("SELECT * FROM package");
             allServicesStatement = conn.prepareStatement("SELECT * FROM service");
+
+            getAllContractsStatement = conn.prepareStatement("SELECT * FROM contract");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -413,4 +416,25 @@ public class CustomerDAO {
             return customer.getEndContract().isBefore(dayInFewNextMonths(3)) || customer.getEndContract().isEqual(dayInFewNextMonths(3));
         }).collect(Collectors.toCollection(ArrayList::new));
     }
+
+    public ArrayList<Contract> contracts() {
+        ArrayList<Contract> result = new ArrayList<>();
+        try {
+            ResultSet rs = getAllContractsStatement.executeQuery();
+            while (rs.next()) {
+                result.add(getContractFromResultSet(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public ArrayList<Contract> getAllArchivedContracts() {
+        ArrayList<Contract> result = contracts();
+        return result.stream().filter(contract -> {
+            return contract.getEndContract().isBefore(convertToLocalDateViaInstant(yesterday())) || contract.getEndContract().isEqual(convertToLocalDateViaInstant(yesterday()));
+        }).collect(Collectors.toCollection(ArrayList::new));
+    }
+
 }
