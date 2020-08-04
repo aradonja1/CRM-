@@ -1,6 +1,8 @@
 package ba.unsa.etf.rpr.projekat;
 
 import ba.unsa.etf.rpr.projekat.DAL.CustomerDAO;
+import ba.unsa.etf.rpr.projekat.DAL.PackageDAO;
+import ba.unsa.etf.rpr.projekat.DAL.ServiceDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,10 +34,12 @@ public class CustomerFormController {
     private ObservableList<Service> listServices = FXCollections.observableArrayList();
     private ObservableList<Package> listPackages = FXCollections.observableArrayList();
     private CustomerDAO customerDAO = new CustomerDAO();
+    private ServiceDAO serviceDAO = new ServiceDAO();
+    private PackageDAO packageDAO = new PackageDAO();
 
     @FXML
     public void initialize() {
-        cbService.setItems(FXCollections.observableArrayList(customerDAO.services()));
+        cbService.setItems(FXCollections.observableArrayList(serviceDAO.services()));
 
         if (customer != null) {
             fldName.setText(customer.getFirstName());
@@ -50,7 +54,7 @@ public class CustomerFormController {
                 if (s.getId() == customer.getService().getId())
                     cbService.getSelectionModel().select(s);
 
-            cbPackage.setItems(FXCollections.observableArrayList(customerDAO.packages(cbService.getValue())));
+            cbPackage.setItems(FXCollections.observableArrayList(serviceDAO.getPackagesForService(cbService.getValue())));
             for (Package p : listPackages)
                 if (p.getId() == customer.getService().getListPackages().get(0).getId())
                     cbPackage.getSelectionModel().select(p);
@@ -97,13 +101,13 @@ public class CustomerFormController {
 
             if (cbService.getValue() == null) {
                 cbService.getSelectionModel().selectFirst();
-                cbPackage.setItems(FXCollections.observableArrayList(customerDAO.packages(cbService.getValue())));
+                cbPackage.setItems(FXCollections.observableArrayList(serviceDAO.getPackagesForService(cbService.getValue())));
                 cbPackage.getSelectionModel().selectFirst();
             }
         }
 
         cbService.getSelectionModel().selectedItemProperty().addListener((obs, o, n) -> {
-            cbPackage.setItems(FXCollections.observableArrayList(customerDAO.packages(cbService.getValue())));
+            cbPackage.setItems(FXCollections.observableArrayList(serviceDAO.getPackagesForService(cbService.getValue())));
             cbPackage.getSelectionModel().selectFirst();
         });
     }
@@ -157,6 +161,6 @@ public class CustomerFormController {
     public CustomerFormController(Customer customer, ArrayList<Service> services) {
         this.customer = customer;
         listServices = FXCollections.observableArrayList(services);
-        listPackages = FXCollections.observableArrayList(customerDAO.packages());
+        listPackages = FXCollections.observableArrayList(packageDAO.packages());
     }
 }

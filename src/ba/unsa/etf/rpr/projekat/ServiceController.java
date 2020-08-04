@@ -6,13 +6,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ServiceController {
@@ -93,6 +91,7 @@ public class ServiceController {
                 alert.setHeaderText("Choice box must be selected!");
                 alert.setContentText("Please, select a package from choice box");
                 alert.showAndWait();
+                service = null;
             }
         } else {
             service.setName(fldName.getText());
@@ -131,4 +130,30 @@ public class ServiceController {
         }).collect(Collectors.toCollection(ArrayList::new));
     }
 
+    public void onActionArchive(ActionEvent actionEvent) {
+        //kada se pritisne arhiviraj, uslugu treba arhivirati
+        //također treba arhivirati i sve pakete vezane za uslugu
+        //mora biti selektovana usluga koju zelimo arhivirati
+        if (service != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Archive service");
+            alert.setHeaderText("Archive service "+service.getName());
+            alert.setContentText("Are you sure you want to archive the service " +service.getName()+"? You will archive all packages of the service.");
+            alert.setResizable(true);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                serviceDAO.archiveService(service);
+                listServices.setAll(serviceDAO.services());
+                fldName.setText("");
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Cannot archive unselected service");
+            alert.setContentText("Please select the service you want to archive");
+            alert.showAndWait();
+            service = null;
+        }
+    }
 }

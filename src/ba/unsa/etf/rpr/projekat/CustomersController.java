@@ -1,6 +1,8 @@
 package ba.unsa.etf.rpr.projekat;
 
 import ba.unsa.etf.rpr.projekat.DAL.CustomerDAO;
+import ba.unsa.etf.rpr.projekat.DAL.PackageDAO;
+import ba.unsa.etf.rpr.projekat.DAL.ServiceDAO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +18,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -38,6 +42,8 @@ public class CustomersController {
 
     private ObservableList<Customer> listCustomers = FXCollections.observableArrayList();
     private CustomerDAO customerDAO;
+    private ServiceDAO serviceDAO = new ServiceDAO();
+    private PackageDAO packageDAO = new PackageDAO();
 
     @FXML
     public void initialize() {
@@ -79,14 +85,14 @@ public class CustomersController {
 
     public CustomersController() {
         customerDAO = new CustomerDAO();
-        listCustomers = FXCollections.observableArrayList(customerDAO.customers());
-
+  //      listCustomers = FXCollections.observableArrayList(customerDAO.customers());
+            listCustomers = FXCollections.observableArrayList(customerDAO.nonarchivedCustomers());
     }
 
     public void onActionAdd(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/customerform.fxml"));
-        CustomerFormController ctrl = new CustomerFormController(null, customerDAO.services());
+        CustomerFormController ctrl = new CustomerFormController(null, serviceDAO.services());
         loader.setController(ctrl);
         Parent root = loader.load();
         stage.setTitle("Add customer form");
@@ -98,7 +104,9 @@ public class CustomersController {
             Customer customer = ctrl.getCustomer();
             if (customer != null) {
                 customerDAO.addCustomer(customer);
-                listCustomers.setAll(customerDAO.customers());
+         //       listCustomers.setAll(customerDAO.customers());
+                listCustomers.setAll(customerDAO.nonarchivedCustomers());
+
             }
         });
     }
@@ -110,7 +118,7 @@ public class CustomersController {
         Customer currentCustomer =  tableView.getSelectionModel().getSelectedItem();
         if (currentCustomer == null) return;
 
-        CustomerFormController ctrl = new CustomerFormController(currentCustomer, customerDAO.services());
+        CustomerFormController ctrl = new CustomerFormController(currentCustomer, serviceDAO.services());
         loader.setController(ctrl);
         Parent root = loader.load();
         stage.setTitle("Edit customer form");
@@ -123,7 +131,9 @@ public class CustomersController {
             customer.setId(currentCustomer.getId());
             if (customer != null) {
                 customerDAO.editCustomer(customer);
-                listCustomers.setAll(customerDAO.customers());
+           //     listCustomers.setAll(customerDAO.customers());
+                listCustomers.setAll(customerDAO.nonarchivedCustomers());
+
             }
         });
 
@@ -142,30 +152,32 @@ public class CustomersController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
             customerDAO.deleteCustomer(customer);
-            listCustomers.setAll(customerDAO.customers());
+       //     listCustomers.setAll(customerDAO.customers());
+            listCustomers.setAll(customerDAO.nonarchivedCustomers());
         }
     }
 
     public void onActionAllCustomers(ActionEvent actionEvent) {
-        listCustomers = FXCollections.observableArrayList(customerDAO.customers());
+       // listCustomers = FXCollections.observableArrayList(customerDAO.customers());
+        listCustomers = FXCollections.observableArrayList(customerDAO.nonarchivedCustomers());
         tableView.setItems(listCustomers);
         btnSendEmail.setVisible(false);
     }
 
     public void onActionOneMonth(ActionEvent actionEvent) {
-        listCustomers = FXCollections.observableArrayList(customerDAO.oneMoreMonthContract());
+        listCustomers = FXCollections.observableArrayList(customerDAO.oneMoreMonthContract(customerDAO.nonarchivedCustomers()));
         tableView.setItems(listCustomers);
         btnSendEmail.setVisible(true);
     }
 
     public void onActionTwoMonths(ActionEvent actionEvent) {
-        listCustomers = FXCollections.observableArrayList(customerDAO.twoMoreMonthContract());
+        listCustomers = FXCollections.observableArrayList(customerDAO.twoMoreMonthContract(customerDAO.nonarchivedCustomers()));
         tableView.setItems(listCustomers);
         btnSendEmail.setVisible(true);
     }
 
     public void onActionThreeMonths(ActionEvent actionEvent) {
-        listCustomers = FXCollections.observableArrayList(customerDAO.threeMoreMonthContract());
+        listCustomers = FXCollections.observableArrayList(customerDAO.threeMoreMonthContract(customerDAO.nonarchivedCustomers()));
         tableView.setItems(listCustomers);
         btnSendEmail.setVisible(true);
     }
@@ -212,4 +224,5 @@ public class CustomersController {
         stage.setResizable(false);
         stage.show();
     }
+
 }

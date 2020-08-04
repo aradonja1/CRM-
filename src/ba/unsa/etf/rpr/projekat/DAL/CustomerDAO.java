@@ -258,7 +258,7 @@ public class CustomerDAO {
         return dateFormat.format(yesterday());
     }
 
-    private void concludeContract(Contract c, int connId, int customerId) {
+    public void concludeContract(Contract c, int connId, int customerId) {
          try {
              editCurrentContract.setInt(1, customerId);
              editCurrentContract.setString(2, c.getStartContract().format(formatter));
@@ -396,22 +396,22 @@ public class CustomerDAO {
         return convertToLocalDateViaInstant(cal.getTime());
     }
 
-    public ArrayList<Customer> oneMoreMonthContract() {
-        ArrayList<Customer> result = customers();
+    public ArrayList<Customer> oneMoreMonthContract(ArrayList<Customer> customers) {
+        ArrayList<Customer> result = customers;
         return result.stream().filter(customer -> {
             return customer.getEndContract().isBefore(dayInFewNextMonths(1)) || customer.getEndContract().isEqual(dayInFewNextMonths(1));
         }).collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public ArrayList<Customer> twoMoreMonthContract() {
-        ArrayList<Customer> result = customers();
+    public ArrayList<Customer> twoMoreMonthContract(ArrayList<Customer> customers) {
+        ArrayList<Customer> result = customers;
         return result.stream().filter(customer -> {
             return customer.getEndContract().isBefore(dayInFewNextMonths(2)) || customer.getEndContract().isEqual(dayInFewNextMonths(2));
         }).collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public ArrayList<Customer> threeMoreMonthContract() {
-        ArrayList<Customer> result = customers();
+    public ArrayList<Customer> threeMoreMonthContract(ArrayList<Customer> customers) {
+        ArrayList<Customer> result = customers;
         return result.stream().filter(customer -> {
             return customer.getEndContract().isBefore(dayInFewNextMonths(3)) || customer.getEndContract().isEqual(dayInFewNextMonths(3));
         }).collect(Collectors.toCollection(ArrayList::new));
@@ -437,4 +437,21 @@ public class CustomerDAO {
         }).collect(Collectors.toCollection(ArrayList::new));
     }
 
+    public ArrayList<Customer> nonarchivedCustomers() {
+        ArrayList<Contract> listContracts = contracts();
+        ArrayList<Customer> listCustomers = customers();
+        ArrayList<Customer> result = new ArrayList<>();
+        boolean ok;
+        for (Customer c : listCustomers) {
+            ok = true;
+            for (Contract cc : listContracts) {
+                if (c.getService().getId() == cc.getService().getId() && cc.getEndContract().isBefore(LocalDate.now())) {
+                    ok = false;
+                }
+            }
+            if (ok)
+                result.add(c);
+        }
+        return result;
+    }
 }

@@ -6,9 +6,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.util.Optional;
 
 public class PackageController {
     public ListView<Package> fldListView;
@@ -17,7 +21,7 @@ public class PackageController {
     private Package aPackage;
     private PackageDAO packageDAO = new PackageDAO();
     private ObservableList<Package> listPackages;
-
+    private boolean ok;
 
     @FXML
     public void initialize() {
@@ -30,17 +34,20 @@ public class PackageController {
         }));
 
         fldName.textProperty().addListener((obs, oldName, newName) -> {
-            if (fldName.getText().isEmpty()) {
+            if (fldName.getText().trim().isEmpty()) {
                 fldName.getStyleClass().removeAll("correctField");
                 fldName.getStyleClass().add("incorrectField");
+                ok = false;
             } else {
                 fldName.getStyleClass().removeAll("incorrectField");
                 fldName.getStyleClass().add("correctField");
+                ok = true;
             }
         });
     }
 
     public void onActionOk(ActionEvent actionEvent) {
+        if (!ok) return;
         if (aPackage == null) {
             aPackage = new Package();
             aPackage.setName(fldName.getText());
@@ -63,5 +70,32 @@ public class PackageController {
 
     public PackageController() {
         listPackages = FXCollections.observableArrayList(packageDAO.packages());
+    }
+
+    public void onActionArchive(ActionEvent actionEvent) {
+
+        //kada se pritisne arhiviraj, paket treba arhivirati
+        //mora biti selektovan paket koji zelimo arhivirati
+        if (aPackage != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Archive package");
+            alert.setHeaderText("Archive package "+aPackage.getName());
+            alert.setContentText("Are you sure you want to archive the package " +aPackage.getName()+"?");
+            alert.setResizable(true);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                packageDAO.archivePackage(aPackage);
+                listPackages.setAll(packageDAO.packages());
+                fldName.setText("");
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Cannot archive unselected package");
+            alert.setContentText("Please select the package you want to archive");
+            alert.showAndWait();
+            aPackage = null;
+        }
     }
 }

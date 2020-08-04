@@ -131,7 +131,7 @@ class CustomerDAOTest {
         Customer customer = new Customer(2, "Arman", "Radonja", "arman.radonja@gmail.com", "Sarajevo", "555555", LocalDate.now(), LocalDate.parse("03/09/2020", formatter), s, null);
         c.addCustomer(customer);
         ArrayList<Customer> customers = c.customers();
-        ArrayList<Customer> result = c.oneMoreMonthContract();
+        ArrayList<Customer> result = c.oneMoreMonthContract(c.nonarchivedCustomers());
         assertEquals(1, result.size());
     }
 
@@ -146,7 +146,7 @@ class CustomerDAOTest {
         Customer customer = new Customer(2, "Arman", "Radonja", "arman.radonja@gmail.com", "Sarajevo", "555555", LocalDate.now(), LocalDate.parse("03/10/2020", formatter), s, null);
         c.addCustomer(customer);
         ArrayList<Customer> customers = c.customers();
-        ArrayList<Customer> result = c.twoMoreMonthContract();
+        ArrayList<Customer> result = c.twoMoreMonthContract(c.nonarchivedCustomers());
         assertEquals(1, result.size());
     }
 
@@ -161,7 +161,7 @@ class CustomerDAOTest {
         Customer customer = new Customer(2, "Arman", "Radonja", "arman.radonja@gmail.com", "Sarajevo", "555555", LocalDate.now(), LocalDate.parse("03/11/2020", formatter), s, null);
         c.addCustomer(customer);
         ArrayList<Customer> customers = c.customers();
-        ArrayList<Customer> result = c.threeMoreMonthContract();
+        ArrayList<Customer> result = c.threeMoreMonthContract(c.nonarchivedCustomers());
         assertEquals(1, result.size());
     }
 
