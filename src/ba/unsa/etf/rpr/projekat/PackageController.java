@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.projekat;
 
 import ba.unsa.etf.rpr.projekat.DAL.CustomerDAO;
+import ba.unsa.etf.rpr.projekat.DAL.PackageDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,9 +15,9 @@ public class PackageController {
     public TextField fldName;
 
     private Package aPackage;
-    private CustomerDAO customerDAO = new CustomerDAO();
+    private PackageDAO packageDAO = new PackageDAO();
     private ObservableList<Package> listPackages;
-    private boolean ok;
+    private boolean add;
 
     @FXML
     public void initialize() {
@@ -29,25 +30,30 @@ public class PackageController {
         }));
 
         fldName.textProperty().addListener((obs, oldName, newName) -> {
-            if (fldName.getText().isEmpty()) {
+            if (add && fldName.getText().isEmpty()) {
                 fldName.getStyleClass().removeAll("correctField");
                 fldName.getStyleClass().add("incorrectField");
-                ok = false;
-            } else {
+            } else if (add){
                 fldName.getStyleClass().removeAll("incorrectField");
                 fldName.getStyleClass().add("correctField");
-                ok = true;
             }
         });
     }
 
     public void onActionOk(ActionEvent actionEvent) {
-        if (!ok) return;
+       // if (!ok) return;
         if (aPackage == null) {
+            add = true;
             aPackage = new Package();
+            aPackage.setName(fldName.getText());
+            packageDAO.addPackage(aPackage);
+        } else {
+            add = false;
+            aPackage.setName(fldName.getText());
+            packageDAO.editPackage(aPackage);
         }
-        aPackage.setName(fldName.getText());
-
+        listPackages.setAll(packageDAO.packages());
+        fldListView.refresh();
     }
 
     public void onActionCancel(ActionEvent actionEvent) {
@@ -56,6 +62,6 @@ public class PackageController {
     }
 
     public PackageController() {
-        listPackages = FXCollections.observableArrayList(customerDAO.packages());
+        listPackages = FXCollections.observableArrayList(packageDAO.packages());
     }
 }

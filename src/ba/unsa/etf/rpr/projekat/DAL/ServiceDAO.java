@@ -13,8 +13,8 @@ public class ServiceDAO {
     private DatabaseConnection db = DatabaseConnection.getInstance();
     private Connection conn;
 
-    private PreparedStatement allServicesStatement, getPackagesForServiceStatement, getPackageFromIdStatement,
-                              addServiceStatement, getIdForNewServiceStatement, addPackagesForServiceStatement;
+    private PreparedStatement allServicesStatement, getPackagesForServiceStatement, getPackageFromIdStatement, addServiceStatement, getIdForNewServiceStatement,
+                              editServiceStatement;
 
     public ServiceDAO() {
         conn = db.getConn();
@@ -30,20 +30,8 @@ public class ServiceDAO {
 
             addServiceStatement = conn.prepareStatement("INSERT INTO service VALUES(?,?)");
             getIdForNewServiceStatement = conn.prepareStatement("SELECT MAX(id)+1 FROM service");
-            addPackagesForServiceStatement = conn.prepareStatement("INSERT INTO package VALUES(?,?)");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public void addService(Service service) {
-        try {
-            ResultSet rs = getIdForNewServiceStatement.executeQuery();
-            service.setId(rs.getInt(1));
-            addServiceStatement.setInt(1, service.getId());
-            addServiceStatement.setString(2, service.getName());
-            //dodati listu paketa
-            //treba malo razmisliti ovdje!
+            editServiceStatement = conn.prepareStatement("UPDATE service SET name=? WHERE id=?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -54,9 +42,9 @@ public class ServiceDAO {
         try {
             ResultSet rs = allServicesStatement.executeQuery();
             while (rs.next()) {
-                Service service = new Service(rs.getInt(1), rs.getString(2), null);
-                service.setListPackages(getPackagesForService(service));
-                result.add(service);
+                Service s = new Service(rs.getInt(1), rs.getString(2), null);
+                s.setListPackages(getPackagesForService(s));
+                result.add(s);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -70,15 +58,37 @@ public class ServiceDAO {
             getPackagesForServiceStatement.setInt(1, service.getId());
             ResultSet rs = getPackagesForServiceStatement.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt(1);
-                getPackageFromIdStatement.setInt(1, id);
+                getPackageFromIdStatement.setInt(1, rs.getInt(1));
                 ResultSet rs2 = getPackageFromIdStatement.executeQuery();
                 result.add(new Package(rs2.getInt(1), rs2.getString(2)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //malo logike ovdje!!!!
         return result;
     }
+
+    public void addService(Service service) {
+        try {
+            ResultSet rs = getIdForNewServiceStatement.executeQuery();
+            service.setId(rs.getInt(1));
+            addServiceStatement.setInt(1, service.getId());
+            addServiceStatement.setString(2, service.getName());
+            addServiceStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void editService(Service service) {
+        try {
+            editServiceStatement.setString(1, service.getName());
+            editServiceStatement.setInt(2, service.getId());
+            editServiceStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
