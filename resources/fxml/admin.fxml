@@ -4,16 +4,17 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="285.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.AdminController">
+<BorderPane prefHeight="525.0" prefWidth="879.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.AdminController">
     <stylesheets>
         <URL value="@/css/admin.css" />
     </stylesheets>
    <center>
-      <GridPane hgap="4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
+      <GridPane hgap="4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="background" stylesheets="@../css/admin.css">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="150.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="207.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -25,17 +26,47 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Name:" />
-            <Label text="Surname:" GridPane.rowIndex="1" />
-            <Label text="Username:" GridPane.rowIndex="3" />
-            <Label text="Password:" GridPane.rowIndex="4" />
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Name:" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Surname:" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Username:" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Password:" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
             <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-            <TextField fx:id="fldName" GridPane.columnIndex="1" />
-            <TextField fx:id="fldSurname" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="fldUsername" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <PasswordField fx:id="fldPassword" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <PasswordField fx:id="fldRptPassword" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label text="Repeat password:" GridPane.rowIndex="5" />
+            <TextField fx:id="fldName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font size="19.0" />
+               </font></TextField>
+            <TextField fx:id="fldSurname" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font size="19.0" />
+               </font></TextField>
+            <TextField fx:id="fldUsername" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font size="19.0" />
+               </font></TextField>
+            <PasswordField fx:id="fldPassword" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font size="19.0" />
+               </font></PasswordField>
+            <PasswordField fx:id="fldRptPassword" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font size="19.0" />
+               </font></PasswordField>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Repeat password:" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
             <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="6">
               <buttons>
                 <Button fx:id="btnOk" defaultButton="true" mnemonicParsing="false" onAction="#onActionOk" text="Ok" />
@@ -49,22 +80,22 @@
       </GridPane>
    </center>
    <left>
-      <VBox prefHeight="290.0" prefWidth="170.0" BorderPane.alignment="CENTER">
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="523.0" prefWidth="281.0" styleClass="table-view" stylesheets="@../css/admin.css" BorderPane.alignment="CENTER">
          <children>
-            <ListView fx:id="lstView" prefHeight="228.0" prefWidth="168.0" />
+            <ListView fx:id="lstView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="514.0" prefWidth="299.0" styleClass="table-view" stylesheets="@../css/admin.css" VBox.vgrow="SOMETIMES" />
          </children>
       </VBox>
    </left>
    <right>
-      <VBox prefHeight="230.0" prefWidth="117.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="517.0" prefWidth="255.0" styleClass="background" stylesheets="@../css/admin.css" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="30.0" prefWidth="117.0" />
-            <Button mnemonicParsing="false" onAction="#onActionAdd" prefHeight="33.0" prefWidth="117.0" text="Add employee" />
-            <Button mnemonicParsing="false" onAction="#onActionEdit" prefHeight="33.0" prefWidth="117.0" text="Edit employee" />
-            <Button mnemonicParsing="false" onAction="#onActionDelete" prefHeight="33.0" prefWidth="117.0" text="Delete employee" />
-            <Button mnemonicParsing="false" onAction="#onActionCustomers" prefHeight="33.0" prefWidth="117.0" text="Customers" />
-            <Button mnemonicParsing="false" onAction="#onActionAddService" prefHeight="33.0" prefWidth="117.0" text="Add service" />
-            <Button mnemonicParsing="false" onAction="#onActionAddPackage" prefHeight="33.0" prefWidth="117.0" text="Add package" />
+            <Label prefHeight="17.0" prefWidth="168.0" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAdd" stylesheets="@../css/admin.css" text="Add employee" VBox.vgrow="SOMETIMES" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionEdit" stylesheets="@../css/admin.css" text="Edit employee" VBox.vgrow="SOMETIMES" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionDelete" stylesheets="@../css/admin.css" text="Delete employee" VBox.vgrow="SOMETIMES" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionCustomers" stylesheets="@../css/admin.css" text="Customers" VBox.vgrow="SOMETIMES" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAddService" stylesheets="@../css/admin.css" text="Add service" VBox.vgrow="SOMETIMES" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAddPackage" stylesheets="@../css/admin.css" text="Add package" VBox.vgrow="SOMETIMES" />
          </children>
       </VBox>
    </right>

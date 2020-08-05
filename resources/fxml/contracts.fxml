@@ -3,13 +3,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" >
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <TableView fx:id="tblView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tblView" prefHeight="412.0" prefWidth="632.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="coloumnBegin" prefWidth="101.0" text="Begin contract" />
-          <TableColumn fx:id="coloumnEnd" prefWidth="104.0" text="End contract" />
-            <TableColumn fx:id="coloumnService" prefWidth="133.0" text="Service" />
+          <TableColumn fx:id="coloumnBegin" prefWidth="87.0" text="Begin contract" />
+          <TableColumn fx:id="coloumnEnd" prefWidth="84.0" text="End contract" />
+            <TableColumn fx:id="coloumnService" prefWidth="167.0" text="Service" />
             <TableColumn fx:id="coloumnPackage" prefWidth="106.0" text="Package" />
             <TableColumn fx:id="coloumnState" prefWidth="75.0" text="State" />
         </columns>

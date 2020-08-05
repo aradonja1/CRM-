@@ -1,10 +1,14 @@
-#loginWindow {
-    -fx-background-image: url("../img/back.jpg");
-    -fx-background-repeat: stretch;
-    -fx-background-size: 100%;
-    -fx-background-color: transparent;
+#borderPane {
+    -fx-background-image: url("../img/background_login.jpg");
+    -fx-background-color: #cccccc;
+    -fx-background-size: 60px;
 }
 
-#loginVBox {
-    -fx-background-color: lightyellow;
+.labels {
+    -fx-background-color: #a1f5f2;
+    -fx-font-size: 20px Arial, sans-serif;
+}
+
+#gridPane {
+    -fx-background-color: black;
 }
