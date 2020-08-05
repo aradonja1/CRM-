@@ -1,0 +1,4 @@
+#gridPane {
+    -fx-background-image: url("../img/email.jpg");
+    -fx-background-size: 300px 100px;
+}

@@ -41,11 +41,9 @@ public class EmailController {
     }
 
     public void onActionSend(ActionEvent actionEvent) {
-
         String fromEmail = fldYourEmail.getText();
         String password = fldYourPassword.getText();
         String toEmail = "";
-
 
 
         Properties properties = new Properties();

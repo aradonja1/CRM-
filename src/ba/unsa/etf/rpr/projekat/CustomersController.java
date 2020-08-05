@@ -186,6 +186,7 @@ public class CustomersController {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/email.fxml"));
 
+        if (listCustomers.size() == 0) return;
 
         //Customer currentCustomer =  tableView.getSelectionModel().getSelectedItem();
         //if (currentCustomer == null) return;
