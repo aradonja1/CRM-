@@ -12,3 +12,11 @@
 #gridPane {
     -fx-background-color: black;
 }
+
+#btnLogin {
+    -fx-background-color: #0589e8;
+}
+
+#btnLogin:hover {
+    -fx-background-color: blue;
+}

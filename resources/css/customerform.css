@@ -5,3 +5,7 @@
 .incorrectField {
     -fx-background-color: lightpink;
 }
+
+#gridPane {
+    -fx-background-color: #e0e87c;
+}

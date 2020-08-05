@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <BorderPane prefHeight="525.0" prefWidth="879.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.AdminController">
-    <stylesheets>
-        <URL value="@/css/admin.css" />
-    </stylesheets>
    <center>
-      <GridPane hgap="4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" styleClass="background" stylesheets="@../css/admin.css">
+      <GridPane hgap="4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="150.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="207.0" minWidth="10.0" prefWidth="207.0" />
@@ -80,22 +76,22 @@
       </GridPane>
    </center>
    <left>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="523.0" prefWidth="281.0" styleClass="table-view" stylesheets="@../css/admin.css" BorderPane.alignment="CENTER">
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="523.0" prefWidth="281.0" BorderPane.alignment="CENTER">
          <children>
-            <ListView fx:id="lstView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="514.0" prefWidth="299.0" styleClass="table-view" stylesheets="@../css/admin.css" VBox.vgrow="SOMETIMES" />
+            <ListView fx:id="lstView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="514.0" prefWidth="299.0" VBox.vgrow="SOMETIMES" />
          </children>
       </VBox>
    </left>
    <right>
-      <VBox prefHeight="517.0" prefWidth="255.0" styleClass="background" stylesheets="@../css/admin.css" BorderPane.alignment="CENTER">
+      <VBox prefHeight="517.0" prefWidth="255.0" BorderPane.alignment="CENTER">
          <children>
             <Label prefHeight="17.0" prefWidth="168.0" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAdd" stylesheets="@../css/admin.css" text="Add employee" VBox.vgrow="SOMETIMES" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionEdit" stylesheets="@../css/admin.css" text="Edit employee" VBox.vgrow="SOMETIMES" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionDelete" stylesheets="@../css/admin.css" text="Delete employee" VBox.vgrow="SOMETIMES" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionCustomers" stylesheets="@../css/admin.css" text="Customers" VBox.vgrow="SOMETIMES" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAddService" stylesheets="@../css/admin.css" text="Add service" VBox.vgrow="SOMETIMES" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAddPackage" stylesheets="@../css/admin.css" text="Add package" VBox.vgrow="SOMETIMES" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAdd" text="Add employee" VBox.vgrow="SOMETIMES" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionEdit" text="Edit employee" VBox.vgrow="SOMETIMES" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionDelete" text="Delete employee" VBox.vgrow="SOMETIMES" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionCustomers" text="Customers" VBox.vgrow="SOMETIMES" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAddService" text="Add service" VBox.vgrow="SOMETIMES" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAddPackage" text="Add package" VBox.vgrow="SOMETIMES" />
          </children>
       </VBox>
    </right>
