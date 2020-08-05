@@ -98,9 +98,11 @@ public class PackageDAO {
                 if (c.getService().getListPackages().contains(aPackage)) {
                     getCurrentContractStatement.setInt(1, c.getId());
                     ResultSet rs = getCurrentContractStatement.executeQuery();
-                    int connId = rs.getInt(5);
-                    Contract contract = getContractFromResultSet(rs);
-                    customerDAO.concludeContract(contract, connId, c.getId());
+                    if (!rs.isClosed()) {
+                        int connId = rs.getInt(5);
+                        Contract contract = getContractFromResultSet(rs);
+                        customerDAO.concludeContract(contract, connId, c.getId());
+                    }
                 }
             }
         } catch (SQLException e) {

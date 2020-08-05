@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.projekat;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -17,11 +18,17 @@ public class EmailController {
     public PasswordField fldYourPassword;
     public TextField fldYourEmail;
 
-    private Customer customer;
+    private ObservableList<Customer> listCustomers;
 
     @FXML
     public void initialize() {
-        labelEmail.setText(customer.getEmail());
+        String toEmail = "";
+        for (int i = 0; i < listCustomers.size() - 1; i++) {
+            toEmail += listCustomers.get(i).getEmail()+"\n";
+        }
+        toEmail+= listCustomers.get(listCustomers.size() - 1).getEmail();
+        labelEmail.setText(toEmail);
+
         fldYourEmail.setText("crmetfrpr2020@gmail.com");
         fldYourPassword.setText("RazvojProgramskihRjesenja2020");
         fldMessage.setText("Razvoj programskih rješenja 2019/2020\nCustomer Relationship Managment(CRM)\nTelekom Slovenije SL\n");
@@ -37,7 +44,9 @@ public class EmailController {
 
         String fromEmail = fldYourEmail.getText();
         String password = fldYourPassword.getText();
-        String toEmail = customer.getEmail();
+        String toEmail = "";
+
+
 
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
@@ -55,11 +64,14 @@ public class EmailController {
         MimeMessage msg = new MimeMessage(session);
         try {
             msg.setFrom(new InternetAddress(fromEmail));
-            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
-            msg.setSubject(fldSubject.getText());
-            msg.setText(fldMessage.getText());
-            Transport.send(msg);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            for (int i = 0; i < listCustomers.size(); i++) {
+                toEmail = listCustomers.get(i).getEmail();
+                msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+                msg.setSubject(fldSubject.getText());
+                msg.setText(fldMessage.getText());
+                Transport.send(msg);
+            }
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Sending Email");
             alert.setHeaderText("Message sent successfully");
             alert.showAndWait();
@@ -81,7 +93,7 @@ public class EmailController {
         stage.close();
     }
 
-    public EmailController(Customer customer) {
-        this.customer = customer;
+    public EmailController(ObservableList<Customer> listCustomers) {
+        this.listCustomers = listCustomers;
     }
 }
