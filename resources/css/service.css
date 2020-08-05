@@ -23,9 +23,9 @@
 
 
 .choice-box {
-    -fx-base: #f58b2e;
-    -fx-control-inner-background: #f58b2e;
-    -fx-background-color: #f58b2e;
+    -fx-base: #83dbeb;
+    -fx-control-inner-background: #83dbeb;
+    -fx-background-color: #83dbeb;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 4;
