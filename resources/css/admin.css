@@ -1,0 +1,22 @@
+#leftSide {
+    -fx-background-color: #690eae;
+}
+
+.btnLeftSide {
+    -fx-background-color: #9222e8;
+    -fx-border-style: solid;
+    -fx-border-color: #863681;
+    -fx-border-width: 2;
+}
+
+.btnLeftSide:hover {
+    -fx-background-color: #c888fc;
+}
+
+#rightSide {
+    -fx-background-color: black;
+}
+
+#lstView {
+    -fx-background-color: blue;
+}
