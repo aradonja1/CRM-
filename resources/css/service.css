@@ -5,3 +5,29 @@
 .incorrectField {
     -fx-background-color: lightpink;
 }
+
+#gridPane {
+    -fx-background-image: url("../img/service_background.jpg");
+    -fx-background-size: 700px 180px;
+}
+
+.table-view {
+    -fx-base: #4edae4;
+    -fx-control-inner-background: #3a1780;
+    -fx-background-color: #4edae4;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 4;
+    -fx-font-size: 13;
+}
+
+
+.choice-box {
+    -fx-base: #f58b2e;
+    -fx-control-inner-background: #f58b2e;
+    -fx-background-color: #f58b2e;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 4;
+    -fx-font-size: 13;
+}
