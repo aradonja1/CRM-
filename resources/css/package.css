@@ -5,3 +5,18 @@
 .incorrectField {
     -fx-background-color: lightpink;
 }
+
+#gridPane {
+    -fx-background-image: url("../img/package_background.jpg");
+    -fx-background-size: 300px 200px;
+}
+
+.table-view {
+    -fx-base: #4edae4;
+    -fx-control-inner-background: #3a1780;
+    -fx-background-color: #4edae4;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 4;
+    -fx-font-size: 13;
+}
