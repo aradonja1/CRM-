@@ -445,7 +445,7 @@ public class CustomerDAO {
         for (Customer c : listCustomers) {
             ok = true;
             for (Contract cc : listContracts) {
-                if (c.getService().getId() == cc.getService().getId() && cc.getEndContract().isBefore(LocalDate.now())) {
+                if (c.getService().getId() == cc.getService().getId() && c.getService().getListPackages().get(0).getId() == cc.getService().getListPackages().get(0).getId() && cc.getEndContract().isBefore(LocalDate.now())) {
                     ok = false;
                 }
             }
