@@ -164,6 +164,12 @@ public class CustomersController {
         tableView.setItems(listCustomers);
         btnSendEmail.setVisible(false);
         reportCustomerDAO.addOneOrTwoOrThreeMoreMonthContractCustomers(0);
+        try {
+            new PrintReport().showReport(db.getConn());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
+
     }
 
     public void onActionOneMonth(ActionEvent actionEvent) {
@@ -171,6 +177,11 @@ public class CustomersController {
         tableView.setItems(listCustomers);
         btnSendEmail.setVisible(true);
         reportCustomerDAO.addOneOrTwoOrThreeMoreMonthContractCustomers(1);
+        try {
+            new PrintReport().showReport(db.getConn());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
 
     }
 
@@ -179,6 +190,12 @@ public class CustomersController {
         tableView.setItems(listCustomers);
         btnSendEmail.setVisible(true);
         reportCustomerDAO.addOneOrTwoOrThreeMoreMonthContractCustomers(2);
+        try {
+            new PrintReport().showReport(db.getConn());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
+
     }
 
     public void onActionThreeMonths(ActionEvent actionEvent) {
@@ -186,6 +203,12 @@ public class CustomersController {
         tableView.setItems(listCustomers);
         btnSendEmail.setVisible(true);
         reportCustomerDAO.addOneOrTwoOrThreeMoreMonthContractCustomers(3);
+        try {
+            new PrintReport().showReport(db.getConn());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
+
     }
 
     public void onActionSendEmail(ActionEvent actionEvent) throws IOException {

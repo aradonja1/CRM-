@@ -13,7 +13,7 @@ public class ReportCustomerDAO {
     private DatabaseConnection db = DatabaseConnection.getInstance();
     private Connection conn;
 
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 
     private CustomerDAO customerDAO = new CustomerDAO();
 
@@ -30,7 +30,7 @@ public class ReportCustomerDAO {
             allCustomersStatement = conn.prepareStatement("SELECT * FROM report_customer");
             addCustomerStatement = conn.prepareStatement("INSERT INTO report_customer VALUES(?,?,?,?,?,?,?,?)");
             getNewIdStatement = conn.prepareStatement("SELECT MAX(id)+1 FROM report_customer");
-            deleteAllStatement = conn.prepareStatement("TRUNCATE TABLE report_customer");
+            deleteAllStatement = conn.prepareStatement("DELETE FROM report_customer");
         } catch (SQLException e) {
             e.printStackTrace();
         }
