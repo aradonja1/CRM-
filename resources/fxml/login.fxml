@@ -11,17 +11,23 @@
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
    <bottom>
-      <HBox prefHeight="33.0" prefWidth="580.0" BorderPane.alignment="CENTER">
+      <HBox alignment="TOP_RIGHT" prefHeight="33.0" prefWidth="580.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="dateLabel">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
             </Label>
             <Label fx:id="timeLabel">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
             </Label>
          </children>
       </HBox>

@@ -10,8 +10,8 @@
           <TableColumn fx:id="coloumnBegin" prefWidth="87.0" text="Begin contract" />
           <TableColumn fx:id="coloumnEnd" prefWidth="84.0" text="End contract" />
             <TableColumn fx:id="coloumnService" prefWidth="167.0" text="Service" />
-            <TableColumn fx:id="coloumnPackage" prefWidth="106.0" text="Package" />
-            <TableColumn fx:id="coloumnState" prefWidth="75.0" text="State" />
+            <TableColumn fx:id="coloumnPackage" prefWidth="155.0" text="Package" />
+            <TableColumn fx:id="coloumnState" prefWidth="81.0" text="State" />
         </columns>
       </TableView>
    </center>

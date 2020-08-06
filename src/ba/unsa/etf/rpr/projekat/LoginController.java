@@ -1,6 +1,7 @@
 package ba.unsa.etf.rpr.projekat;
 
 import ba.unsa.etf.rpr.projekat.DAL.AdminDAO;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,7 +31,19 @@ public class LoginController {
     @FXML
     public void initialize() {
         dateLabel.setText(LocalDate.now().toString());
-        timeLabel.setText(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond());
+
+        new Thread(() -> {
+            try {
+                while (true) {
+                    Platform.runLater(() -> timeLabel.setText(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute()));
+                    Thread.sleep(500);
+                    Platform.runLater(() -> timeLabel.setText(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond()));
+                    Thread.sleep(500);
+                }
+            } catch (InterruptedException e) {
+
+            }
+        }).start();
     }
 
     private boolean loginCorrect(String username, String password) {
