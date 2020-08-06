@@ -22,25 +22,24 @@
       </TableView>
    </center>
    <left>
-      <VBox prefHeight="400.0" prefWidth="129.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="525.0" prefWidth="320.0" BorderPane.alignment="CENTER">
          <children>
-            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="129.0" />
-            <Button mnemonicParsing="false" onAction="#onActionAdd" prefHeight="51.0" prefWidth="129.0" text="Add" />
-            <Button mnemonicParsing="false" onAction="#onActionEdit" prefHeight="51.0" prefWidth="129.0" text="Edit " />
-            <Button mnemonicParsing="false" onAction="#onActionDelete" prefHeight="51.0" prefWidth="129.0" text="Delete" />
-            <Button fx:id="btnContracts" mnemonicParsing="false" onAction="#onActionArchievedContracts" prefHeight="51.0" prefWidth="129.0" text="Archieved contracts" />
-            <Button mnemonicParsing="false" onAction="#onActionAllContracts" prefHeight="51.0" prefWidth="129.0" text="All contracts" />
+            <Button mnemonicParsing="false" onAction="#onActionAdd" prefHeight="86.0" prefWidth="353.0" text="Add" />
+            <Button mnemonicParsing="false" onAction="#onActionEdit" prefHeight="86.0" prefWidth="353.0" text="Edit " />
+            <Button mnemonicParsing="false" onAction="#onActionDelete" prefHeight="86.0" prefWidth="353.0" text="Delete" />
+            <Button fx:id="btnContracts" mnemonicParsing="false" onAction="#onActionArchievedContracts" prefHeight="86.0" prefWidth="353.0" text="Archieved contracts" />
+            <Button mnemonicParsing="false" onAction="#onActionAllContracts" prefHeight="86.0" prefWidth="353.0" text="All contracts" />
          </children>
       </VBox>
    </left>
    <right>
-      <VBox prefHeight="400.0" prefWidth="129.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="525.0" prefWidth="320.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnAllCustomers" mnemonicParsing="false" onAction="#onActionAllCustomers" prefHeight="59.0" prefWidth="133.0" text="All customers" />
-            <Button fx:id="btnOneMonth" mnemonicParsing="false" onAction="#onActionOneMonth" prefHeight="59.0" prefWidth="133.0" text="One month" />
-            <Button fx:id="btnTwoMonths" mnemonicParsing="false" onAction="#onActionTwoMonths" prefHeight="59.0" prefWidth="133.0" text="Two months" />
-            <Button fx:id="btnThreeMonths" mnemonicParsing="false" onAction="#onActionThreeMonths" prefHeight="59.0" prefWidth="133.0" text="Three months" />
-            <Button fx:id="btnSendEmail" mnemonicParsing="false" onAction="#onActionSendEmail" prefHeight="59.0" prefWidth="133.0" text="Send Email" />
+            <Button fx:id="btnAllCustomers" mnemonicParsing="false" onAction="#onActionAllCustomers" prefHeight="86.0" prefWidth="353.0" text="All customers" />
+            <Button fx:id="btnOneMonth" mnemonicParsing="false" onAction="#onActionOneMonth" prefHeight="86.0" prefWidth="353.0" text="One month" />
+            <Button fx:id="btnTwoMonths" mnemonicParsing="false" onAction="#onActionTwoMonths" prefHeight="86.0" prefWidth="353.0" text="Two months" />
+            <Button fx:id="btnThreeMonths" mnemonicParsing="false" onAction="#onActionThreeMonths" prefHeight="86.0" prefWidth="353.0" text="Three months" />
+            <Button fx:id="btnSendEmail" mnemonicParsing="false" onAction="#onActionSendEmail" prefHeight="86.0" prefWidth="353.0" text="Send Email" />
          </children>
       </VBox>
    </right>
