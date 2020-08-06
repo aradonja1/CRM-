@@ -70,7 +70,8 @@ public class LoginController {
             stage.setTitle(title);
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.setMinHeight(600);
-            stage.setMinWidth(1100);
+            stage.setMinWidth(1150);
+            stage.centerOnScreen();
             stage.show();
         }
     }
