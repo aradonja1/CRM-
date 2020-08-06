@@ -1,8 +1,6 @@
 package ba.unsa.etf.rpr.projekat;
 
-import ba.unsa.etf.rpr.projekat.DAL.CustomerDAO;
-import ba.unsa.etf.rpr.projekat.DAL.PackageDAO;
-import ba.unsa.etf.rpr.projekat.DAL.ServiceDAO;
+import ba.unsa.etf.rpr.projekat.DAL.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -31,7 +30,7 @@ public class CustomersController {
     public TableColumn<Customer, String> coloumnEmail;
     public TableColumn<Customer, String> coloumnBeginContract;
     public TableColumn<Customer, String> coloumnEndContract;
-    public TableColumn<Customer, String > coloumnPackage;
+    public TableColumn<Customer, String> coloumnPackage;
     public TableColumn<Customer, String> coloumnService;
     public Button btnSendEmail;
     public Button btnAllCustomers;
@@ -43,7 +42,9 @@ public class CustomersController {
     private ObservableList<Customer> listCustomers = FXCollections.observableArrayList();
     private CustomerDAO customerDAO;
     private ServiceDAO serviceDAO = new ServiceDAO();
-    private PackageDAO packageDAO = new PackageDAO();
+    private ReportCustomerDAO reportCustomerDAO = new ReportCustomerDAO();
+
+    private DatabaseConnection db = DatabaseConnection.getInstance();
 
     @FXML
     public void initialize() {
@@ -85,8 +86,8 @@ public class CustomersController {
 
     public CustomersController() {
         customerDAO = new CustomerDAO();
-  //      listCustomers = FXCollections.observableArrayList(customerDAO.customers());
-            listCustomers = FXCollections.observableArrayList(customerDAO.nonarchivedCustomers());
+        //      listCustomers = FXCollections.observableArrayList(customerDAO.customers());
+        listCustomers = FXCollections.observableArrayList(customerDAO.nonarchivedCustomers());
     }
 
     public void onActionAdd(ActionEvent actionEvent) throws IOException {
@@ -100,11 +101,11 @@ public class CustomersController {
         stage.setResizable(false);
         stage.show();
 
-        stage.setOnHiding( event -> {
+        stage.setOnHiding(event -> {
             Customer customer = ctrl.getCustomer();
             if (customer != null) {
                 customerDAO.addCustomer(customer);
-         //       listCustomers.setAll(customerDAO.customers());
+                //       listCustomers.setAll(customerDAO.customers());
                 listCustomers.setAll(customerDAO.nonarchivedCustomers());
 
             }
@@ -115,7 +116,7 @@ public class CustomersController {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/customerform.fxml"));
 
-        Customer currentCustomer =  tableView.getSelectionModel().getSelectedItem();
+        Customer currentCustomer = tableView.getSelectionModel().getSelectedItem();
         if (currentCustomer == null) return;
 
         CustomerFormController ctrl = new CustomerFormController(currentCustomer, serviceDAO.services());
@@ -131,7 +132,7 @@ public class CustomersController {
             customer.setId(currentCustomer.getId());
             if (customer != null) {
                 customerDAO.editCustomer(customer);
-           //     listCustomers.setAll(customerDAO.customers());
+                //     listCustomers.setAll(customerDAO.customers());
                 listCustomers.setAll(customerDAO.nonarchivedCustomers());
 
             }
@@ -145,41 +146,46 @@ public class CustomersController {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete");
-        alert.setHeaderText("Delete customer "+customer.getFirstName() + " " +customer.getLastName());
-        alert.setContentText("Are you sure you want to delete customer " +customer.getFirstName() + " " +customer.getLastName()+"?");
+        alert.setHeaderText("Delete customer " + customer.getFirstName() + " " + customer.getLastName());
+        alert.setContentText("Are you sure you want to delete customer " + customer.getFirstName() + " " + customer.getLastName() + "?");
         alert.setResizable(true);
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             customerDAO.deleteCustomer(customer);
-       //     listCustomers.setAll(customerDAO.customers());
+            //     listCustomers.setAll(customerDAO.customers());
             listCustomers.setAll(customerDAO.nonarchivedCustomers());
         }
     }
 
     public void onActionAllCustomers(ActionEvent actionEvent) {
-       // listCustomers = FXCollections.observableArrayList(customerDAO.customers());
+        // listCustomers = FXCollections.observableArrayList(customerDAO.customers());
         listCustomers = FXCollections.observableArrayList(customerDAO.nonarchivedCustomers());
         tableView.setItems(listCustomers);
         btnSendEmail.setVisible(false);
+        reportCustomerDAO.addOneOrTwoOrThreeMoreMonthContractCustomers(0);
     }
 
     public void onActionOneMonth(ActionEvent actionEvent) {
         listCustomers = FXCollections.observableArrayList(customerDAO.oneMoreMonthContract(customerDAO.nonarchivedCustomers()));
         tableView.setItems(listCustomers);
         btnSendEmail.setVisible(true);
+        reportCustomerDAO.addOneOrTwoOrThreeMoreMonthContractCustomers(1);
+
     }
 
     public void onActionTwoMonths(ActionEvent actionEvent) {
         listCustomers = FXCollections.observableArrayList(customerDAO.twoMoreMonthContract(customerDAO.nonarchivedCustomers()));
         tableView.setItems(listCustomers);
         btnSendEmail.setVisible(true);
+        reportCustomerDAO.addOneOrTwoOrThreeMoreMonthContractCustomers(2);
     }
 
     public void onActionThreeMonths(ActionEvent actionEvent) {
         listCustomers = FXCollections.observableArrayList(customerDAO.threeMoreMonthContract(customerDAO.nonarchivedCustomers()));
         tableView.setItems(listCustomers);
         btnSendEmail.setVisible(true);
+        reportCustomerDAO.addOneOrTwoOrThreeMoreMonthContractCustomers(3);
     }
 
     public void onActionSendEmail(ActionEvent actionEvent) throws IOException {
@@ -203,7 +209,7 @@ public class CustomersController {
     public void onActionAllContracts(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contracts.fxml"));
-        ContractController  ctrl = new ContractController();
+        ContractController ctrl = new ContractController();
         loader.setController(ctrl);
         Parent root = loader.load();
         stage.setTitle("All contracts in system");
@@ -218,7 +224,7 @@ public class CustomersController {
 
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contracts.fxml"));
-        ContractController  ctrl = new ContractController(customer);
+        ContractController ctrl = new ContractController(customer);
         loader.setController(ctrl);
         Parent root = loader.load();
         stage.setTitle("Contracts");
@@ -227,4 +233,13 @@ public class CustomersController {
         stage.show();
     }
 
+    public void onActionPrintCustomers(ActionEvent actionEvent) {
+        try {
+            new PrintReport().showReport(db.getConn());
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
+
