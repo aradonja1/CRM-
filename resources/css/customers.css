@@ -1,0 +1,81 @@
+#leftSide {
+    -fx-background-color: #26805d;
+}
+
+#rightSide {
+    -fx-background-color: #26805d;
+}
+
+.btnLeftSide {
+    -fx-background-color: #58eea8;
+    -fx-border-style: solid;
+    -fx-border-color: #58dbed;
+    -fx-border-width: 2;
+}
+
+.btnLeftSide:hover {
+    -fx-background-color: #c888fc;
+}
+
+.table-view {
+    -fx-base: white;
+    -fx-control-inner-background: #3a1780;
+    -fx-background-color: #3a1780;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+    -fx-font-size: 13;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-border-color:
+        transparent
+        transparent
+        derive(-fx-base, 80%)
+        transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 15pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
+}
+
+.topSection {
+    -fx-background-color: #26805d;
+    -fx-border-width: 0.7px;
+    -fx-border-color: white;
+    -fx-text-fill: white;
+}
+
+.centerSection {
+    -fx-background-color: #5d26d3;
+}
+
+.btnSearch {
+    -fx-background-color: #58eea8;
+    -fx-border-style: solid;
+    -fx-border-color: #58dbed;
+    -fx-border-width: 2;
+}
+
+#fldSearch {
+    -fx-background-color: #58eea8;
+    -fx-border-style: solid;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+}
