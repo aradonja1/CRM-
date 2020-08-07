@@ -46,20 +46,6 @@ public class LoginController {
         }).start();
     }
 
-    private boolean loginCorrect(String username, String password) {
-        ArrayList<Admin> listAdmins = adminDAO.admins();
-        ArrayList<Employee> listEmployees = adminDAO.employees();
-        for (Admin a : listAdmins) {
-            if (a.getUsername().equals(username) && a.getPassword().equals(password))
-                return true;
-        }
-        for (Employee e : listEmployees) {
-            if (e.getUsername().equals(username) && e.getPassword().equals(password))
-                return true;
-        }
-        return false;
-    }
-
     public void onActionLogin(ActionEvent actionEvent) throws IOException {
         ArrayList<Admin> listAdmins = adminDAO.admins();
         ArrayList<Employee> listEmployees = adminDAO.employees();
