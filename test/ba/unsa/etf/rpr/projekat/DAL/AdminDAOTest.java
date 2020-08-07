@@ -73,4 +73,10 @@ class AdminDAOTest {
         assertEquals(listAdmins.get(0).getFirstName(), "Adnan");
     }
 
+    @Test
+    void readEmployees() {
+        AdminDAO a = new AdminDAO();
+        ArrayList<Employee> result = a.readEmployees();
+        assertEquals(4, result.size());
+    }
 }

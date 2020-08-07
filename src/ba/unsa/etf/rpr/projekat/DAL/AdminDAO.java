@@ -3,11 +3,14 @@ package ba.unsa.etf.rpr.projekat.DAL;
 import ba.unsa.etf.rpr.projekat.Admin;
 import ba.unsa.etf.rpr.projekat.Employee;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class AdminDAO {
     private DatabaseConnection db = DatabaseConnection.getInstance();
@@ -115,6 +118,24 @@ public class AdminDAO {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public ArrayList<Employee> readEmployees() {
+        ArrayList<Employee> result = new ArrayList<>();
+        Scanner input = null;
+        try {
+            String path = getClass().getResource("/file/employees.txt").getFile();
+            input = new Scanner(new FileReader(path));
+        } catch (FileNotFoundException e) {
+            System.out.println("File employees.txt does not exist or cannot open");
+            System.out.println("Error:" +e);
+        }
+        int id = 1;
+        while (input.hasNext()) {
+            String[] row = input.nextLine().split(",");
+            result.add(new Employee(id++, row[0], row[1], row[2], row[3]));
+        }
+        return result;
     }
 
 
