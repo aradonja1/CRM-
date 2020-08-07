@@ -17,17 +17,16 @@ public class ReportCustomerDAO {
 
     private CustomerDAO customerDAO = new CustomerDAO();
 
-    private PreparedStatement addCustomerStatement, deleteAllStatement, allCustomersStatement, getNewIdStatement;
+    private PreparedStatement addCustomerStatement, deleteAllStatement, getNewIdStatement;
 
     public ReportCustomerDAO() {
         conn = db.getConn();
         try {
-            allCustomersStatement = conn.prepareStatement("SELECT * FROM report_customer");
+            addCustomerStatement = conn.prepareStatement("INSERT INTO report_customer VALUES(?,?,?,?,?,?,?,?)");
         } catch (SQLException e) {
             e.printStackTrace();
         }
         try {
-            allCustomersStatement = conn.prepareStatement("SELECT * FROM report_customer");
             addCustomerStatement = conn.prepareStatement("INSERT INTO report_customer VALUES(?,?,?,?,?,?,?,?)");
             getNewIdStatement = conn.prepareStatement("SELECT MAX(id)+1 FROM report_customer");
             deleteAllStatement = conn.prepareStatement("DELETE FROM report_customer");

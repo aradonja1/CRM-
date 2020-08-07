@@ -97,7 +97,6 @@
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button mnemonicParsing="false" onAction="#onActionPrintCustomers" text="Print customers" />
          </children>
       </VBox>
    </right>

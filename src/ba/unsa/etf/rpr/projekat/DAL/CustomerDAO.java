@@ -223,6 +223,7 @@ public class CustomerDAO {
             //conlcude current contract when change parameters of contract
             getCurrentContractStatement.setInt(1, customer.getId());
             ResultSet rs = getCurrentContractStatement.executeQuery();
+
             int connId = rs.getInt(5);
             Contract c = getContractFromResultSet(rs);
             if (!c.getEndContract().equals(customer.getEndContract()) || !c.getService().getName().equals(customer.getService().getName()) || !c.getService().getListPackages().get(0).getName().equals(customer.getService().getListPackages().get(0).getName()))
@@ -438,19 +439,15 @@ public class CustomerDAO {
     }
 
     public ArrayList<Customer> nonarchivedCustomers() {
-        ArrayList<Contract> listContracts = contracts();
         ArrayList<Customer> listCustomers = customers();
         ArrayList<Customer> result = new ArrayList<>();
-        boolean ok;
-        for (Customer c : listCustomers) {
-            ok = true;
-            for (Contract cc : listContracts) {
-                if (c.getService().getId() == cc.getService().getId() && c.getService().getListPackages().get(0).getId() == cc.getService().getListPackages().get(0).getId() && cc.getEndContract().isBefore(LocalDate.now())) {
-                    ok = false;
-                }
-            }
-            if (ok)
-                result.add(c);
+        for (Customer customer : listCustomers) {
+            ArrayList<Contract> listContracts = getContractsFromCustomer(customer);
+            ArrayList<Contract> nonarchivedContracts = listContracts.stream().filter(contract -> {
+                return contract.getEndContract().isEqual(LocalDate.now()) || contract.getEndContract().isAfter(LocalDate.now());
+            }).collect(Collectors.toCollection(ArrayList::new));
+            if (nonarchivedContracts.size() != 0)
+                result.add(customer);
         }
         return result;
     }

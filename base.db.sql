@@ -66,8 +66,7 @@ CREATE TABLE IF NOT EXISTS "connection" (
 	PRIMARY KEY("id")
 );
 INSERT INTO "contract" VALUES (1,1,'20/01/2010','20/01/2015',8);
-INSERT INTO "contract" VALUES (2,1,'30/06/2020','06/08/2020',1);
-INSERT INTO "contract" VALUES (3,2,'30/06/2020','03/08/2020',4);
+INSERT INTO "contract" VALUES (2,1,'30/06/2020','30/06/2025',1);
 INSERT INTO "customer" VALUES (1,'Rijad','Fejzić','rfejzic1@etf.unsa.ba','Sarajevo','555555','30/06/2020','30/06/2025',1);
 INSERT INTO "employee" VALUES (1,'Senid','Hodžić','shodzic4','senid');
 INSERT INTO "admin" VALUES (1,'Adnan','Radonja','aradonja1','123456');

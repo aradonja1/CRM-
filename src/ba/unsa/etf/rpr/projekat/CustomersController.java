@@ -106,6 +106,7 @@ public class CustomersController {
             if (customer != null) {
                 customerDAO.addCustomer(customer);
                 //       listCustomers.setAll(customerDAO.customers());
+                ArrayList<Customer> kk = customerDAO.nonarchivedCustomers();
                 listCustomers.setAll(customerDAO.nonarchivedCustomers());
 
             }
