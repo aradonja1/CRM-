@@ -442,8 +442,7 @@ public class CustomerDAO {
         ArrayList<Customer> listCustomers = customers();
         ArrayList<Customer> result = new ArrayList<>();
         for (Customer customer : listCustomers) {
-            ArrayList<Contract> listContracts = getContractsFromCustomer(customer);
-            ArrayList<Contract> nonarchivedContracts = listContracts.stream().filter(contract -> {
+            ArrayList<Contract> nonarchivedContracts = getContractsFromCustomer(customer).stream().filter(contract -> {
                 return contract.getEndContract().isEqual(LocalDate.now()) || contract.getEndContract().isAfter(LocalDate.now());
             }).collect(Collectors.toCollection(ArrayList::new));
             if (nonarchivedContracts.size() != 0)
