@@ -24,12 +24,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(ApplicationExtension.class)
 class PackageControllerTest {
     Stage theStage;
-    PackageController ctrl;
     PackageDAO packageDAO;
 
     @Start
     public void start (Stage stage) throws Exception {
-        // Brisemo bazu za slucaj da su prethodni testovi kreirali/brisali drzave
         DatabaseConnection.removeInstance();
         File dbfile = new File("base.db");
         dbfile.delete();
