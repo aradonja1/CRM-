@@ -33,7 +33,7 @@
          </font></TextField>
         <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
             <buttons>
-                <Button defaultButton="true" mnemonicParsing="false" onAction="#onActionOk" text="Ok">
+                <Button fx:id="btnOk" defaultButton="true" mnemonicParsing="false" onAction="#onActionOk" text="Ok">
                <font>
                   <Font size="15.0" />
                </font></Button>
@@ -41,7 +41,7 @@
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button mnemonicParsing="false" onAction="#onActionArchive" text="Archive">
+            <Button fx:id="btnArchive" mnemonicParsing="false" onAction="#onActionArchive" text="Archive">
                <font>
                   <Font size="15.0" />
                </font></Button>
