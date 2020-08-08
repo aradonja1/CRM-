@@ -6,9 +6,8 @@ import ba.unsa.etf.rpr.projekat.DAL.PackageDAO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -79,12 +78,45 @@ class PackageControllerTest {
 
     @Test
     void onActionOk2(FxRobot robot) {
-        DatabaseConnection.removeInstance();
-        File dbfile = new File("base.db");
-        dbfile.delete();
+        ArrayList<Package> listPackages = packageDAO.packages();
+        assertEquals(8, listPackages.size());
+        robot.clickOn("Neo");
+        robot.clickOn("#fldName");
+        robot.press(KeyCode.CONTROL).press(KeyCode.A).release(KeyCode.A).release(KeyCode.CONTROL);
+        robot.write("Promijenjen paket");
+        robot.clickOn("#btnOk");
 
+        listPackages = packageDAO.packages();
+        assertEquals(8, listPackages.size());
 
-
+        boolean ok = false;
+        for (Package p : listPackages)
+            if (p.getName().equals("Promijenjen paket"))
+                ok = true;
+        assertTrue(ok);
     }
 
+    @Test
+    void onActionArchive(FxRobot robot) {
+        ArrayList<Package> listPackages = packageDAO.packages();
+        assertEquals(8, listPackages.size());
+        robot.clickOn("Neo");
+        robot.clickOn("#btnArchive");
+
+        robot.lookup(".dialog-pane").tryQuery().isPresent();
+
+        DialogPane dialogPane = robot.lookup(".dialog-pane").queryAs(DialogPane.class);
+        Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
+        robot.clickOn(okButton);
+
+        ListView<Package> packageListView = robot.lookup("#fldListView").queryAs(ListView.class);
+        assertEquals(7, packageListView.getItems().size());
+
+        boolean ok = false;
+        for (Package p : packageListView.getItems())
+            if (p.getName().equals("Neo"))
+                ok = true;
+        assertFalse(ok);
+
+    }
 }

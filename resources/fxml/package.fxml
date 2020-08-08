@@ -43,7 +43,7 @@
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button mnemonicParsing="false" onAction="#onActionArchive" text="Archive">
+            <Button fx:id="btnArchive" mnemonicParsing="false" onAction="#onActionArchive" text="Archive">
                <font>
                   <Font size="15.0" />
                </font></Button>
