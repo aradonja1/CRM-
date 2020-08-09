@@ -2,6 +2,8 @@ package ba.unsa.etf.rpr.projekat.DAL;
 
 import ba.unsa.etf.rpr.projekat.Admin;
 import ba.unsa.etf.rpr.projekat.Employee;
+import com.github.tsijercic1.InvalidXMLException;
+import com.github.tsijercic1.XMLParser;
 import org.w3c.dom.*;
 
 
@@ -23,7 +25,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
+
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
 
 
 public class AdminDAO {
@@ -135,8 +141,7 @@ public class AdminDAO {
     }
 
 
-    public void createXmlFile() {
-
+    public void createAndWriteXmlFile() {
         try {
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
@@ -181,8 +186,45 @@ public class AdminDAO {
         } catch (ParserConfigurationException | TransformerException e) {
             e.printStackTrace();
         }
-
     }
+
+    public ArrayList<Employee> readXmlFile() {
+        ArrayList<Employee> listEmployees = new ArrayList<>();
+        try {
+            DocumentBuilder docReader = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            Document xmldoc = docReader.parse(new File("employees.xml"));
+            listEmployees = new ArrayList<>();
+
+            Element e = xmldoc.getDocumentElement();
+            NodeList employees = e.getChildNodes();
+            for (int i = 0; i < employees.getLength(); i++) {
+                if (employees.item(i) instanceof Element) {
+                    listEmployees.add(readEmployee((Element) employees.item(i)));
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("employees.xml is not valid xml document");
+        }
+        return listEmployees;
+    }
+
+    private Employee readEmployee(Element employee) {
+        NodeList nameList = employee.getElementsByTagName("firstname");
+        NodeList surnameList = employee.getElementsByTagName("lastname");
+        NodeList usernameList = employee.getElementsByTagName("username");
+        NodeList passwordList = employee.getElementsByTagName("password");
+        int id = Integer.parseInt(employee.getAttribute("id"));
+
+        String firstName, lastName, username, password;
+
+        firstName = nameList.item(0).getTextContent();
+        lastName = surnameList.item(0).getTextContent();
+        username = usernameList.item(0).getTextContent();
+        password = passwordList.item(0).getTextContent();
+
+        return new Employee(id, firstName, lastName, username, password);
+    }
+
 
 }
 
