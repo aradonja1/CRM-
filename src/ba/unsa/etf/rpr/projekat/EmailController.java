@@ -13,7 +13,7 @@ import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class EmailController {
+public class EmailController  {
     public TextArea fldMessage;
     public Label labelEmail;
     public TextField fldSubject;
@@ -64,13 +64,16 @@ public class EmailController {
         MimeMessage msg = new MimeMessage(session);
         try {
             msg.setFrom(new InternetAddress(fromEmail));
-            for (int i = 0; i < listCustomers.size(); i++) {
-                toEmail = listCustomers.get(i).getEmail();
-                msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
-                msg.setSubject(fldSubject.getText());
-                msg.setText(fldMessage.getText());
-                Transport.send(msg);
-            }
+            InternetAddress[] mailAddress_TO = new InternetAddress [listCustomers.size()] ;
+            for(int i = 0; i < listCustomers.size(); i++)
+                mailAddress_TO[i] = new InternetAddress(listCustomers.get(i).getEmail());
+
+            msg.addRecipients(Message.RecipientType.TO, mailAddress_TO);
+            msg.setSubject(fldSubject.getText());
+            msg.setText(fldMessage.getText());
+
+            Transport.send(msg);
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Sending Email");
             alert.setHeaderText("Message sent successfully");
@@ -97,3 +100,4 @@ public class EmailController {
         this.listCustomers = listCustomers;
     }
 }
+

@@ -3,7 +3,9 @@ package ba.unsa.etf.rpr.projekat.DAL;
 import ba.unsa.etf.rpr.projekat.Admin;
 import ba.unsa.etf.rpr.projekat.Employee;
 
+import java.beans.XMLEncoder;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -136,6 +138,18 @@ public class AdminDAO {
             result.add(new Employee(id++, row[0], row[1], row[2], row[3]));
         }
         return result;
+    }
+
+    public void writeXmlEmployees() {
+        try {
+            XMLEncoder output = new XMLEncoder(new FileOutputStream(getClass().getResource("/file/employees.xml").getFile()));
+            for (Employee e : employees()) {
+                output.writeObject(e);
+            }
+            output.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 

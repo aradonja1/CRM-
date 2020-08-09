@@ -79,4 +79,11 @@ class AdminDAOTest {
         ArrayList<Employee> result = a.readEmployees();
         assertEquals(4, result.size());
     }
+
+    @Test
+    void writeXmlEmployees() {
+        AdminDAO a = new AdminDAO();
+        //a.addEmployee(new Employee(1, "Arman", "Radonja", "armanR", "123"));
+        a.writeXmlEmployees();
+    }
 }

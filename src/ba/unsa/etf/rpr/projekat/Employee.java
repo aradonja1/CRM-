@@ -2,7 +2,9 @@ package ba.unsa.etf.rpr.projekat;
 
 import javafx.beans.property.SimpleObjectProperty;
 
-public class Employee extends SimpleObjectProperty<Employee> {
+import java.io.Serializable;
+
+public class Employee extends SimpleObjectProperty<Employee> implements Serializable {
     private int id;
     private String firstName, lastName, username, password;
 
