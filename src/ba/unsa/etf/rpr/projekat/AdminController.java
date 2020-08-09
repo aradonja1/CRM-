@@ -164,4 +164,35 @@ public class AdminController {
         stage.setResizable(false);
         stage.show();
     }
+
+    public void onActionReadXML(ActionEvent actionEvent) {
+        adminDAO.readXmlFile();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Reading XML file");
+        alert.setHeaderText("Successfully read the XML file: employee.xml");
+        alert.showAndWait();
+    }
+
+    public void onActionWriteXML(ActionEvent actionEvent) {
+        adminDAO.createAndWriteXmlFile();
+        try {
+            System.out.println("Opening notepad");
+            Runtime runTime = Runtime.getRuntime();
+            String file = "employees.xml";
+            Process process = runTime.exec("notepad " +file);
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Closing notepad");
+            process.destroy();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Writing XML file");
+        alert.setHeaderText("Successfully written to the XML file: employee.xml");
+        alert.showAndWait();
+    }
 }

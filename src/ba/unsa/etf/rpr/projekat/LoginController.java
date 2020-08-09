@@ -34,7 +34,8 @@ public class LoginController {
 
         new Thread(() -> {
             try {
-                while (true) {
+                Thread.sleep(200);
+                while (fldUsername.getScene().getWindow().isShowing()) {
                     Platform.runLater(() -> timeLabel.setText(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute()));
                     Thread.sleep(500);
                     Platform.runLater(() -> timeLabel.setText(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond()));
