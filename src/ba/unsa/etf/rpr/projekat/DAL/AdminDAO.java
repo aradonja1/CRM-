@@ -2,11 +2,22 @@ package ba.unsa.etf.rpr.projekat.DAL;
 
 import ba.unsa.etf.rpr.projekat.Admin;
 import ba.unsa.etf.rpr.projekat.Employee;
+import org.w3c.dom.*;
 
-import java.beans.XMLEncoder;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,12 +25,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class AdminDAO {
     private DatabaseConnection db = DatabaseConnection.getInstance();
     private Connection conn;
 
     private PreparedStatement addEmployeeStatement, getIdForNewEmployeeStatement, editEmployeeStatement, deleteEmployeeStatement, allEmployeesStatement,
-                              allAdminsStatement;
+            allAdminsStatement;
 
     public AdminDAO() {
         conn = db.getConn();
@@ -122,35 +134,55 @@ public class AdminDAO {
         }
     }
 
-    public ArrayList<Employee> readEmployees() {
-        ArrayList<Employee> result = new ArrayList<>();
-        Scanner input = null;
-        try {
-            String path = getClass().getResource("/file/employees.txt").getFile();
-            input = new Scanner(new FileReader(path));
-        } catch (FileNotFoundException e) {
-            System.out.println("File employees.txt does not exist or cannot open");
-            System.out.println("Error:" +e);
-        }
-        int id = 1;
-        while (input.hasNext()) {
-            String[] row = input.nextLine().split(",");
-            result.add(new Employee(id++, row[0], row[1], row[2], row[3]));
-        }
-        return result;
-    }
 
-    public void writeXmlEmployees() {
+    public void createXmlFile() {
+
         try {
-            XMLEncoder output = new XMLEncoder(new FileOutputStream(getClass().getResource("/file/employees.xml").getFile()));
+            DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+            Document document = documentBuilder.newDocument();
+
+            Element root = document.createElement("employees");
+            document.appendChild(root);
+
             for (Employee e : employees()) {
-                output.writeObject(e);
+                Element employee = document.createElement("employee");
+                root.appendChild(employee);
+
+                Attr attr = document.createAttribute("id");
+                attr.setValue(String.valueOf(e.getId()));
+                employee.setAttributeNode(attr);
+
+                Element firstName = document.createElement("firstname");
+                firstName.appendChild(document.createTextNode(e.getFirstName()));
+                employee.appendChild(firstName);
+
+                Element lastname = document.createElement("lastname");
+                lastname.appendChild(document.createTextNode(e.getLastName()));
+                employee.appendChild(lastname);
+
+                Element username = document.createElement("username");
+                username.appendChild(document.createTextNode(e.getUsername()));
+                employee.appendChild(username);
+
+                Element password = document.createElement("password");
+                password.appendChild(document.createTextNode(e.getPassword()));
+                employee.appendChild(password);
             }
-            output.close();
-        } catch (FileNotFoundException e) {
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource domSource = new DOMSource(document);
+            StreamResult streamResult = new StreamResult(new File("employees.xml"));
+
+            transformer.transform(domSource, streamResult);
+
+            System.out.println("For nicely XML format use this XML Formatter https://www.freeformatter.com/xml-formatter.html#ad-output");
+        } catch (ParserConfigurationException | TransformerException e) {
             e.printStackTrace();
         }
+
     }
 
-
 }
+

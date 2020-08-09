@@ -74,16 +74,9 @@ class AdminDAOTest {
     }
 
     @Test
-    void readEmployees() {
+    void createXmlFile() {
         AdminDAO a = new AdminDAO();
-        ArrayList<Employee> result = a.readEmployees();
-        assertEquals(4, result.size());
-    }
-
-    @Test
-    void writeXmlEmployees() {
-        AdminDAO a = new AdminDAO();
-        //a.addEmployee(new Employee(1, "Arman", "Radonja", "armanR", "123"));
-        a.writeXmlEmployees();
+        a.addEmployee(new Employee(1, "Arman", "Radonja", "arman", "123"));
+        a.createXmlFile();
     }
 }
