@@ -114,19 +114,19 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                   <items>
-                        <MenuItem mnemonicParsing="false" text="Edit customer" />
-                    <MenuItem mnemonicParsing="false" text="Delete customer" />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionEditCustomer" text="Edit customer" />
+                    <MenuItem mnemonicParsing="false" onAction="#onActionDeleteCustomer" text="Delete customer" />
                   </items>
                 </Menu>
                   <Menu mnemonicParsing="false" text="View">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="All customers..." />
+                      <MenuItem mnemonicParsing="false" onAction="#onActionViewAllCustomers" text="All customers..." />
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <Menu mnemonicParsing="false" text="Contract expires">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="For the month..." />
-                              <MenuItem mnemonicParsing="false" text="For two months..." />
-                            <MenuItem mnemonicParsing="false" text="For three months..." />
+                            <MenuItem mnemonicParsing="false" onAction="#onActionForTheMonth" text="For the month..." />
+                              <MenuItem mnemonicParsing="false" onAction="#onActionForTwoMonths" text="For two months..." />
+                            <MenuItem mnemonicParsing="false" onAction="#onActionForThreeMonths" text="For three months..." />
                           </items>
                         </Menu>
                     </items>

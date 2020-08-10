@@ -145,7 +145,14 @@ public class CustomersController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/customerform.fxml"));
 
         Customer currentCustomer = tableView.getSelectionModel().getSelectedItem();
-        if (currentCustomer == null) return;
+        if (currentCustomer == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Edit customer");
+            alert.setHeaderText("Cannot edit unselected customer");
+            alert.setContentText("Select the customer you want to edit");
+            alert.showAndWait();
+            return;
+        }
 
         CustomerFormController ctrl = new CustomerFormController(currentCustomer, serviceDAO.services());
         loader.setController(ctrl);
@@ -170,7 +177,14 @@ public class CustomersController {
 
     public void onActionDelete(ActionEvent actionEvent) {
         Customer customer = tableView.getSelectionModel().getSelectedItem();
-        if (customer == null) return;
+        if (customer == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Delete customer");
+            alert.setHeaderText("Cannot delete unselected customer");
+            alert.setContentText("Select the customer you want to delete");
+            alert.showAndWait();
+            return;
+        }
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete");
@@ -303,5 +317,53 @@ public class CustomersController {
     public void onActionExit(ActionEvent actionEvent) {
         System.exit(0);
     }
+
+    public void onActionEditCustomer(ActionEvent actionEvent) throws IOException {
+        onActionEdit(actionEvent);
+    }
+
+
+    public void onActionDeleteCustomer(ActionEvent actionEvent) {
+        onActionDelete(actionEvent);
+    }
+
+    public void onActionViewAllCustomers(ActionEvent actionEvent) {
+        reportCustomerDAO.addOneOrTwoOrThreeMoreMonthContractCustomers(0);
+        try {
+            new PrintReport().showReport(db.getConn());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }    }
+
+
+    public void onActionForTheMonth(ActionEvent actionEvent) {
+        reportCustomerDAO.addOneOrTwoOrThreeMoreMonthContractCustomers(1);
+        try {
+            new PrintReport().showReport(db.getConn());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+
+    public void onActionForTwoMonths(ActionEvent actionEvent) {
+        reportCustomerDAO.addOneOrTwoOrThreeMoreMonthContractCustomers(2);
+        try {
+            new PrintReport().showReport(db.getConn());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    public void onActionForThreeMonths(ActionEvent actionEvent) {
+        reportCustomerDAO.addOneOrTwoOrThreeMoreMonthContractCustomers(2);
+        try {
+            new PrintReport().showReport(db.getConn());
+        } catch (JRException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+
 }
 
