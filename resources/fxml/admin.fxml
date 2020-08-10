@@ -177,18 +177,45 @@
                   <items>
                         <Menu mnemonicParsing="false" text="New">
                           <items>
+                              <MenuItem mnemonicParsing="false" text="Customer..." />
                             <MenuItem mnemonicParsing="false" text="Employee" />
-                              <MenuItem mnemonicParsing="false" text="Customer" />
                           </items>
                         </Menu>
                     <MenuItem mnemonicParsing="false" text="Close" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Export employees to XML" />
+                        <MenuItem mnemonicParsing="false" text="Import employees from XML" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Exit" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                        <Menu mnemonicParsing="false" text="Edit">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Customer" />
+                              <MenuItem mnemonicParsing="false" text="Employee..." />
+                              <MenuItem mnemonicParsing="false" text="Package..." />
+                              <MenuItem mnemonicParsing="false" text="Service..." />
+                          </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Delete">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Customer" />
+                          <MenuItem mnemonicParsing="false" text="Employee" />
+                              <MenuItem mnemonicParsing="false" text="Package" />
+                              <MenuItem mnemonicParsing="false" text="Service" />
+                          </items>
+                        </Menu>
                   </items>
                 </Menu>
+                  <Menu mnemonicParsing="false" text="View">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Customers..." />
+                        <MenuItem mnemonicParsing="false" text="Packages..." />
+                        <MenuItem mnemonicParsing="false" text="Services..." />
+                    </items>
+                  </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
                     <MenuItem mnemonicParsing="false" text="About" />

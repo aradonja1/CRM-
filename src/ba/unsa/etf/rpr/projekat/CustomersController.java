@@ -18,11 +18,9 @@ import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -199,7 +197,6 @@ public class CustomersController {
         } catch (JRException e1) {
             e1.printStackTrace();
         }
-
     }
 
     public void onActionOneMonth(ActionEvent actionEvent) {
@@ -262,7 +259,7 @@ public class CustomersController {
     public void onActionAllContracts(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contracts.fxml"));
-        ContractController ctrl = new ContractController();
+        ContractsController ctrl = new ContractsController();
         loader.setController(ctrl);
         Parent root = loader.load();
         stage.setTitle("All contracts in system");
@@ -277,7 +274,7 @@ public class CustomersController {
 
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contracts.fxml"));
-        ContractController ctrl = new ContractController(customer);
+        ContractsController ctrl = new ContractsController(customer);
         loader.setController(ctrl);
         Parent root = loader.load();
         stage.setTitle("Contracts");
@@ -294,5 +291,17 @@ public class CustomersController {
         }
     }
 
+    public void onActionNew(ActionEvent actionEvent) throws IOException {
+        onActionAdd(actionEvent);
+    }
+
+    public void onActionClose(ActionEvent actionEvent) {
+        Stage stage = (Stage) btnContracts.getScene().getWindow();
+        stage.close();
+    }
+
+    public void onActionExit(ActionEvent actionEvent) {
+        System.exit(0);
+    }
 }
 

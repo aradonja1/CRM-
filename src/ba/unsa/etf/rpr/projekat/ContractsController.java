@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class ContractController {
+public class ContractsController {
 
 
     public TableColumn<Contract, String> coloumnBegin;
@@ -61,12 +61,12 @@ public class ContractController {
         });
     }
 
-    public ContractController(Customer customer) {
+    public ContractsController(Customer customer) {
         this.customer = customer;
         listContracts = FXCollections.observableArrayList(customerDAO.getArchivedContracts(customer));
     }
 
-    public ContractController() {
+    public ContractsController() {
         listContracts = FXCollections.observableArrayList(customerDAO.contracts());
     }
 }

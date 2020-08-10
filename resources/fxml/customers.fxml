@@ -107,14 +107,30 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionNew" text="New" />
+                    <MenuItem mnemonicParsing="false" onAction="#onActionClose" text="Close" />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionExit" text="Exit" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                        <MenuItem mnemonicParsing="false" text="Edit customer" />
+                    <MenuItem mnemonicParsing="false" text="Delete customer" />
                   </items>
                 </Menu>
+                  <Menu mnemonicParsing="false" text="View">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="All customers..." />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <Menu mnemonicParsing="false" text="Contract expires">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="For the month..." />
+                              <MenuItem mnemonicParsing="false" text="For two months..." />
+                            <MenuItem mnemonicParsing="false" text="For three months..." />
+                          </items>
+                        </Menu>
+                    </items>
+                  </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
                     <MenuItem mnemonicParsing="false" text="About" />
