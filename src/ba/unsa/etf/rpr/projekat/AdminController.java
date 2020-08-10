@@ -14,6 +14,8 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -127,7 +129,7 @@ public class AdminController {
         alert.setTitle("Delete");
         alert.setHeaderText("Delete employee "+employee.getFirstName() + " " +employee.getLastName());
         alert.setContentText("Are you sure you want to delete employee " +employee.getFirstName() + " " +employee.getLastName()+"?");
-        alert.setResizable(true);
+        alert.setResizable(false);
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
@@ -167,14 +169,30 @@ public class AdminController {
 
     public void onActionReadXML(ActionEvent actionEvent) {
         adminDAO.readXmlFile();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Reading XML file");
         alert.setHeaderText("Successfully read the XML file: employee.xml");
         alert.showAndWait();
     }
 
-    public void onActionWriteXML(ActionEvent actionEvent) {
+    public void onActionWriteXML(ActionEvent actionEvent) throws MalformedURLException {
         adminDAO.createAndWriteXmlFile();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Writing XML file");
+        alert.setHeaderText("Successfully written to the XML file: employee.xml");
+        alert.showAndWait();
+
+        Alert alertConfirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        alertConfirmation.setTitle("Writing XML file");
+        alertConfirmation.setHeaderText("Do you want to see written XML file in notepad?");
+        alertConfirmation.setContentText("Notepad will be displayed for 3 seconds");
+        Optional<ButtonType> result = alertConfirmation.showAndWait();
+        if (result.get() == ButtonType.OK)
+                openNotepad();
+    }
+
+    private void openNotepad() {
         try {
             System.out.println("Opening notepad");
             Runtime runTime = Runtime.getRuntime();
@@ -190,9 +208,5 @@ public class AdminController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Writing XML file");
-        alert.setHeaderText("Successfully written to the XML file: employee.xml");
-        alert.showAndWait();
     }
 }

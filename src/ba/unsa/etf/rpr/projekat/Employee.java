@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleObjectProperty;
 
 import java.io.Serializable;
 
-public class Employee implements Serializable {
+public class Employee  {
     private int id;
     private String firstName, lastName, username, password;
 

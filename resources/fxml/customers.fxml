@@ -35,7 +35,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="fldSearch" prefHeight="41.0" prefWidth="189.0" stylesheets="@../css/customers.css">
+                  <TextField fx:id="fldFilter" onKeyTyped="#searchRecord" prefHeight="41.0" prefWidth="189.0" stylesheets="@../css/customers.css">
                      <font>
                         <Font size="15.0" />
                      </font>

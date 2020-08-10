@@ -1,5 +1,7 @@
 package ba.unsa.etf.rpr.projekat;
 
+import javafx.beans.property.SimpleObjectProperty;
+
 import java.util.ArrayList;
 
 public class Service {

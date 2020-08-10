@@ -4,6 +4,8 @@ import ba.unsa.etf.rpr.projekat.DAL.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
 
@@ -38,6 +41,7 @@ public class CustomersController {
     public Button btnTwoMonths;
     public Button btnThreeMonths;
     public Button btnContracts;
+    public TextField fldFilter;
 
     private ObservableList<Customer> listCustomers = FXCollections.observableArrayList();
     private CustomerDAO customerDAO;
@@ -46,9 +50,9 @@ public class CustomersController {
 
     private DatabaseConnection db = DatabaseConnection.getInstance();
 
+
     @FXML
     public void initialize() {
-
         btnAllCustomers.setTooltip(new Tooltip("All customers in system"));
         btnOneMonth.setTooltip(new Tooltip("Customers whose contract expires in a month"));
         btnTwoMonths.setTooltip(new Tooltip("Customers whose contract expires in two month"));
@@ -82,6 +86,31 @@ public class CustomersController {
             return property;
         });
         btnSendEmail.setVisible(false);
+    }
+
+    @FXML
+    private void searchRecord(KeyEvent ke) {
+        FilteredList<Customer> filteredData = new FilteredList<>(listCustomers, b -> true);
+        fldFilter.textProperty().addListener((obs, oldValue, newValue) -> {
+            filteredData.setPredicate(customer -> {
+                if (newValue == null || newValue.isEmpty())
+                    return true;
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (customer.getFirstName().toLowerCase().contains(lowerCaseFilter))
+                    return true;
+                else if (customer.getLastName().toLowerCase().contains(lowerCaseFilter))
+                    return true;
+                else if (customer.getService().getName().toLowerCase().contains(lowerCaseFilter))
+                    return true;
+                else if (customer.getService().getListPackages().get(0).getName().toLowerCase().contains(lowerCaseFilter))
+                    return true;
+                else
+                    return false;
+            });
+            SortedList<Customer> sortedData = new SortedList<>(filteredData);
+            sortedData.comparatorProperty().bind(tableView.comparatorProperty());
+            tableView.setItems(sortedData);
+        });
     }
 
     public CustomersController() {
