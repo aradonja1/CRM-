@@ -41,6 +41,8 @@ public class AdminController {
         listEmployees = FXCollections.observableArrayList(adminDAO.employees());
     }
 
+    private CustomersController customersController = new CustomersController();
+
     @FXML
     public void initialize() {
         lstView.setItems(listEmployees);
@@ -209,4 +211,39 @@ public class AdminController {
             e.printStackTrace();
         }
     }
+
+    public void onActionCustomer(ActionEvent actionEvent) throws IOException {
+        customersController.onActionAdd(actionEvent);
+    }
+
+    public void onActionEmployee(ActionEvent actionEvent) throws IOException {
+        onActionAdd(actionEvent);
+    }
+
+    public void onActionClose(ActionEvent actionEvent) {
+        Stage stage = (Stage) fldSurname.getScene().getWindow();
+        stage.close();
+    }
+
+    public void onActionExport(ActionEvent actionEvent) throws MalformedURLException {
+        onActionWriteXML(actionEvent);
+    }
+
+    public void onActionImport(ActionEvent actionEvent) {
+        onActionReadXML(actionEvent);
+    }
+
+    public void onActionExit(ActionEvent actionEvent) {
+        System.exit(0);
+    }
+
+
+    public void onActionEditEmployee(ActionEvent actionEvent) {
+        onActionEdit(actionEvent);
+    }
+
+    public void onActionDeleteEmployee(ActionEvent actionEvent) {
+        onActionDelete(actionEvent);
+    }
+
 }

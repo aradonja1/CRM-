@@ -177,37 +177,23 @@
                   <items>
                         <Menu mnemonicParsing="false" text="New">
                           <items>
-                              <MenuItem mnemonicParsing="false" text="Customer..." />
-                            <MenuItem mnemonicParsing="false" text="Employee" />
+                              <MenuItem mnemonicParsing="false" onAction="#onActionCustomer" text="Customer..." />
+                            <MenuItem mnemonicParsing="false" onAction="#onActionEmployee" text="Employee" />
                           </items>
                         </Menu>
-                    <MenuItem mnemonicParsing="false" text="Close" />
+                    <MenuItem mnemonicParsing="false" onAction="#onActionClose" text="Close" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Export employees to XML" />
-                        <MenuItem mnemonicParsing="false" text="Import employees from XML" />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionExport" text="Export employees to XML" />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionImport" text="Import employees from XML" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Exit" />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionExit" text="Exit" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                        <Menu mnemonicParsing="false" text="Edit">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Customer" />
-                              <MenuItem mnemonicParsing="false" text="Employee..." />
-                              <MenuItem mnemonicParsing="false" text="Package..." />
-                              <MenuItem mnemonicParsing="false" text="Service..." />
-                          </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Delete">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Customer" />
-                          <MenuItem mnemonicParsing="false" text="Employee" />
-                              <MenuItem mnemonicParsing="false" text="Package" />
-                              <MenuItem mnemonicParsing="false" text="Service" />
-                          </items>
-                        </Menu>
-                  </items>
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onActionEditEmployee" text="Edit employee" />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionDeleteEmployee" text="Delete employee" />
+                     </items>
                 </Menu>
                   <Menu mnemonicParsing="false" text="View">
                     <items>
