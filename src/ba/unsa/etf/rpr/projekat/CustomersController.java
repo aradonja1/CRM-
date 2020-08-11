@@ -365,5 +365,12 @@ public class CustomersController {
     }
 
 
+    public void onActionAbout(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("About");
+        alert.setHeaderText("Author: Adnan Radonja");
+        alert.setContentText("Faculty of Electrical Engineering Sarajevo\nCustomer Relationship Managment\nAugust 2020");
+        alert.showAndWait();
+    }
 }
 
