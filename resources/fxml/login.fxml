@@ -99,6 +99,10 @@
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="buttonBosnia" layoutX="119.0" layoutY="34.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="46.0" stylesheets="@../css/login.css" />
+            <Button fx:id="btnUKLanguage" layoutX="25.0" layoutY="34.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="0.0" stylesheets="@../css/login.css" />
+         </children></Pane>
    </right>
 </BorderPane>

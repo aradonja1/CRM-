@@ -20,3 +20,33 @@
 #btnLogin:hover {
     -fx-background-color: blue;
 }
+
+#btnUKLanguage {
+    -fx-background-color: transparent;
+    -fx-graphic: url("../img/uk_flag.png");
+    -fx-border-width: 0;
+}
+
+#btnUKLanguage: hover {
+    -fx-background-color: black;
+}
+
+#btnUKLanguage: pressed {
+    -fx-background-color: green;
+}
+
+
+#buttonBosnia {
+    -fx-background-color: transparent;
+    -fx-graphic: url("../img/bosnia_flag.png");
+    -fx-border-width: 0;
+}
+
+
+#buttonBosnia: hover {
+    -fx-background-color: black;
+}
+
+#buttonBosnia: pressed {
+    -fx-background-color: green;
+}
