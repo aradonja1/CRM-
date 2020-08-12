@@ -246,4 +246,20 @@ public class AdminController {
         onActionDelete(actionEvent);
     }
 
+    public void onActionViewCustomer(ActionEvent actionEvent) throws IOException {
+        onActionCustomers(actionEvent);
+    }
+
+    public void onActionViewPackage(ActionEvent actionEvent) throws IOException {
+        onActionAddPackage(actionEvent);
+    }
+
+    public void onActionViewService(ActionEvent actionEvent) throws IOException {
+        onActionAddService(actionEvent);
+    }
+
+    public void onActionAbout(ActionEvent actionEvent) {
+        customersController.onActionAbout(actionEvent);
+    }
+
 }

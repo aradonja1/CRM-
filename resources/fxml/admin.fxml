@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.input.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -173,7 +174,7 @@
          <children>
             <MenuBar prefHeight="38.0" prefWidth="1167.0" styleClass="topSection" stylesheets="@../css/admin.css">
               <menus>
-                <Menu mnemonicParsing="false" text="File">
+                <Menu text="_File">
                   <items>
                         <Menu mnemonicParsing="false" text="New">
                           <items>
@@ -183,28 +184,37 @@
                         </Menu>
                     <MenuItem mnemonicParsing="false" onAction="#onActionClose" text="Close" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#onActionExport" text="Export employees to XML" />
-                        <MenuItem mnemonicParsing="false" onAction="#onActionImport" text="Import employees from XML" />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionExport" text="Export employees to XML">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#onActionImport" text="Import employees from XML">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" onAction="#onActionExit" text="Exit" />
+                        <MenuItem onAction="#onActionExit" text="E_xit" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
+                <Menu text="_Edit">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#onActionEditEmployee" text="Edit employee" />
-                        <MenuItem mnemonicParsing="false" onAction="#onActionDeleteEmployee" text="Delete employee" />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionDeleteEmployee" text="Delete employee">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="DELETE" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
                      </items>
                 </Menu>
-                  <Menu mnemonicParsing="false" text="View">
+                  <Menu text="_View">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Customers..." />
-                        <MenuItem mnemonicParsing="false" text="Packages..." />
-                        <MenuItem mnemonicParsing="false" text="Services..." />
+                      <MenuItem mnemonicParsing="false" onAction="#onActionViewCustomer" text="Customers..." />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionViewPackage" text="Packages..." />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionViewService" text="Services..." />
                     </items>
                   </Menu>
-                <Menu mnemonicParsing="false" text="Help">
+                <Menu text="_Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem onAction="#onActionAbout" text="_About" />
                   </items>
                 </Menu>
               </menus>

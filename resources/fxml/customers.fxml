@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.input.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -105,20 +106,23 @@
          <children>
             <MenuBar styleClass="topSection" stylesheets="@../css/customers.css">
               <menus>
-                <Menu mnemonicParsing="false" text="File">
+                <Menu text="_File">
                   <items>
                         <MenuItem mnemonicParsing="false" onAction="#onActionNew" text="New" />
                     <MenuItem mnemonicParsing="false" onAction="#onActionClose" text="Close" />
-                        <MenuItem mnemonicParsing="false" onAction="#onActionExit" text="Exit" />
+                        <MenuItem onAction="#onActionExit" text="E_xit" />
                   </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
+                <Menu text="_Edit">
                   <items>
                         <MenuItem mnemonicParsing="false" onAction="#onActionEditCustomer" text="Edit customer" />
-                    <MenuItem mnemonicParsing="false" onAction="#onActionDeleteCustomer" text="Delete customer" />
+                    <MenuItem mnemonicParsing="false" onAction="#onActionDeleteCustomer" text="Delete customer">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="DELETE" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
                   </items>
                 </Menu>
-                  <Menu mnemonicParsing="false" text="View">
+                  <Menu text="_View">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#onActionViewAllCustomers" text="All customers..." />
                         <SeparatorMenuItem mnemonicParsing="false" />
@@ -131,9 +135,9 @@
                         </Menu>
                     </items>
                   </Menu>
-                <Menu mnemonicParsing="false" text="Help">
+                <Menu text="_Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#onActionAbout" text="About" />
+                    <MenuItem onAction="#onActionAbout" text="_About" />
                   </items>
                 </Menu>
               </menus>
