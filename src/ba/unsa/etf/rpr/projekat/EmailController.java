@@ -10,6 +10,7 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import java.util.ResourceBundle;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -21,6 +22,8 @@ public class EmailController  {
     public TextField fldYourEmail;
 
     private ObservableList<Customer> listCustomers;
+
+    private ResourceBundle resourceBundle;
 
     @FXML
     public void initialize() {
@@ -96,8 +99,9 @@ public class EmailController  {
         stage.close();
     }
 
-    public EmailController(ObservableList<Customer> listCustomers) {
+    public EmailController(ObservableList<Customer> listCustomers, ResourceBundle resourceBundle) {
         this.listCustomers = listCustomers;
+        this.resourceBundle = resourceBundle;
     }
 }
 

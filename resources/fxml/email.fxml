@@ -27,26 +27,26 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="To:" textFill="WHITE" GridPane.rowIndex="3" GridPane.rowSpan="2">
+      <Label text="%To" textFill="WHITE" GridPane.rowIndex="3" GridPane.rowSpan="2">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Label text="Subject:" textFill="WHITE" GridPane.rowIndex="5">
+      <Label text="%Subject" textFill="WHITE" GridPane.rowIndex="5">
          <font>
             <Font size="15.0" />
          </font></Label>
       <TextArea fx:id="fldMessage" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.rowSpan="2" />
-      <Label text="Message:" textFill="WHITE" GridPane.rowIndex="6">
+      <Label text="%Message" textFill="WHITE" GridPane.rowIndex="6">
          <font>
             <Font size="15.0" />
          </font></Label>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
         <buttons>
-          <Button defaultButton="true" mnemonicParsing="false" onAction="#onActionSend" text="Send">
+          <Button defaultButton="true" mnemonicParsing="false" onAction="#onActionSend" text="%Send">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button cancelButton="true" mnemonicParsing="false" onAction="#onActionCancel" text="Cancel">
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#onActionCancel" text="%Cancel3">
                <font>
                   <Font size="15.0" />
                </font></Button>
@@ -60,7 +60,7 @@
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <Label text="Your Email:" textFill="WHITE">
+      <Label text="%YourEmail" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font></Label>
@@ -68,7 +68,7 @@
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <Label text="Your Password:" textFill="WHITE" GridPane.rowIndex="1">
+      <Label text="%YourPassword" textFill="WHITE" GridPane.rowIndex="1">
          <font>
             <Font size="15.0" />
          </font></Label>

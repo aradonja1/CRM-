@@ -27,36 +27,36 @@
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
    <children>
-      <Label text="Name:">
+      <Label text="%name2">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Label text="Surname:" GridPane.rowIndex="1">
+      <Label text="%surname2" GridPane.rowIndex="1">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Label text="Adress:" GridPane.rowIndex="2">
+      <Label text="%adress2" GridPane.rowIndex="2">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Label text="Email:" GridPane.rowIndex="3">
+      <Label text="%email2" GridPane.rowIndex="3">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Label text="Contact:" GridPane.rowIndex="4">
+      <Label text="%contact2" GridPane.rowIndex="4">
          <font>
             <Font size="15.0" />
          </font></Label>
       <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-      <Label text="Begin contract:" GridPane.rowIndex="6">
+      <Label text="%begincontract2" GridPane.rowIndex="6">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Label text="End contract:" GridPane.rowIndex="7">
+      <Label text="%endcontract2" GridPane.rowIndex="7">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Label text="Service:" GridPane.rowIndex="8">
+      <Label text="%service2" GridPane.rowIndex="8">
          <font>
             <Font size="15.0" />
          </font></Label>
@@ -85,17 +85,17 @@
          </font></TextField>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="10">
         <buttons>
-          <Button fx:id="btnOk" defaultButton="true" mnemonicParsing="false" onAction="#onActionOk" prefHeight="30.0" prefWidth="90.0" text="Ok">
+          <Button fx:id="btnOk" defaultButton="true" mnemonicParsing="false" onAction="#onActionOk" prefHeight="30.0" prefWidth="90.0" text="%ok2">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button fx:id="btnCancel" cancelButton="true" mnemonicParsing="false" onAction="#onActionCancel" prefHeight="30.0" prefWidth="90.0" text="Cancel">
+            <Button fx:id="btnCancel" cancelButton="true" mnemonicParsing="false" onAction="#onActionCancel" prefHeight="30.0" prefWidth="90.0" text="%cancel2">
                <font>
                   <Font size="15.0" />
                </font></Button>
         </buttons>
       </ButtonBar>
-      <Label text="Package:" GridPane.rowIndex="9">
+      <Label text="%package2" GridPane.rowIndex="9">
          <font>
             <Font size="15.0" />
          </font></Label>

@@ -18,6 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -37,11 +38,14 @@ public class AdminController {
     private boolean ok;
     private int addition = 0;
 
-    public AdminController() {
+    private ResourceBundle resourceBundle;
+
+    public AdminController(ResourceBundle resourceBundle) {
         listEmployees = FXCollections.observableArrayList(adminDAO.employees());
+        this.resourceBundle = resourceBundle;
     }
 
-    private CustomersController customersController = new CustomersController();
+    private CustomersController customersController = new CustomersController(resourceBundle);
 
     @FXML
     public void initialize() {
@@ -142,10 +146,11 @@ public class AdminController {
 
     public void onActionCustomers(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
-        stage = (Stage) btnCancel.getScene().getWindow();
-        stage.close();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/customers.fxml"));
-        stage.setTitle("CRM");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/customers.fxml"), resourceBundle);
+        CustomersController ctrl = new CustomersController(resourceBundle);
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        stage.setTitle(resourceBundle.getString("customersapp"));
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
     }
@@ -162,8 +167,12 @@ public class AdminController {
 
     public void onActionAddPackage(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/package.fxml"));
-        stage.setTitle("Packages");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/package.fxml"), resourceBundle);
+
+        PackageController ctrl = new PackageController(resourceBundle);
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        stage.setTitle(resourceBundle.getString("packageapp"));
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(false);
         stage.show();

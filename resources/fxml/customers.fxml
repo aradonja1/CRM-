@@ -6,17 +6,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="500.0" minWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.rpr.projekat.CustomersController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="500.0" minWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <TableView fx:id="tableView" prefHeight="400.0" prefWidth="345.0" stylesheets="@../css/customers.css">
         <columns>
-          <TableColumn fx:id="coloumnName" prefWidth="100.0" text="Name" />
-          <TableColumn fx:id="coloumnSurname" prefWidth="100.0" text="Surname" />
-            <TableColumn fx:id="coloumnEmail" prefWidth="160.0" text="Email" />
-            <TableColumn fx:id="coloumnBeginContract" prefWidth="140.0" text="Begin contract" />
-            <TableColumn fx:id="coloumnEndContract" prefWidth="130.0" text="End contract" />
-            <TableColumn fx:id="coloumnService" prefWidth="160.0" text="Service" />
-            <TableColumn fx:id="coloumnPackage" prefWidth="160.0" text="Package" />
+          <TableColumn fx:id="coloumnName" prefWidth="100.0" text="%tblVName" />
+          <TableColumn fx:id="coloumnSurname" prefWidth="100.0" text="%tblVSurname" />
+            <TableColumn fx:id="coloumnEmail" prefWidth="160.0" text="%tblVEmail" />
+            <TableColumn fx:id="coloumnBeginContract" prefWidth="140.0" text="%tblVBegincontract" />
+            <TableColumn fx:id="coloumnEndContract" prefWidth="130.0" text="%tblVEndcontract" />
+            <TableColumn fx:id="coloumnService" prefWidth="160.0" text="%tblVService" />
+            <TableColumn fx:id="coloumnPackage" prefWidth="160.0" text="%tblVPackage" />
         </columns>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -28,7 +28,7 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" styleClass="btnSearch" stylesheets="@../css/customers.css">
                <children>
-                  <Label prefHeight="51.0" prefWidth="103.0" text="Search:">
+                  <Label prefHeight="51.0" prefWidth="103.0" text="%search">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -52,23 +52,23 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <Button mnemonicParsing="false" onAction="#onActionAdd" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="Add">
+            <Button mnemonicParsing="false" onAction="#onActionAdd" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%customersadd">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button mnemonicParsing="false" onAction="#onActionEdit" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="Edit ">
+            <Button mnemonicParsing="false" onAction="#onActionEdit" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%customersedit2">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button mnemonicParsing="false" onAction="#onActionDelete" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="Delete">
+            <Button mnemonicParsing="false" onAction="#onActionDelete" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%customersdelete2">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button fx:id="btnContracts" mnemonicParsing="false" onAction="#onActionArchievedContracts" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="Archieved contracts">
+            <Button fx:id="btnContracts" mnemonicParsing="false" onAction="#onActionArchievedContracts" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%archievedcontracts">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button mnemonicParsing="false" onAction="#onActionAllContracts" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="All contracts">
+            <Button mnemonicParsing="false" onAction="#onActionAllContracts" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%allcontracts">
                <font>
                   <Font size="15.0" />
                </font></Button>
@@ -78,23 +78,23 @@
    <right>
       <VBox fx:id="rightSide" prefHeight="525.0" prefWidth="300.0" stylesheets="@../css/customers.css" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnAllCustomers" mnemonicParsing="false" onAction="#onActionAllCustomers" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="All customers">
+            <Button fx:id="btnAllCustomers" mnemonicParsing="false" onAction="#onActionAllCustomers" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%allcustomers">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button fx:id="btnOneMonth" mnemonicParsing="false" onAction="#onActionOneMonth" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="One month">
+            <Button fx:id="btnOneMonth" mnemonicParsing="false" onAction="#onActionOneMonth" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%1month">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button fx:id="btnTwoMonths" mnemonicParsing="false" onAction="#onActionTwoMonths" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="Two months">
+            <Button fx:id="btnTwoMonths" mnemonicParsing="false" onAction="#onActionTwoMonths" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%2months">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button fx:id="btnThreeMonths" mnemonicParsing="false" onAction="#onActionThreeMonths" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="Three months">
+            <Button fx:id="btnThreeMonths" mnemonicParsing="false" onAction="#onActionThreeMonths" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%3months">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button fx:id="btnSendEmail" mnemonicParsing="false" onAction="#onActionSendEmail" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="Send Email">
+            <Button fx:id="btnSendEmail" mnemonicParsing="false" onAction="#onActionSendEmail" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%sndemail">
                <font>
                   <Font size="15.0" />
                </font></Button>
@@ -106,38 +106,38 @@
          <children>
             <MenuBar styleClass="topSection" stylesheets="@../css/customers.css">
               <menus>
-                <Menu text="_File">
+                <Menu text="%customersfile">
                   <items>
-                        <MenuItem mnemonicParsing="false" onAction="#onActionNew" text="New" />
-                    <MenuItem mnemonicParsing="false" onAction="#onActionClose" text="Close" />
-                        <MenuItem onAction="#onActionExit" text="E_xit" />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionNew" text="%customersnew" />
+                    <MenuItem mnemonicParsing="false" onAction="#onActionClose" text="%customersclose" />
+                        <MenuItem onAction="#onActionExit" text="%customersexit" />
                   </items>
                 </Menu>
-                <Menu text="_Edit">
+                <Menu text="%customersedit">
                   <items>
-                        <MenuItem mnemonicParsing="false" onAction="#onActionEditCustomer" text="Edit customer" />
-                    <MenuItem mnemonicParsing="false" onAction="#onActionDeleteCustomer" text="Delete customer">
+                        <MenuItem mnemonicParsing="false" onAction="#onActionEditCustomer" text="%customerseditcustomer" />
+                    <MenuItem mnemonicParsing="false" onAction="#onActionDeleteCustomer" text="%customersdeletecustomer">
                            <accelerator>
                               <KeyCodeCombination alt="DOWN" code="DELETE" control="UP" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>
                   </items>
                 </Menu>
-                  <Menu text="_View">
+                  <Menu text="%customersview">
                     <items>
-                      <MenuItem mnemonicParsing="false" onAction="#onActionViewAllCustomers" text="All customers..." />
+                      <MenuItem mnemonicParsing="false" onAction="#onActionViewAllCustomers" text="%customersviewallcustomers" />
                         <SeparatorMenuItem mnemonicParsing="false" />
-                        <Menu mnemonicParsing="false" text="Contract expires">
+                        <Menu mnemonicParsing="false" text="%customerscontractsexpire">
                           <items>
-                            <MenuItem mnemonicParsing="false" onAction="#onActionForTheMonth" text="For the month..." />
-                              <MenuItem mnemonicParsing="false" onAction="#onActionForTwoMonths" text="For two months..." />
-                            <MenuItem mnemonicParsing="false" onAction="#onActionForThreeMonths" text="For three months..." />
+                            <MenuItem mnemonicParsing="false" onAction="#onActionForTheMonth" text="%forthemonth" />
+                              <MenuItem mnemonicParsing="false" onAction="#onActionForTwoMonths" text="%for2months" />
+                            <MenuItem mnemonicParsing="false" onAction="#onActionForThreeMonths" text="%for3months" />
                           </items>
                         </Menu>
                     </items>
                   </Menu>
-                <Menu text="_Help">
+                <Menu text="%customershelp">
                   <items>
-                    <MenuItem onAction="#onActionAbout" text="_About" />
+                    <MenuItem onAction="#onActionAbout" text="%customersabout" />
                   </items>
                 </Menu>
               </menus>

@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class CustomerFormController {
 
@@ -36,6 +37,8 @@ public class CustomerFormController {
     private CustomerDAO customerDAO = new CustomerDAO();
     private ServiceDAO serviceDAO = new ServiceDAO();
     private PackageDAO packageDAO = new PackageDAO();
+
+    private ResourceBundle resourceBundle;
 
     @FXML
     public void initialize() {
@@ -158,9 +161,10 @@ public class CustomerFormController {
         return customer;
     }
 
-    public CustomerFormController(Customer customer, ArrayList<Service> services) {
+    public CustomerFormController(Customer customer, ArrayList<Service> services, ResourceBundle resourceBundle) {
         this.customer = customer;
         listServices = FXCollections.observableArrayList(services);
         listPackages = FXCollections.observableArrayList(packageDAO.packages());
+        this.resourceBundle = resourceBundle;
     }
 }

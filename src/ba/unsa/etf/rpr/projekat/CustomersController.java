@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
@@ -48,6 +49,7 @@ public class CustomersController {
 
     private DatabaseConnection db = DatabaseConnection.getInstance();
 
+    private ResourceBundle resourceBundle;
 
     @FXML
     public void initialize() {
@@ -111,19 +113,20 @@ public class CustomersController {
         });
     }
 
-    public CustomersController() {
+    public CustomersController(ResourceBundle resourceBundle) {
         customerDAO = new CustomerDAO();
         //      listCustomers = FXCollections.observableArrayList(customerDAO.customers());
         listCustomers = FXCollections.observableArrayList(customerDAO.nonarchivedCustomers());
+        this.resourceBundle = resourceBundle;
     }
 
     public void onActionAdd(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/customerform.fxml"));
-        CustomerFormController ctrl = new CustomerFormController(null, serviceDAO.services());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/customerform.fxml"), resourceBundle);
+        CustomerFormController ctrl = new CustomerFormController(null, serviceDAO.services(), resourceBundle);
         loader.setController(ctrl);
         Parent root = loader.load();
-        stage.setTitle("Add customer form");
+        stage.setTitle(resourceBundle.getString("addcustomerform"));
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(false);
         stage.show();
@@ -142,7 +145,7 @@ public class CustomersController {
 
     public void onActionEdit(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/customerform.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/customerform.fxml"), resourceBundle);
 
         Customer currentCustomer = tableView.getSelectionModel().getSelectedItem();
         if (currentCustomer == null) {
@@ -154,10 +157,10 @@ public class CustomersController {
             return;
         }
 
-        CustomerFormController ctrl = new CustomerFormController(currentCustomer, serviceDAO.services());
+        CustomerFormController ctrl = new CustomerFormController(currentCustomer, serviceDAO.services(), resourceBundle);
         loader.setController(ctrl);
         Parent root = loader.load();
-        stage.setTitle("Edit customer form");
+        stage.setTitle(resourceBundle.getString("editcustomerform"));
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(false);
         stage.show();
@@ -254,17 +257,17 @@ public class CustomersController {
 
     public void onActionSendEmail(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/email.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/email.fxml"), resourceBundle);
 
         if (listCustomers.size() == 0) return;
 
         //Customer currentCustomer =  tableView.getSelectionModel().getSelectedItem();
         //if (currentCustomer == null) return;
 
-        EmailController ctrl = new EmailController(listCustomers);
+        EmailController ctrl = new EmailController(listCustomers, resourceBundle);
         loader.setController(ctrl);
         Parent root = loader.load();
-        stage.setTitle("Email");
+        stage.setTitle(resourceBundle.getString("emailapp"));
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(false);
         stage.show();

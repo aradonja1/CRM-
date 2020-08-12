@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class PackageController {
     public ListView<Package> fldListView;
@@ -22,6 +23,8 @@ public class PackageController {
     private PackageDAO packageDAO = new PackageDAO();
     private ObservableList<Package> listPackages;
     private boolean ok;
+
+    private ResourceBundle resourceBundle;
 
     @FXML
     public void initialize() {
@@ -68,8 +71,9 @@ public class PackageController {
         stage.close();
     }
 
-    public PackageController() {
+    public PackageController(ResourceBundle resourceBundle) {
         listPackages = FXCollections.observableArrayList(packageDAO.packages());
+        this.resourceBundle = resourceBundle;
     }
 
     public void onActionArchive(ActionEvent actionEvent) {
