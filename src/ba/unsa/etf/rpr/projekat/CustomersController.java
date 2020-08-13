@@ -51,14 +51,34 @@ public class CustomersController {
 
     private ResourceBundle resourceBundle;
 
+    public Button btnAddCustomer;
+    public Button editCustomerBtn;
+    public Button deleteCustomerBtn;
+    public Button btnAllContracts;
+
     @FXML
     public void initialize() {
-        btnAllCustomers.setTooltip(new Tooltip("All customers in system"));
-        btnOneMonth.setTooltip(new Tooltip("Customers whose contract expires in a month"));
-        btnTwoMonths.setTooltip(new Tooltip("Customers whose contract expires in two month"));
-        btnThreeMonths.setTooltip(new Tooltip("Customers whose contract expires in three month"));
-        btnContracts.setTooltip(new Tooltip("Archived contracts for selected customer"));
-
+        if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+            btnAllCustomers.setTooltip(new Tooltip("All customers in system"));
+            btnOneMonth.setTooltip(new Tooltip("Customers whose contract expires in a month"));
+            btnTwoMonths.setTooltip(new Tooltip("Customers whose contract expires in two month"));
+            btnThreeMonths.setTooltip(new Tooltip("Customers whose contract expires in three month"));
+            btnContracts.setTooltip(new Tooltip("Archived contracts for selected customer"));
+            btnAddCustomer.setTooltip(new Tooltip("Add customer"));
+            editCustomerBtn.setTooltip(new Tooltip("Edit customer"));
+            deleteCustomerBtn.setTooltip(new Tooltip("Delete customer"));
+            btnAllContracts.setTooltip(new Tooltip("All contracts in system"));
+        } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+            btnAllCustomers.setTooltip(new Tooltip("Svi kupci u sistemu"));
+            btnOneMonth.setTooltip(new Tooltip("Kupci kojima ugovor istice za mjesec dana"));
+            btnTwoMonths.setTooltip(new Tooltip("Kupci kojima ugovor istice za dva mjeseca"));
+            btnThreeMonths.setTooltip(new Tooltip("Kupci kojima ugovor istice za tri mjeseca"));
+            btnContracts.setTooltip(new Tooltip("Arhivirani ugovori za selektovanog kupca"));
+            btnAddCustomer.setTooltip(new Tooltip("Dodaj kupca"));
+            editCustomerBtn.setTooltip(new Tooltip("Uredi kupca"));
+            deleteCustomerBtn.setTooltip(new Tooltip("Izbrisi kupca"));
+            btnAllContracts.setTooltip(new Tooltip("Svi ugovori u sistemu"));
+        }
         tableView.setItems(listCustomers);
         coloumnName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         coloumnSurname.setCellValueFactory(new PropertyValueFactory<>("lastName"));

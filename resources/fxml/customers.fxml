@@ -68,7 +68,7 @@
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button mnemonicParsing="false" onAction="#onActionAllContracts" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%allcontracts">
+            <Button fx:id="btnAllContracts" mnemonicParsing="false" onAction="#onActionAllContracts" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%allcontracts">
                <font>
                   <Font size="15.0" />
                </font></Button>
