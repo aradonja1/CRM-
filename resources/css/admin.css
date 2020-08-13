@@ -77,3 +77,50 @@
 .centerSection {
     -fx-background-color: #5d26d3;
 }
+
+#addEmployeeBtn > .label{
+    -fx-graphic: url("../img/add_employee1.png");
+}
+
+#addEmployeeBtn .accelerator-text{
+    -fx-graphic: none;
+}
+
+#btnAdd {
+    -fx-graphic: url("../img/add_employee1.png");
+    -fx-background-color: transparent;
+}
+
+#btnAdd: hover {
+    -fx-background-color: black;
+}
+
+#btnAdd: pressed {
+    -fx-background-color: green;
+}
+
+#editEmployeeBtn {
+    -fx-graphic: url("../img/edit_employee1.png");
+    -fx-background-color: transparent;
+}
+
+#editEmployeeBtn: hover {
+    -fx-background-color: black;
+}
+
+#editEmployeeBtn: pressed {
+    -fx-background-color: green;
+}
+
+#btnDeleteEmployee {
+    -fx-graphic: url("../img/delete_employee1.png");
+    -fx-background-color: transparent;
+}
+
+#btnDeleteEmployee: hover {
+    -fx-background-color: black;
+}
+
+#btnDeleteEmployee: pressed {
+    -fx-background-color: green;
+}

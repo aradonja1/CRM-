@@ -120,7 +120,7 @@
          <children>
              <VBox prefHeight="514.0" prefWidth="353.0">
                  <children>
-                     <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAdd" prefHeight="60.0" prefWidth="331.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminAddemployee" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
+                     <Button fx:id="addEmployeeBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAdd" prefHeight="60.0" prefWidth="331.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminAddemployee" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
                          <font>
                              <Font size="15.0" />
                          </font>
@@ -222,9 +222,13 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </MenuBar>
-            <ToolBar prefHeight="68.0" prefWidth="1167.0" styleClass="topSection" stylesheets="@../css/admin.css">
+            <ToolBar fx:id="btnEditEmployee" prefHeight="68.0" prefWidth="1167.0" styleClass="topSection" stylesheets="@../css/admin.css">
               <items>
-                <Button mnemonicParsing="false" text="Button" />
+                <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#onActionbtnAdd" stylesheets="@../css/admin.css" />
+                  <Separator orientation="VERTICAL" />
+                  <Button fx:id="editEmployeeBtn" mnemonicParsing="false" onAction="#onActionEditEmployee2" stylesheets="@../css/admin.css" />
+                  <Separator orientation="VERTICAL" />
+                  <Button fx:id="btnDeleteEmployee" mnemonicParsing="false" onAction="#onActionDeleteEmployee2" />
               </items>
             </ToolBar>
          </children>

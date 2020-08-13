@@ -101,7 +101,7 @@ public class AdminController {
         if (addition == 1) {
             adminDAO.addEmployee(employee);
             addition = 0;
-        } else if (addition == 2){
+        } else if (addition == 2) {
             adminDAO.editEmployee(employee);
             addition = 0;
         }
@@ -149,7 +149,7 @@ public class AdminController {
         alert.setResizable(false);
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             adminDAO.deleteEmployee(employee);
             listEmployees.setAll(adminDAO.employees());
         }
@@ -237,7 +237,7 @@ public class AdminController {
         }
         Optional<ButtonType> result = alertConfirmation.showAndWait();
         if (result.get() == ButtonType.OK)
-                openNotepad();
+            openNotepad();
     }
 
     private void openNotepad() {
@@ -245,7 +245,7 @@ public class AdminController {
             System.out.println("Opening notepad");
             Runtime runTime = Runtime.getRuntime();
             String file = "employees.xml";
-            Process process = runTime.exec("notepad " +file);
+            Process process = runTime.exec("notepad " + file);
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
@@ -310,4 +310,15 @@ public class AdminController {
         customersController.onActionAbout(actionEvent);
     }
 
+    public void onActionbtnAdd(ActionEvent actionEvent) throws IOException {
+        onActionAdd(actionEvent);
+    }
+
+    public void onActionEditEmployee2(ActionEvent actionEvent)  {
+        onActionEditEmployee(actionEvent);
+    }
+
+    public void onActionDeleteEmployee2(ActionEvent actionEvent)  {
+        onActionDeleteEmployee(actionEvent);
+    }
 }
