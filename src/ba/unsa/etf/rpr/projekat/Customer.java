@@ -3,17 +3,16 @@ package ba.unsa.etf.rpr.projekat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Customer {
+public class Customer extends Person {
     private int id;
-    private String firstName, lastName, email, adress, contact;
+    private String email, adress, contact;
     private LocalDate beginContract, endContract;
     private Service service;
     private ArrayList<Contract> contracts = new ArrayList<>();
 
     public Customer(int id, String firstName, String lastName, String email, String adress, String contact, LocalDate beginContract, LocalDate endContract, Service service, ArrayList<Contract> contracts) {
+        super(firstName, lastName);
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.email = email;
         this.adress = adress;
         this.contact = contact;
@@ -35,19 +34,19 @@ public class Customer {
     }
 
     public String getFirstName() {
-        return firstName;
+        return super.getFirstName();
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        super.setFirstName(firstName);
     }
 
     public String getLastName() {
-        return lastName;
+        return super.getLastName();
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        super.setLastName(lastName);
     }
 
     public String getEmail() {
@@ -105,4 +104,5 @@ public class Customer {
     public void setContracts(ArrayList<Contract> contracts) {
         this.contracts = contracts;
     }
+
 }

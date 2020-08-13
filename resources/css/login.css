@@ -50,3 +50,18 @@
 #buttonBosnia: pressed {
     -fx-background-color: green;
 }
+
+#btnShutDown {
+    -fx-background-color: transparent;
+    -fx-graphic: url("../img/shutdown.png");
+    -fx-border-width: 0;
+}
+
+
+#btnShutDown: hover {
+    -fx-background-color: black;
+}
+
+#btnShutDown: pressed {
+    -fx-background-color: green;
+}

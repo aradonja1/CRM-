@@ -96,7 +96,10 @@
       </VBox>
    </center>
    <left>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnShutDown" layoutX="68.0" layoutY="42.0" mnemonicParsing="false" onAction="#onActionShutDown" prefHeight="25.0" prefWidth="21.0" stylesheets="@../css/login.css" />
+         </children></Pane>
    </left>
    <right>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">

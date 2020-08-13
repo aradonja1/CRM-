@@ -4,14 +4,13 @@ import javafx.beans.property.SimpleObjectProperty;
 
 import java.io.Serializable;
 
-public class Employee  {
+public class Employee extends Person {
     private int id;
-    private String firstName, lastName, username, password;
+    private String  username, password;
 
     public Employee(int id, String firstName, String lastName, String username, String password) {
+        super(firstName, lastName);
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.username = username;
         this.password = password;
     }
@@ -28,19 +27,19 @@ public class Employee  {
     }
 
     public String getFirstName() {
-        return firstName;
+        return super.getFirstName();
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        super.setFirstName(firstName);
     }
 
     public String getLastName() {
-        return lastName;
+        return super.getLastName();
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        super.setLastName(lastName);
     }
 
     public String getUsername() {

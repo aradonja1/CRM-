@@ -86,8 +86,6 @@ public class LoginController {
                 Parent root = loader.load();
                 stage.setTitle(resourceBundle.getString("customersapp"));
                 stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-                stage.setMinHeight(600);
-                stage.setMinWidth(1150);
                 stage.centerOnScreen();
                 stage.show();
                 return;
@@ -116,6 +114,10 @@ public class LoginController {
         } catch (IOException ignored) {
 
         }
+    }
+
+    public void onActionShutDown(ActionEvent actionEvent) {
+        System.exit(0);
     }
 
 }
