@@ -124,12 +124,12 @@
                              <Font size="15.0" />
                          </font>
                   </Button>
-                     <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionEdit" prefHeight="60.0" prefWidth="340.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminEditemployee" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
+                     <Button fx:id="btnEdit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionEdit" prefHeight="60.0" prefWidth="340.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminEditemployee" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
                          <font>
                              <Font size="15.0" />
                          </font>
                   </Button>
-                     <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionDelete" prefHeight="60.0" prefWidth="340.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminDeleteemployee" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
+                     <Button fx:id="btnDelete" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionDelete" prefHeight="60.0" prefWidth="340.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminDeleteemployee" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
                          <font>
                              <Font size="15.0" />
                          </font>
