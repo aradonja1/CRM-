@@ -150,9 +150,17 @@ public class CustomersController {
         Customer currentCustomer = tableView.getSelectionModel().getSelectedItem();
         if (currentCustomer == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Edit customer");
-            alert.setHeaderText("Cannot edit unselected customer");
-            alert.setContentText("Select the customer you want to edit");
+            if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+                alert.setTitle("Edit customer");
+                alert.setHeaderText("Cannot edit unselected customer");
+                alert.setContentText("Select the customer you want to edit");
+            } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+                alert.setTitle("Uredi kupca");
+                alert.setHeaderText("Nije moguce urediti kupca dok ga ne selektujete");
+                alert.setContentText("Selektujte kupca kojeg zelite urediti");
+                Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+                okButton.setText("Uredu");
+            }
             alert.showAndWait();
             return;
         }
@@ -182,17 +190,35 @@ public class CustomersController {
         Customer customer = tableView.getSelectionModel().getSelectedItem();
         if (customer == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Delete customer");
-            alert.setHeaderText("Cannot delete unselected customer");
-            alert.setContentText("Select the customer you want to delete");
+            if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+                alert.setTitle("Delete customer");
+                alert.setHeaderText("Cannot delete unselected customer");
+                alert.setContentText("Select the customer you want to delete");
+            } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+                alert.setTitle("Obrisi kupca");
+                alert.setHeaderText("Nije moguce obrisati kupca dok ga ne selektujete");
+                alert.setContentText("Selektujte kupca kojeg zelite obrisati");
+                Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+                okButton.setText("Uredu");
+            }
             alert.showAndWait();
             return;
         }
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete");
-        alert.setHeaderText("Delete customer " + customer.getFirstName() + " " + customer.getLastName());
-        alert.setContentText("Are you sure you want to delete customer " + customer.getFirstName() + " " + customer.getLastName() + "?");
+        if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+            alert.setTitle("Delete");
+            alert.setHeaderText("Delete customer " + customer.getFirstName() + " " + customer.getLastName());
+            alert.setContentText("Are you sure you want to delete customer " + customer.getFirstName() + " " + customer.getLastName() + "?");
+        } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+            alert.setTitle("Brisanje");
+            alert.setHeaderText("Obrisi kupca " + customer.getFirstName() + " " + customer.getLastName());
+            alert.setContentText("Da li ste sigurni da zelite obrisati kupca " + customer.getFirstName() + " " + customer.getLastName() + "?");
+            Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+            okButton.setText("Uredu");
+            Button cancelButton = (Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL);
+            cancelButton.setText("Odustani");
+        }
         alert.setResizable(true);
 
         Optional<ButtonType> result = alert.showAndWait();
@@ -370,9 +396,17 @@ public class CustomersController {
 
     public void onActionAbout(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("About");
-        alert.setHeaderText("Author: Adnan Radonja");
-        alert.setContentText("Faculty of Electrical Engineering Sarajevo\nCustomer Relationship Managment\nAugust 2020");
+        if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+            alert.setTitle("About");
+            alert.setHeaderText("Author: Adnan Radonja");
+            alert.setContentText("Faculty of Electrical Engineering Sarajevo\nCustomer Relationship Managment\nAugust 2020");
+        } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+            alert.setTitle("O nama");
+            alert.setHeaderText("Autor: Adnan Radonja");
+            alert.setContentText("Elektrotehnicki fakultet Sarajevo\nCustomer Relationship Managment\nAugust 2020");
+            Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+            okButton.setText("Uredu");
+        }
         alert.showAndWait();
     }
 }

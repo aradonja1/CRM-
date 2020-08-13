@@ -39,9 +39,17 @@ public class EmailController  {
         fldMessage.setText("Razvoj programskih rješenja 2019/2020\nCustomer Relationship Managment(CRM)\nTelekom Slovenije SL\n");
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Sending Email");
-        alert.setHeaderText("Check security");
-        alert.setContentText("Allow less secure apps: ON!");
+        if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+            alert.setTitle("Sending Email");
+            alert.setHeaderText("Check security");
+            alert.setContentText("Allow less secure apps: ON!");
+        } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+            alert.setTitle("Slanje Emaila");
+            alert.setHeaderText("Provjerite sigurnosni status vaseg Email racuna");
+            alert.setContentText("Dopustite pristup manje sigurnim aplikacijama!");
+            Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+            okButton.setText("Uredu");
+        }
         alert.showAndWait();
     }
 
@@ -85,9 +93,15 @@ public class EmailController  {
         } catch (MessagingException e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Your username or password are incorrect");
-            alert.setContentText("Check security on your Email account. Allow less secure apps!");
+            if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+                alert.setTitle("Error");
+                alert.setHeaderText("Your username or password are incorrect");
+                alert.setContentText("Check security on your Email account. Allow less secure apps!");
+            } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+                alert.setTitle("Greska");
+                alert.setHeaderText("Vase korsnicko ime ili lozinka su neispravni");
+                alert.setContentText("Provjerite sigurnosni status vaseg Email racuna. Dopustite pristup manje sigurnim aplikacijama!");
+            }
             alert.showAndWait();
         }
         Stage stage = (Stage) fldMessage.getScene().getWindow();

@@ -259,6 +259,7 @@ public class AdminController {
     }
 
     public void onActionCustomer(ActionEvent actionEvent) throws IOException {
+        customersController = new CustomersController(resourceBundle);
         customersController.onActionAdd(actionEvent);
     }
 
@@ -305,6 +306,7 @@ public class AdminController {
     }
 
     public void onActionAbout(ActionEvent actionEvent) {
+        customersController = new CustomersController(resourceBundle);
         customersController.onActionAbout(actionEvent);
     }
 
