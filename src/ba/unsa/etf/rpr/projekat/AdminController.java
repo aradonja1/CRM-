@@ -158,8 +158,12 @@ public class AdminController {
 
     public void onActionAddService(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/service.fxml"));
-        stage.setTitle("Services");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/service.fxml"), resourceBundle);
+
+        ServiceController ctrl = new ServiceController(resourceBundle);
+        loader.setController(ctrl);
+        Parent root = loader.load();
+        stage.setTitle(resourceBundle.getString("serviceapp"));
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(false);
         stage.show();

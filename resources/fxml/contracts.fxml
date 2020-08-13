@@ -7,11 +7,11 @@
    <center>
       <TableView fx:id="tblView" prefHeight="412.0" prefWidth="632.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="coloumnBegin" prefWidth="87.0" text="Begin contract" />
-          <TableColumn fx:id="coloumnEnd" prefWidth="84.0" text="End contract" />
-            <TableColumn fx:id="coloumnService" prefWidth="167.0" text="Service" />
-            <TableColumn fx:id="coloumnPackage" prefWidth="155.0" text="Package" />
-            <TableColumn fx:id="coloumnState" prefWidth="81.0" text="State" />
+          <TableColumn fx:id="coloumnBegin" prefWidth="87.0" text="%Begincontractt" />
+          <TableColumn fx:id="coloumnEnd" prefWidth="84.0" text="%Endcontractt" />
+            <TableColumn fx:id="coloumnService" prefWidth="167.0" text="%Servicee" />
+            <TableColumn fx:id="coloumnPackage" prefWidth="155.0" text="%Packagee" />
+            <TableColumn fx:id="coloumnState" prefWidth="81.0" text="%Statee" />
         </columns>
       </TableView>
    </center>

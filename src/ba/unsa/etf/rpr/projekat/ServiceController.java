@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class ServiceController {
@@ -27,6 +28,8 @@ public class ServiceController {
     private Service service;
 
     private boolean ok;
+
+    private ResourceBundle resourceBundle;
 
     @FXML
     public void initialize() {
@@ -118,9 +121,10 @@ public class ServiceController {
         stage.close();
     }
 
-    public ServiceController() {
+    public ServiceController(ResourceBundle resourceBundle) {
         listServices = FXCollections.observableArrayList(serviceDAO.services());
         allPackages = FXCollections.observableArrayList(packageDAO.packages());
+        this.resourceBundle = resourceBundle;
     }
 
     private ArrayList<Package> listPackagesForChoiceBox() {

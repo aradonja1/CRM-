@@ -275,11 +275,11 @@ public class CustomersController {
 
     public void onActionAllContracts(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contracts.fxml"));
-        ContractsController ctrl = new ContractsController();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contracts.fxml"), resourceBundle);
+        ContractsController ctrl = new ContractsController(resourceBundle);
         loader.setController(ctrl);
         Parent root = loader.load();
-        stage.setTitle("All contracts in system");
+        stage.setTitle(resourceBundle.getString("contractsapp"));
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(false);
         stage.show();
@@ -290,11 +290,11 @@ public class CustomersController {
         if (customer == null) return;
 
         Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contracts.fxml"));
-        ContractsController ctrl = new ContractsController(customer);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contracts.fxml"), resourceBundle);
+        ContractsController ctrl = new ContractsController(customer, resourceBundle);
         loader.setController(ctrl);
         Parent root = loader.load();
-        stage.setTitle("Contracts");
+        stage.setTitle(resourceBundle.getString("contractsapp"));
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(false);
         stage.show();

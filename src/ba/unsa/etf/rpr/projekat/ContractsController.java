@@ -12,6 +12,7 @@ import javafx.scene.control.TableView;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class ContractsController {
 
@@ -26,6 +27,8 @@ public class ContractsController {
     private ObservableList<Contract> listContracts = FXCollections.observableArrayList();
     private Customer customer;
     private CustomerDAO customerDAO = new CustomerDAO();
+
+    private ResourceBundle resourceBundle;
 
     @FXML
     public void initialize() {
@@ -61,12 +64,14 @@ public class ContractsController {
         });
     }
 
-    public ContractsController(Customer customer) {
+    public ContractsController(Customer customer, ResourceBundle resourceBundle) {
         this.customer = customer;
         listContracts = FXCollections.observableArrayList(customerDAO.getArchivedContracts(customer));
+        this.resourceBundle = resourceBundle;
     }
 
-    public ContractsController() {
+    public ContractsController(ResourceBundle resourceBundle) {
         listContracts = FXCollections.observableArrayList(customerDAO.contracts());
+        this.resourceBundle = resourceBundle;
     }
 }
