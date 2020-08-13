@@ -101,6 +101,8 @@ public class EmailController  {
                 alert.setTitle("Greska");
                 alert.setHeaderText("Vase korsnicko ime ili lozinka su neispravni");
                 alert.setContentText("Provjerite sigurnosni status vaseg Email racuna. Dopustite pristup manje sigurnim aplikacijama!");
+                Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+                okButton.setText("Uredu");
             }
             alert.showAndWait();
         }

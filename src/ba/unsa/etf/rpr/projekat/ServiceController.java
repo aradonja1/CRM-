@@ -140,9 +140,19 @@ public class ServiceController {
         //mora biti selektovana usluga koju zelimo arhivirati
         if (service != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Archive service");
-            alert.setHeaderText("Archive service "+service.getName());
-            alert.setContentText("Are you sure you want to archive the service " +service.getName()+"? You will archive all packages of the service.");
+            if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+                alert.setTitle("Archive service");
+                alert.setHeaderText("Archive service " + service.getName());
+                alert.setContentText("Are you sure you want to archive the service " + service.getName() + "? You will archive all packages of the service.");
+            } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+                alert.setTitle("Arhiviraj uslugu");
+                alert.setHeaderText("Arhiviraj uslugu " + service.getName());
+                alert.setContentText("Da li ste sigurni da zelite arhivirati uslugu " + service.getName() + "? Arhivirat cete i sve pakete povezane sa ovom uslogom.");
+                Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+                okButton.setText("Uredu");
+                Button cancelButton = (Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL);
+                cancelButton.setText("Odustani");
+            }
             alert.setResizable(true);
 
             Optional<ButtonType> result = alert.showAndWait();
@@ -153,9 +163,17 @@ public class ServiceController {
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Cannot archive unselected service");
-            alert.setContentText("Please select the service you want to archive");
+            if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+                alert.setTitle("Error");
+                alert.setHeaderText("Cannot archive unselected service");
+                alert.setContentText("Please select the service you want to archive");
+            }  else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+                alert.setTitle("Greska");
+                alert.setHeaderText("Nije moguce arhivirati neselektovanu uslugu");
+                alert.setContentText("Molimo vas, selektujte uslugu koju zelite arhivirati");
+                Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+                okButton.setText("Uredu");
+            }
             alert.showAndWait();
             service = null;
         }

@@ -6,10 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.util.Optional;
@@ -82,9 +79,19 @@ public class PackageController {
         //mora biti selektovan paket koji zelimo arhivirati
         if (aPackage != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Archive package");
-            alert.setHeaderText("Archive package "+aPackage.getName());
-            alert.setContentText("Are you sure you want to archive the package " +aPackage.getName()+"?");
+            if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+                alert.setTitle("Archive package");
+                alert.setHeaderText("Archive package " + aPackage.getName());
+                alert.setContentText("Are you sure you want to archive the package " + aPackage.getName() + "?");
+            } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+                alert.setTitle("Arhiviraj paket");
+                alert.setHeaderText("Arhiviraj paket " + aPackage.getName());
+                alert.setContentText("Da li te sigurni da zelite arhivirati paket " + aPackage.getName() + "?");
+                Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+                okButton.setText("Uredu");
+                Button cancelButton = (Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL);
+                cancelButton.setText("Odustani");
+            }
             alert.setResizable(true);
 
             Optional<ButtonType> result = alert.showAndWait();
@@ -95,9 +102,17 @@ public class PackageController {
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Cannot archive unselected package");
-            alert.setContentText("Please select the package you want to archive");
+            if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+                alert.setTitle("Error");
+                alert.setHeaderText("Cannot archive unselected package");
+                alert.setContentText("Please select the package you want to archive");
+            } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+                alert.setTitle("Greska");
+                alert.setHeaderText("Nije moguce arhivirati neselektovani paket");
+                alert.setContentText("Molimo vas, selektujte paket koji zelite arhivirati");
+                Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+                okButton.setText("Uredu");
+            }
             alert.showAndWait();
             aPackage = null;
         }
