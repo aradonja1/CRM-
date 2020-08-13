@@ -108,7 +108,10 @@
               <menus>
                 <Menu text="%customersfile">
                   <items>
-                        <MenuItem mnemonicParsing="false" onAction="#onActionNew" text="%customersnew" />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionNew" text="%customersnew">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
                     <MenuItem mnemonicParsing="false" onAction="#onActionClose" text="%customersclose" />
                         <MenuItem onAction="#onActionExit" text="%customersexit" />
                   </items>

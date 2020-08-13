@@ -117,10 +117,31 @@
     -fx-background-color: transparent;
 }
 
+
+
 #btnDeleteEmployee: hover {
     -fx-background-color: black;
 }
 
 #btnDeleteEmployee: pressed {
+    -fx-background-color: green;
+}
+
+#pane {
+    -fx-background-color: #dd5ec2;
+}
+
+.btnXML {
+    -fx-background-color: #f892e2;
+    -fx-border-style: solid;
+    -fx-border-color: #863681;
+    -fx-border-width: 2;
+}
+
+.btnXML:hover {
+    -fx-background-color: red;
+}
+
+.btnXML:pressed {
     -fx-background-color: green;
 }

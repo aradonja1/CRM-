@@ -71,6 +71,7 @@ public class LoginController {
                 stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
                 stage.setMinHeight(600);
                 stage.setMinWidth(1150);
+                stage.setResizable(false);
                 stage.centerOnScreen();
                 stage.show();
                 return;
