@@ -41,6 +41,10 @@ public class AdminController {
 
     private ResourceBundle resourceBundle;
 
+    public Button btnAdd;
+    public Button editEmployeeBtn;
+    public Button btnDeleteEmployee;
+
     public AdminController(ResourceBundle resourceBundle) {
         listEmployees = FXCollections.observableArrayList(adminDAO.employees());
         this.resourceBundle = resourceBundle;
@@ -50,6 +54,16 @@ public class AdminController {
 
     @FXML
     public void initialize() {
+        if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+            btnAdd.setTooltip(new Tooltip("Add employee"));
+            editEmployeeBtn.setTooltip(new Tooltip("Edit employee"));
+            btnDeleteEmployee.setTooltip(new Tooltip("Delete employee"));
+        } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+            btnAdd.setTooltip(new Tooltip("Dodaj uposlenika"));
+            editEmployeeBtn.setTooltip(new Tooltip("Uredi uposlenika"));
+            btnDeleteEmployee.setTooltip(new Tooltip("Izbrisi uposlenika"));
+        }
+
         lstView.setItems(listEmployees);
 
         lstView.getSelectionModel().selectedItemProperty().addListener(((observableValue, e, t1) -> {

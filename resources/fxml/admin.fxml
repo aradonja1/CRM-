@@ -228,7 +228,7 @@
                   <Separator orientation="VERTICAL" />
                   <Button fx:id="editEmployeeBtn" mnemonicParsing="false" onAction="#onActionEditEmployee2" stylesheets="@../css/admin.css" />
                   <Separator orientation="VERTICAL" />
-                  <Button fx:id="btnDeleteEmployee" mnemonicParsing="false" onAction="#onActionDeleteEmployee2" />
+                  <Button fx:id="btnDeleteEmployee" mnemonicParsing="false" />
               </items>
             </ToolBar>
          </children>
