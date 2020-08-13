@@ -28,7 +28,7 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" styleClass="btnSearch" stylesheets="@../css/customers.css">
                <children>
-                  <Label prefHeight="51.0" prefWidth="103.0" text="%search">
+                  <Label id="searchLabel" prefHeight="51.0" prefWidth="103.0" stylesheets="@../css/customers.css" text="%search">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
@@ -144,7 +144,11 @@
             </MenuBar>
             <ToolBar prefHeight="81.0" prefWidth="945.0" styleClass="topSection" stylesheets="@../css/customers.css">
               <items>
-                <Button mnemonicParsing="false" text="Button" />
+                <Button fx:id="btnAddCustomer" mnemonicParsing="false" onAction="#onActionAddCustomer2" />
+                  <Separator orientation="VERTICAL" />
+                  <Button fx:id="editCustomerBtn" mnemonicParsing="false" onAction="#onActionEditCustomer2" />
+                  <Separator orientation="VERTICAL" />
+                  <Button fx:id="deleteCustomerBtn" mnemonicParsing="false" onAction="#onActionDeleteCustomer2" />
               </items>
             </ToolBar>
          </children></VBox>

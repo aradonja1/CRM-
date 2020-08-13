@@ -82,3 +82,50 @@
     -fx-border-color: white;
     -fx-border-width: 2;
 }
+
+#btnAddCustomer {
+    -fx-graphic: url("../img/add_employee1.png");
+    -fx-background-color: transparent;
+}
+
+#btnAddCustomer: hover {
+    -fx-background-color: black;
+}
+
+#btnAddCustomer: pressed {
+    -fx-background-color: red;
+}
+
+#editCustomerBtn {
+    -fx-graphic: url("../img/edit_employee1.png");
+    -fx-background-color: transparent;
+}
+
+#editCustomerBtn: hover {
+    -fx-background-color: black;
+}
+
+#editCustomerBtn: pressed {
+    -fx-background-color: red;
+}
+
+#deleteCustomerBtn {
+    -fx-graphic: url("../img/delete_employee1.png");
+    -fx-background-color: transparent;
+}
+
+#deleteCustomerBtn: hover {
+    -fx-background-color: black;
+}
+
+#deleteCustomerBtn: pressed {
+    -fx-background-color: red;
+}
+
+#searchLabel > .label{
+    -fx-graphic: url("../img/search.png");
+}
+
+#searchLabel .accelerator-text{
+    -fx-graphic: none;
+}

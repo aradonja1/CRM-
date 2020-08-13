@@ -409,5 +409,19 @@ public class CustomersController {
         }
         alert.showAndWait();
     }
+
+    public void onActionAddCustomer2(ActionEvent actionEvent) throws IOException {
+        onActionAdd(actionEvent);
+    }
+
+    public void onActionEditCustomer2(ActionEvent actionEvent) throws IOException {
+        onActionEditCustomer(actionEvent);
+    }
+
+    public void onActionDeleteCustomer2(ActionEvent actionEvent)  {
+        onActionDeleteCustomer(actionEvent);
+    }
+
+
 }
 
