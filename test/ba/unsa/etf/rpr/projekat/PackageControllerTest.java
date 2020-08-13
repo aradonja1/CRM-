@@ -17,6 +17,8 @@ import org.testfx.framework.junit5.Start;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,7 +35,14 @@ class PackageControllerTest {
         dbfile.delete();
         packageDAO = new PackageDAO();
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/package.fxml"));
+        Locale.setDefault(new Locale("eng", "ENG"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/package.fxml"), bundle);
+        PackageController ctrl = new PackageController(bundle);
+        loader.setController(ctrl);
+        Parent root = loader.load();
+
         stage.setTitle("Packages");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(false);

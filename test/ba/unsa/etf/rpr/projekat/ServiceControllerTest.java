@@ -17,6 +17,8 @@ import org.testfx.framework.junit5.Start;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,7 +35,14 @@ class ServiceControllerTest {
         dbfile.delete();
         serviceDAO = new ServiceDAO();
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/service.fxml"));
+        Locale.setDefault(new Locale("eng", "ENG"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/service.fxml"), bundle);
+        ServiceController ctrl = new ServiceController(bundle);
+        loader.setController(ctrl);
+        Parent root = loader.load();
+
         stage.setTitle("Services");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.setResizable(false);
