@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -132,9 +133,19 @@ public class AdminController {
         if (employee == null) return;
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete");
-        alert.setHeaderText("Delete employee "+employee.getFirstName() + " " +employee.getLastName());
-        alert.setContentText("Are you sure you want to delete employee " +employee.getFirstName() + " " +employee.getLastName()+"?");
+        if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+            alert.setTitle("Delete");
+            alert.setHeaderText("Delete employee " + employee.getFirstName() + " " + employee.getLastName());
+            alert.setContentText("Are you sure you want to delete employee " + employee.getFirstName() + " " + employee.getLastName() + "?");
+        } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+            alert.setTitle("Brisanje");
+            alert.setHeaderText("Obrisi uposlenika " + employee.getFirstName() + " " + employee.getLastName());
+            alert.setContentText("Da li ste sigurni da zelite obrisati uposlenika " + employee.getFirstName() + " " + employee.getLastName() + "?");
+            Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+            okButton.setText("Uredu");
+            Button cancelButton = (Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL);
+            cancelButton.setText("Odustani");
+        }
         alert.setResizable(false);
 
         Optional<ButtonType> result = alert.showAndWait();
@@ -185,8 +196,15 @@ public class AdminController {
     public void onActionReadXML(ActionEvent actionEvent) {
         adminDAO.readXmlFile();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Reading XML file");
-        alert.setHeaderText("Successfully read the XML file: employee.xml");
+        if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+            alert.setTitle("Reading XML file");
+            alert.setHeaderText("Successfully read the XML file: employee.xml");
+        } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+            alert.setTitle("Citanje XML datoteke");
+            alert.setHeaderText("Uspjesno procitana XML datoteka: employee.xml");
+            Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+            okButton.setText("Uredu");
+        }
         alert.showAndWait();
     }
 
@@ -194,14 +212,29 @@ public class AdminController {
         adminDAO.createAndWriteXmlFile();
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Writing XML file");
-        alert.setHeaderText("Successfully written to the XML file: employee.xml");
+        if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+            alert.setTitle("Writing XML file");
+            alert.setHeaderText("Successfully written to the XML file: employee.xml");
+        } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+            alert.setTitle("Upisivanje XML datoteke");
+            alert.setHeaderText("Uspjesno upisana XML datoteka: employee.xml");
+            Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+            okButton.setText("Uredu");
+        }
         alert.showAndWait();
 
         Alert alertConfirmation = new Alert(Alert.AlertType.CONFIRMATION);
-        alertConfirmation.setTitle("Writing XML file");
-        alertConfirmation.setHeaderText("Do you want to see written XML file in notepad?");
-        alertConfirmation.setContentText("Notepad will be displayed for 3 seconds");
+        if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+            alertConfirmation.setTitle("Writing XML file");
+            alertConfirmation.setHeaderText("Do you want to see written XML file in notepad?");
+            alertConfirmation.setContentText("Notepad will be displayed for 3 seconds");
+        } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+            alertConfirmation.setTitle("Upisivanje XML datoteke");
+            alertConfirmation.setHeaderText("Da li zelite da vidite upisanu XML datoteku u notepadu?");
+            alertConfirmation.setContentText("Notepad ce biti prikazan na 3 sekunde");
+            Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+            okButton.setText("Uredu");
+        }
         Optional<ButtonType> result = alertConfirmation.showAndWait();
         if (result.get() == ButtonType.OK)
                 openNotepad();
