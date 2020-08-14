@@ -1,5 +1,6 @@
 package ba.unsa.etf.rpr.projekat;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -83,28 +84,43 @@ public class EmailController  {
             msg.setSubject(fldSubject.getText());
             msg.setText(fldMessage.getText());
 
-            Transport.send(msg);
-
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Sending Email");
-            alert.setHeaderText("Message sent successfully");
-            alert.showAndWait();
+            Thread thread = new Thread(() -> {
+                try {
+                    Transport.send(msg);
+                    Platform.runLater(() -> {
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+                            alert.setTitle("Confirmation");
+                            alert.setHeaderText("Email sent successfully");
+                        } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+                            alert.setTitle("Potvrda");
+                            alert.setHeaderText("Email poslan uspjesno");
+                            Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+                            okButton.setText("Uredu");
+                        }
+                        alert.showAndWait();
+                    });
+                } catch (MessagingException e) {
+                        e.printStackTrace();
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        if (resourceBundle.getLocale().getLanguage().equals("eng")) {
+                            alert.setTitle("Error");
+                            alert.setHeaderText("Your username or password are incorrect");
+                            alert.setContentText("Check security on your Email account. Allow less secure apps!");
+                        } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
+                            alert.setTitle("Greska");
+                            alert.setHeaderText("Vase korsnicko ime ili lozinka su neispravni");
+                            alert.setContentText("Provjerite sigurnosni status vaseg Email racuna. Dopustite pristup manje sigurnim aplikacijama!");
+                            Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+                            okButton.setText("Uredu");
+                        }
+                        alert.showAndWait();
+                }
+            });
+            thread.start();
 
         } catch (MessagingException e) {
             e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            if (resourceBundle.getLocale().getLanguage().equals("eng")) {
-                alert.setTitle("Error");
-                alert.setHeaderText("Your username or password are incorrect");
-                alert.setContentText("Check security on your Email account. Allow less secure apps!");
-            } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
-                alert.setTitle("Greska");
-                alert.setHeaderText("Vase korsnicko ime ili lozinka su neispravni");
-                alert.setContentText("Provjerite sigurnosni status vaseg Email racuna. Dopustite pristup manje sigurnim aplikacijama!");
-                Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
-                okButton.setText("Uredu");
-            }
-            alert.showAndWait();
         }
         Stage stage = (Stage) fldMessage.getScene().getWindow();
         stage.close();
