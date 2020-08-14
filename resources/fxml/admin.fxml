@@ -175,7 +175,7 @@
               <menus>
                 <Menu text="%fileadmin">
                   <items>
-                        <Menu mnemonicParsing="false" text="%newadmin">
+                        <Menu fx:id="newCustomer" mnemonicParsing="false" text="%newadmin">
                           <items>
                               <MenuItem mnemonicParsing="false" onAction="#onActionCustomer" text="%newadmincustomernewadmincustomer" />
                             <MenuItem mnemonicParsing="false" onAction="#onActionEmployee" text="%newadminemployee" />
@@ -201,7 +201,7 @@
                 <Menu text="%adminedit">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#onActionEditEmployee" text="%admineditemployee" />
-                        <MenuItem mnemonicParsing="false" onAction="#onActionDeleteEmployee" text="%admineditdeleteemployee">
+                        <MenuItem fx:id="dltCstmr" mnemonicParsing="false" onAction="#onActionDeleteEmployee" text="%admineditdeleteemployee">
                            <accelerator>
                               <KeyCodeCombination alt="DOWN" code="DELETE" control="UP" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>
@@ -216,7 +216,7 @@
                   </Menu>
                 <Menu text="%adminhelp">
                   <items>
-                    <MenuItem onAction="#onActionAbout" text="%adminhelpabout" />
+                    <MenuItem fx:id="abt" onAction="#onActionAbout" text="%adminhelpabout" />
                   </items>
                 </Menu>
               </menus>

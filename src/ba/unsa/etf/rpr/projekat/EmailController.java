@@ -12,10 +12,11 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.Timer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class EmailController  {
+public class EmailController extends Thread {
     public TextArea fldMessage;
     public Label labelEmail;
     public TextField fldSubject;
@@ -66,6 +67,9 @@ public class EmailController  {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
 
+        properties.put("mail.smtp.connectiontimeout", "10000");
+        properties.put("mail.smtp.timeout", "10000");
+
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -74,9 +78,10 @@ public class EmailController  {
         });
 
         MimeMessage msg = new MimeMessage(session);
+
         try {
             msg.setFrom(new InternetAddress(fromEmail));
-            InternetAddress[] mailAddress_TO = new InternetAddress [listCustomers.size()] ;
+            InternetAddress[] mailAddress_TO = new InternetAddress [listCustomers.size()];
             for(int i = 0; i < listCustomers.size(); i++)
                 mailAddress_TO[i] = new InternetAddress(listCustomers.get(i).getEmail());
 
@@ -84,7 +89,9 @@ public class EmailController  {
             msg.setSubject(fldSubject.getText());
             msg.setText(fldMessage.getText());
 
-            Thread thread = new Thread(() -> {
+
+
+            new Thread(() -> {
                 try {
                     Transport.send(msg);
                     Platform.runLater(() -> {
@@ -98,27 +105,12 @@ public class EmailController  {
                             Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
                             okButton.setText("Uredu");
                         }
-                        alert.showAndWait();
+                        alert.show();
                     });
                 } catch (MessagingException e) {
-                        e.printStackTrace();
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        if (resourceBundle.getLocale().getLanguage().equals("eng")) {
-                            alert.setTitle("Error");
-                            alert.setHeaderText("Your username or password are incorrect");
-                            alert.setContentText("Check security on your Email account. Allow less secure apps!");
-                        } else if (resourceBundle.getLocale().getLanguage().equals("bs")) {
-                            alert.setTitle("Greska");
-                            alert.setHeaderText("Vase korsnicko ime ili lozinka su neispravni");
-                            alert.setContentText("Provjerite sigurnosni status vaseg Email racuna. Dopustite pristup manje sigurnim aplikacijama!");
-                            Button okButton = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
-                            okButton.setText("Uredu");
-                        }
-                        alert.showAndWait();
+                    e.printStackTrace();
                 }
-            });
-            thread.start();
-
+            }).start();
         } catch (MessagingException e) {
             e.printStackTrace();
         }

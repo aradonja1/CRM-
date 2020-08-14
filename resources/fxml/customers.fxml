@@ -108,7 +108,7 @@
               <menus>
                 <Menu text="%customersfile">
                   <items>
-                        <MenuItem mnemonicParsing="false" onAction="#onActionNew" text="%customersnew">
+                        <MenuItem fx:id="newCustomer" mnemonicParsing="false" onAction="#onActionNew" text="%customersnew">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>
@@ -119,7 +119,7 @@
                 <Menu text="%customersedit">
                   <items>
                         <MenuItem mnemonicParsing="false" onAction="#onActionEditCustomer" text="%customerseditcustomer" />
-                    <MenuItem mnemonicParsing="false" onAction="#onActionDeleteCustomer" text="%customersdeletecustomer">
+                    <MenuItem fx:id="dltCstmr" mnemonicParsing="false" onAction="#onActionDeleteCustomer" text="%customersdeletecustomer">
                            <accelerator>
                               <KeyCodeCombination alt="DOWN" code="DELETE" control="UP" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>
@@ -140,7 +140,7 @@
                   </Menu>
                 <Menu text="%customershelp">
                   <items>
-                    <MenuItem onAction="#onActionAbout" text="%customersabout" />
+                    <MenuItem fx:id="abt" onAction="#onActionAbout" text="%customersabout" />
                   </items>
                 </Menu>
               </menus>

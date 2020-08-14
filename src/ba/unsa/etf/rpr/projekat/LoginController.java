@@ -37,24 +37,29 @@ public class LoginController {
         resourceBundle = bundle;
     }
 
+    private boolean flag = true;
+
     @FXML
     public void initialize() {
         dateLabel.setText(LocalDate.now().toString());
 
-        new Thread(() -> {
+    /*    new Thread(() -> {
             try {
                 Thread.sleep(200);
-                while (fldUsername.getScene().getWindow().isShowing()) {
+                while (flag) {
                     Platform.runLater(() -> timeLabel.setText(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute()));
                     Thread.sleep(500);
                     Platform.runLater(() -> timeLabel.setText(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond()));
                     Thread.sleep(500);
+                    if (!dateLabel.getScene().getWindow().isShowing()) {
+                        flag = false;
+                    }
                 }
             } catch (InterruptedException e) {
 
             }
         }).start();
-    }
+    */}
 
     public void onActionLogin(ActionEvent actionEvent) throws IOException {
         ArrayList<Admin> listAdmins = adminDAO.admins();

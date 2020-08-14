@@ -118,7 +118,6 @@
 }
 
 
-
 #btnDeleteEmployee: hover {
     -fx-background-color: black;
 }
@@ -144,4 +143,26 @@
 
 .btnXML:pressed {
     -fx-background-color: green;
+}
+
+
+#newCustomer > .label{
+    -fx-graphic: url("../img/plus.png");
+}
+#newCustomer .accelerator-text{
+    -fx-graphic: none;
+}
+
+#dltCstmr > .label{
+    -fx-graphic: url("../img/delete.png");
+}
+#dltCstmr .accelerator-text{
+    -fx-graphic: none;
+}
+
+#abt > .label{
+    -fx-graphic: url("../img/question-mark.png");
+}
+#abt .accelerator-text{
+    -fx-graphic: none;
 }

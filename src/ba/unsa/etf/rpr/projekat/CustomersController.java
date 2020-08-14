@@ -266,7 +266,7 @@ public class CustomersController {
         listCustomers = FXCollections.observableArrayList(customerDAO.oneMoreMonthContract(customerDAO.nonarchivedCustomers()));
         tableView.setItems(listCustomers);
         btnSendEmail.setVisible(true);
-        reportCustomerDAO.addOneOrTwoOrThreeMoreMonthContractCustomers(1);
+       reportCustomerDAO.addOneOrTwoOrThreeMoreMonthContractCustomers(1);
         try {
             new PrintReport().showReport(db.getConn());
         } catch (JRException e1) {
