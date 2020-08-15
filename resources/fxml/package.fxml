@@ -39,7 +39,7 @@
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button cancelButton="true" mnemonicParsing="false" onAction="#onActionCancel" prefHeight="39.0" prefWidth="127.0" text="%Cancel5">
+            <Button fx:id="btnCancel" cancelButton="true" mnemonicParsing="false" onAction="#onActionCancel" prefHeight="39.0" prefWidth="127.0" text="%Cancel5">
                <font>
                   <Font size="15.0" />
                </font></Button>

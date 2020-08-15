@@ -158,12 +158,24 @@ class AdminControllerTest {
 
         robot.lookup("#fldFilter").tryQuery().isPresent();
 
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         Platform.runLater(() -> theStage.hide());
         TextField filter = robot.lookup("#fldFilter").queryAs(TextField.class);
         assertNotNull(filter);
 
         Stage stage = (Stage) filter.getScene().getWindow();
         Platform.runLater(() -> stage.close());
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         Platform.runLater(() -> theStage.show());
     }
@@ -177,13 +189,24 @@ class AdminControllerTest {
 
         robot.lookup("#fldName").tryQuery().isPresent();
 
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         Platform.runLater(() -> theStage.hide());
 
         TextField name = robot.lookup("#fldName").queryAs(TextField.class);
         assertNotNull(name);
 
-        Stage stage = (Stage) name.getScene().getWindow();
-        Platform.runLater(() -> stage.close());
+        robot.clickOn("#btnCancel");
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         Platform.runLater(() -> theStage.show());
     }
@@ -197,16 +220,25 @@ class AdminControllerTest {
 
         robot.lookup("#fldName").tryQuery().isPresent();
 
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         Platform.runLater(() -> theStage.hide());
 
         TextField name = robot.lookup("#fldName").queryAs(TextField.class);
         assertNotNull(name);
+        robot.clickOn("#btnCancel");
 
-        Stage stage = (Stage) name.getScene().getWindow();
-        Platform.runLater(() -> stage.close());
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         Platform.runLater(() -> theStage.show());
-
     }
 
 
