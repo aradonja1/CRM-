@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -37,29 +38,32 @@ public class LoginController {
         resourceBundle = bundle;
     }
 
-    private boolean flag = true;
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+
 
     @FXML
     public void initialize() {
-        dateLabel.setText(LocalDate.now().toString());
 
-    /*    new Thread(() -> {
-            try {
-                Thread.sleep(200);
-                while (flag) {
-                    Platform.runLater(() -> timeLabel.setText(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute()));
-                    Thread.sleep(500);
-                    Platform.runLater(() -> timeLabel.setText(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond()));
-                    Thread.sleep(500);
-                    if (!dateLabel.getScene().getWindow().isShowing()) {
-                        flag = false;
-                    }
-                }
-            } catch (InterruptedException e) {
-
-            }
-        }).start();
-    */}
+        if (resourceBundle.getLocale().getLanguage().equals("eng"))
+            dateLabel.setText(LocalDate.now().toString());
+        if (resourceBundle.getLocale().getLanguage().equals("bs"))
+            dateLabel.setText(LocalDate.now().format(formatter));
+//        new Thread(() -> {
+//            try {
+//                Thread.sleep(200);
+//                while (true) {
+//                    Platform.runLater(() -> timeLabel.setText(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute()));
+//                    Thread.sleep(500);
+//                    Platform.runLater(() -> timeLabel.setText(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond()));
+//                    Thread.sleep(500);
+//
+//                }
+//            } catch (InterruptedException e) {
+//
+//            }
+//        }).start();
+    }
 
     public void onActionLogin(ActionEvent actionEvent) throws IOException {
         ArrayList<Admin> listAdmins = adminDAO.admins();
