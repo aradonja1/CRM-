@@ -1,14 +1,17 @@
 package ba.unsa.etf.rpr.projekat;
 
 import ba.unsa.etf.rpr.projekat.DAL.AdminDAO;
+import ba.unsa.etf.rpr.projekat.DAL.CustomerDAO;
 import ba.unsa.etf.rpr.projekat.DAL.DatabaseConnection;
 import ba.unsa.etf.rpr.projekat.DAL.PackageDAO;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
@@ -30,6 +33,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AdminControllerTest {
     Stage theStage;
     AdminDAO adminDAO;
+    CustomerDAO customerDAO;
 
     @Start
     public void start (Stage stage) throws Exception {
@@ -37,6 +41,7 @@ class AdminControllerTest {
         File dbfile = new File("base.db");
         dbfile.delete();
         adminDAO = new AdminDAO();
+        customerDAO = new CustomerDAO();
 
         Locale.setDefault(new Locale("eng", "ENG"));
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
@@ -96,8 +101,10 @@ class AdminControllerTest {
 
         robot.clickOn("Senid Hodžić");
         robot.clickOn("#btnEdit");
+
         robot.clickOn("#fldName");
         robot.press(KeyCode.CONTROL).press(KeyCode.A).release(KeyCode.A).release(KeyCode.CONTROL);
+
         robot.write("Izmjena");
         robot.clickOn("#fldSurname");
         robot.press(KeyCode.CONTROL).press(KeyCode.A).release(KeyCode.A).release(KeyCode.CONTROL);
@@ -141,6 +148,67 @@ class AdminControllerTest {
         employees = adminDAO.employees();
         assertEquals(0, employees.size());
     }
+
+    @Test
+    public void onActionCustomers(FxRobot robot) {
+        ArrayList<Customer> customers = customerDAO.nonarchivedCustomers();
+        assertEquals(1, customers.size());
+
+        robot.clickOn("#btnCustomers");
+
+        robot.lookup("#fldFilter").tryQuery().isPresent();
+
+        Platform.runLater(() -> theStage.hide());
+        TextField filter = robot.lookup("#fldFilter").queryAs(TextField.class);
+        assertNotNull(filter);
+
+        Stage stage = (Stage) filter.getScene().getWindow();
+        Platform.runLater(() -> stage.close());
+
+        Platform.runLater(() -> theStage.show());
+    }
+
+    @Test
+    public void onActionAddService(FxRobot robot) {
+        ArrayList<Service> services = customerDAO.services();
+        assertEquals(3, services.size());
+
+        robot.clickOn("#btnServices");
+
+        robot.lookup("#fldName").tryQuery().isPresent();
+
+        Platform.runLater(() -> theStage.hide());
+
+        TextField name = robot.lookup("#fldName").queryAs(TextField.class);
+        assertNotNull(name);
+
+        Stage stage = (Stage) name.getScene().getWindow();
+        Platform.runLater(() -> stage.close());
+
+        Platform.runLater(() -> theStage.show());
+    }
+
+    @Test
+    public void onActionAddPackage(FxRobot robot) {
+        ArrayList<Package> packages = customerDAO.packages();
+        assertEquals(8, packages.size());
+
+        robot.clickOn("#btnPackages");
+
+        robot.lookup("#fldName").tryQuery().isPresent();
+
+        Platform.runLater(() -> theStage.hide());
+
+        TextField name = robot.lookup("#fldName").queryAs(TextField.class);
+        assertNotNull(name);
+
+        Stage stage = (Stage) name.getScene().getWindow();
+        Platform.runLater(() -> stage.close());
+
+        Platform.runLater(() -> theStage.show());
+
+    }
+
 
 
 }

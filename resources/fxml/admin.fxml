@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="525.0" minWidth="1167.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="525.0" minWidth="1167.0" stylesheets="@../css/admin.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox>
          <children>
@@ -134,17 +134,17 @@
                              <Font size="15.0" />
                          </font>
                   </Button>
-                     <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionCustomers" prefHeight="60.0" prefWidth="340.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminCustomers" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
+                     <Button fx:id="btnCustomers" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionCustomers" prefHeight="60.0" prefWidth="340.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminCustomers" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
                          <font>
                              <Font size="15.0" />
                          </font>
                   </Button>
-                     <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAddService" prefHeight="60.0" prefWidth="340.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminServices" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
+                     <Button fx:id="btnServices" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAddService" prefHeight="60.0" prefWidth="340.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminServices" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
                          <font>
                              <Font size="15.0" />
                          </font>
                   </Button>
-                     <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAddPackage" prefHeight="60.0" prefWidth="361.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminPackages" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
+                     <Button fx:id="btnPackages" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAddPackage" prefHeight="60.0" prefWidth="361.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminPackages" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
                          <font>
                              <Font size="15.0" />
                          </font>
@@ -230,7 +230,7 @@
                   <Separator orientation="VERTICAL" />
                   <Button fx:id="editEmployeeBtn" mnemonicParsing="false" onAction="#onActionEditEmployee2" stylesheets="@../css/admin.css" />
                   <Separator orientation="VERTICAL" />
-                  <Button fx:id="btnDeleteEmployee" mnemonicParsing="false" />
+                  <Button fx:id="btnDeleteEmployee" mnemonicParsing="false" onAction="#onActionDeleteEmployee2" />
               </items>
             </ToolBar>
          </children>

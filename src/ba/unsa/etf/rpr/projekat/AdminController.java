@@ -78,7 +78,7 @@ public class AdminController {
         }));
 
         fldName.textProperty().addListener((obs, oldName, newName) -> {
-            if (fldName.getText().isEmpty()) {
+            if (fldName.getText().trim().isEmpty() || !isAlpha(fldName.getText())) {
                 fldName.getStyleClass().removeAll("correctField");
                 fldName.getStyleClass().add("incorrectField");
                 ok = false;
@@ -90,7 +90,7 @@ public class AdminController {
         });
 
         fldSurname.textProperty().addListener((obs, oldSurname, newSurname) -> {
-            if (fldSurname.getText().isEmpty()) {
+            if (fldSurname.getText().trim().isEmpty() || !isAlpha(fldSurname.getText())) {
                 fldSurname.getStyleClass().removeAll("correctField");
                 fldSurname.getStyleClass().add("incorrectField");
                 ok = false;
@@ -101,6 +101,77 @@ public class AdminController {
             }
         });
 
+        fldUsername.textProperty().addListener((obs, oldValue, newValue) -> {
+            if (fldUsername.getText().trim().isEmpty() || !isUsernameOk(fldUsername.getText())) {
+                fldUsername.getStyleClass().removeAll("correctField");
+                fldUsername.getStyleClass().add("incorrectField");
+                ok = false;
+            } else {
+                fldUsername.getStyleClass().removeAll("incorrectField");
+                fldUsername.getStyleClass().add("correctField");
+                ok = true;
+            }
+        });
+
+        fldPassword.textProperty().addListener((obs, oldValue, newValue) -> {
+            if (fldPassword.getText().isEmpty() || !isPasswordOk(fldPassword.getText())) {
+                fldPassword.getStyleClass().removeAll("correctField");
+                fldPassword.getStyleClass().add("incorrectField");
+                ok = false;
+            } else {
+                fldPassword.getStyleClass().removeAll("incorrectField");
+                fldPassword.getStyleClass().add("correctField");
+                ok = true;
+            }
+        });
+
+        fldRptPassword.textProperty().addListener((obs, oldValue, newValue) -> {
+            if (!fldRptPassword.getText().equals(fldPassword.getText())) {
+                fldRptPassword.getStyleClass().removeAll("correctField");
+                fldRptPassword.getStyleClass().add("incorrectField");
+                ok = false;
+            } else {
+                fldRptPassword.getStyleClass().removeAll("incorrectField");
+                fldRptPassword.getStyleClass().add("correctField");
+                ok = true;
+            }
+        });
+
+    }
+
+    private boolean isAlpha(String string) {
+        for (int i = 0; i < string.length(); i++) {
+            if (!Character.isLetter(string.charAt(i)) && string.charAt(i) != ' ')
+                return false;
+        }
+        return true;
+    }
+
+    private boolean isNumber(String string) {
+        for (int i = 0; i < string.length(); i++) {
+            if (!Character.isDigit(string.charAt(i)) && string.charAt(i) != ' ')
+                return false;
+        }
+        return true;
+    }
+
+    private boolean isUsernameOk(String string) {
+        if (string.length() < 5 || string.length() > 16) return false;
+        boolean ok = true;
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == ' ' || !(string.charAt(i) == '_' || Character.isDigit(string.charAt(i)) || Character.isLetter(string.charAt(i))))
+                ok = false;
+        }
+        return ok;
+    }
+
+    private boolean isPasswordOk(String string) {
+        if (string.length() < 5 || string.length() > 16) return false;
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == ' ')
+                return false;
+        }
+        return true;
     }
 
     public void onActionOk(ActionEvent actionEvent) {
