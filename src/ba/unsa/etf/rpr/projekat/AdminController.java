@@ -114,13 +114,17 @@ public class AdminController {
         });
 
         fldPassword.textProperty().addListener((obs, oldValue, newValue) -> {
-            if (fldPassword.getText().isEmpty() || !isPasswordOk(fldPassword.getText())) {
+            if (fldPassword.getText().isEmpty() || !isPasswordOk(fldPassword.getText()) || !fldPassword.getText().equals(fldRptPassword.getText())) {
                 fldPassword.getStyleClass().removeAll("correctField");
                 fldPassword.getStyleClass().add("incorrectField");
+                fldRptPassword.getStyleClass().removeAll("correctField");
+                fldRptPassword.getStyleClass().add("incorrectField");
                 ok = false;
             } else {
                 fldPassword.getStyleClass().removeAll("incorrectField");
                 fldPassword.getStyleClass().add("correctField");
+                fldRptPassword.getStyleClass().removeAll("incorrectField");
+                fldRptPassword.getStyleClass().add("correctField");
                 ok = true;
             }
         });
@@ -129,10 +133,14 @@ public class AdminController {
             if (!fldRptPassword.getText().equals(fldPassword.getText())) {
                 fldRptPassword.getStyleClass().removeAll("correctField");
                 fldRptPassword.getStyleClass().add("incorrectField");
+                fldPassword.getStyleClass().removeAll("correctField");
+                fldPassword.getStyleClass().add("incorrectField");
                 ok = false;
             } else {
                 fldRptPassword.getStyleClass().removeAll("incorrectField");
                 fldRptPassword.getStyleClass().add("correctField");
+                fldPassword.getStyleClass().removeAll("incorrectField");
+                fldPassword.getStyleClass().add("correctField");
                 ok = true;
             }
         });
