@@ -179,6 +179,9 @@ public class AdminController {
         if (employee == null) {
             employee = new Employee();
         }
+        if (fldName.getText().equals("") || fldSurname.getText().equals("") || fldUsername.getText().equals("") || fldPassword.getText().equals("") || fldRptPassword.getText().equals(""))
+            return;
+
         employee.setFirstName(fldName.getText());
         employee.setLastName(fldSurname.getText());
         employee.setUsername(fldUsername.getText());

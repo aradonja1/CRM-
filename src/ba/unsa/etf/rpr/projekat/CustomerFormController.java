@@ -222,6 +222,9 @@ public class CustomerFormController {
         if (customer == null) {
             customer = new Customer();
         }
+        if (fldName.getText().equals("") || fldSurname.getText().equals("") || fldEmail.getText().equals("") || fldAdress.getText().equals("") || fldContact.getText().equals("") || dpEndContract.getValue() == null || dpBeginContract.getValue() == null)
+            return;
+
         customer.setFirstName(fldName.getText());
         customer.setLastName(fldSurname.getText());
         customer.setAdress(fldAdress.getText());

@@ -2,6 +2,7 @@ package ba.unsa.etf.rpr.projekat;
 
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.swing.JRViewer;
+import net.sf.jasperreports.view.JasperViewer;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -21,12 +22,8 @@ public class PrintReport extends JFrame {
         ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
         list.add(parameters);
         JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, conn);
-        JRViewer viewer = new JRViewer(print);
-        viewer.setOpaque(true);
+        JasperViewer viewer = new JasperViewer(print, false);
         viewer.setVisible(true);
-        this.add(viewer);
-        this.setSize(1000, 800);
-        this.setVisible(true);
     }
 }
 
