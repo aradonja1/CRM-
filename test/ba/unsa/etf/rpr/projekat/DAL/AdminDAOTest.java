@@ -25,10 +25,9 @@ class AdminDAOTest {
         Employee e = new Employee(5, "Ermin", "Omeragić", "eomeragic2", "erminBosna");
         a.addEmployee(e);
         ArrayList<Employee> listEmployees = a.employees();
-        assertEquals(2, listEmployees.size());
-        assertEquals("Ermin", listEmployees.get(1).getFirstName());
-        assertEquals("Omeragić", listEmployees.get(1).getLastName());
-        assertEquals(2, listEmployees.get(1).getId());
+        assertEquals(3, listEmployees.size());
+        assertEquals("Ermin", listEmployees.get(2).getFirstName());
+        assertEquals("Omeragić", listEmployees.get(2).getLastName());
     }
 
     @Test
@@ -37,13 +36,13 @@ class AdminDAOTest {
         Employee e = new Employee(2, "Ermin", "Omeragić", "eomeragic2", "erminBosna");
         a.addEmployee(e);
         ArrayList<Employee> listEmployees = a.employees();
-        assertEquals(2, listEmployees.size());
-        assertEquals("Ermin", listEmployees.get(1).getFirstName());
-        assertEquals("Omeragić", listEmployees.get(1).getLastName());
+        assertEquals(3, listEmployees.size());
+        assertEquals("Ermin", listEmployees.get(2).getFirstName());
+        assertEquals("Omeragić", listEmployees.get(2).getLastName());
         e.setFirstName("nije više Ermin");
         a.editEmployee(e);
         listEmployees = a.employees();
-        assertEquals("nije više Ermin", listEmployees.get(1).getFirstName());
+        assertEquals("nije više Ermin", listEmployees.get(2).getFirstName());
     }
 
     @Test
@@ -52,10 +51,10 @@ class AdminDAOTest {
         Employee e = new Employee(2, "Ermin", "Omeragić", "eomeragic2", "erminBosna");
         a.addEmployee(e);
         ArrayList<Employee> listEmployees = a.employees();
-        assertEquals(2, listEmployees.size());
+        assertEquals(3, listEmployees.size());
         a.deleteEmployee(e);
         listEmployees = a.employees();
-        assertEquals(1, listEmployees.size());
+        assertEquals(2, listEmployees.size());
     }
 
     @Test
@@ -78,6 +77,6 @@ class AdminDAOTest {
         AdminDAO a = new AdminDAO();
         a.createAndWriteXmlFile();
         ArrayList<Employee> result = a.readXmlFile();
-        assertEquals(1, result.size());
+        assertEquals(2, result.size());
     }
 }

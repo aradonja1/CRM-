@@ -49,7 +49,7 @@ class LoginControllerTest {
     }
 
     @Test
-    public void onActionLogin(FxRobot robot) {
+    public void onActionLoginAdmin(FxRobot robot) {
         robot.clickOn("#fldUsername");
         robot.write("admin");
 
@@ -70,6 +70,32 @@ class LoginControllerTest {
 
 
         Stage stage = (Stage) name.getScene().getWindow();
+        Platform.runLater(() -> stage.close());
+        assertTrue(true);
+    }
+
+    @Test
+    public void onActionLoginEmployee(FxRobot robot) {
+        robot.clickOn("#fldUsername");
+        robot.write("employee");
+
+        robot.clickOn("#fldPassword");
+        robot.write("employee");
+
+        robot.clickOn("#btnLogin");
+
+        robot.lookup("#fldFilter").tryQuery().isPresent();
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        TextField filter = robot.lookup("#fldFilter").queryAs(TextField.class);
+        assertNotNull(filter);
+
+
+        Stage stage = (Stage) filter.getScene().getWindow();
         Platform.runLater(() -> stage.close());
         assertTrue(true);
     }

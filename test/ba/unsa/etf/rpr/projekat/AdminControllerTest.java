@@ -65,7 +65,7 @@ class AdminControllerTest {
         assertNotNull(btnAdd);
 
         ArrayList<Employee> listEmployees = adminDAO.employees();
-        assertEquals(1, listEmployees.size());
+        assertEquals(2, listEmployees.size());
 
         robot.clickOn("#addEmployeeBtn");
         robot.clickOn("#fldName");
@@ -81,7 +81,7 @@ class AdminControllerTest {
         robot.clickOn("#btnOk");
 
         listEmployees = adminDAO.employees();
-        assertEquals(2, listEmployees.size());
+        assertEquals(3, listEmployees.size());
 
         boolean ok = false;
         for (Employee e : listEmployees) {
@@ -97,7 +97,7 @@ class AdminControllerTest {
         assertNotNull(btdEdit);
 
         ArrayList<Employee> listEmployees = adminDAO.employees();
-        assertEquals(1, listEmployees.size());
+        assertEquals(2, listEmployees.size());
 
         robot.clickOn("Senid Hodžić");
         robot.clickOn("#btnEdit");
@@ -121,7 +121,7 @@ class AdminControllerTest {
         robot.clickOn("#btnOk");
 
         listEmployees = adminDAO.employees();
-        assertEquals(1, listEmployees.size());
+        assertEquals(2, listEmployees.size());
 
         boolean ok = false;
         for (Employee e : listEmployees) {
@@ -134,7 +134,7 @@ class AdminControllerTest {
     @Test
     public void onActionDelete(FxRobot robot) {
         ArrayList<Employee> employees = adminDAO.employees();
-        assertEquals(1, employees.size());
+        assertEquals(2, employees.size());
 
         robot.clickOn("Senid Hodžić");
         robot.clickOn("#btnDelete");
@@ -146,7 +146,7 @@ class AdminControllerTest {
         robot.clickOn(okButton);
 
         employees = adminDAO.employees();
-        assertEquals(0, employees.size());
+        assertEquals(1, employees.size());
     }
 
     @Test
