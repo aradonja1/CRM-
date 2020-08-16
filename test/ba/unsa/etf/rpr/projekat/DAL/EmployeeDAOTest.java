@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AdminDAOTest {
+class EmployeeDAOTest {
 
     @BeforeEach
     void regenerisiBazu() {
@@ -21,7 +21,7 @@ class AdminDAOTest {
 
     @Test
     void addEmployee() {
-        AdminDAO a = new AdminDAO();
+        EmployeeDAO a = new EmployeeDAO();
         Employee e = new Employee(5, "Ermin", "Omeragić", "eomeragic2", "erminBosna");
         a.addEmployee(e);
         ArrayList<Employee> listEmployees = a.employees();
@@ -32,7 +32,7 @@ class AdminDAOTest {
 
     @Test
     void editEmployee() {
-        AdminDAO a = new AdminDAO();
+        EmployeeDAO a = new EmployeeDAO();
         Employee e = new Employee(2, "Ermin", "Omeragić", "eomeragic2", "erminBosna");
         a.addEmployee(e);
         ArrayList<Employee> listEmployees = a.employees();
@@ -47,7 +47,7 @@ class AdminDAOTest {
 
     @Test
     void deleteEmployee() {
-        AdminDAO a = new AdminDAO();
+        EmployeeDAO a = new EmployeeDAO();
         Employee e = new Employee(2, "Ermin", "Omeragić", "eomeragic2", "erminBosna");
         a.addEmployee(e);
         ArrayList<Employee> listEmployees = a.employees();
@@ -59,7 +59,7 @@ class AdminDAOTest {
 
     @Test
     void employees() {
-        AdminDAO a = new AdminDAO();
+        EmployeeDAO a = new EmployeeDAO();
         ArrayList<Employee> listEmployees = a.employees();
         assertEquals("Senid", listEmployees.get(0).getFirstName());
         assertEquals("Hodžić", listEmployees.get(0).getLastName());
@@ -67,14 +67,14 @@ class AdminDAOTest {
 
     @Test
     void admins() {
-        AdminDAO a = new AdminDAO();
+        EmployeeDAO a = new EmployeeDAO();
         ArrayList<Admin>  listAdmins = a.admins();
         assertEquals(listAdmins.get(0).getFirstName(), "Adnan");
     }
 
     @Test
     void readXmlFile() {
-        AdminDAO a = new AdminDAO();
+        EmployeeDAO a = new EmployeeDAO();
         a.createAndWriteXmlFile();
         ArrayList<Employee> result = a.readXmlFile();
         assertEquals(2, result.size());

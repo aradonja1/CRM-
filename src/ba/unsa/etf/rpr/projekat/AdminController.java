@@ -1,8 +1,6 @@
 package ba.unsa.etf.rpr.projekat;
 
-import ba.unsa.etf.rpr.projekat.DAL.AdminDAO;
-import ba.unsa.etf.rpr.projekat.DAL.CustomerDAO;
-import javafx.beans.property.SimpleObjectProperty;
+import ba.unsa.etf.rpr.projekat.DAL.EmployeeDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,9 +13,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -34,7 +29,7 @@ public class AdminController {
     public ListView<Employee> lstView;
 
     private ObservableList<Employee> listEmployees;
-    private AdminDAO adminDAO = new AdminDAO();
+    private EmployeeDAO employeeDAO = new EmployeeDAO();
     private Employee employee;
     private boolean ok;
     private int addition = 0;
@@ -46,7 +41,7 @@ public class AdminController {
     public Button btnDeleteEmployee;
 
     public AdminController(ResourceBundle resourceBundle) {
-        listEmployees = FXCollections.observableArrayList(adminDAO.employees());
+        listEmployees = FXCollections.observableArrayList(employeeDAO.employees());
         this.resourceBundle = resourceBundle;
     }
 
@@ -195,13 +190,13 @@ public class AdminController {
         employee.setUsername(fldUsername.getText());
         employee.setPassword(fldPassword.getText());
         if (addition == 1) {
-            adminDAO.addEmployee(employee);
+            employeeDAO.addEmployee(employee);
             addition = 0;
         } else if (addition == 2) {
-            adminDAO.editEmployee(employee);
+            employeeDAO.editEmployee(employee);
             addition = 0;
         }
-        listEmployees.setAll(adminDAO.employees());
+        listEmployees.setAll(employeeDAO.employees());
         lstView.refresh();
     }
 
@@ -246,8 +241,8 @@ public class AdminController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            adminDAO.deleteEmployee(employee);
-            listEmployees.setAll(adminDAO.employees());
+            employeeDAO.deleteEmployee(employee);
+            listEmployees.setAll(employeeDAO.employees());
         }
     }
 
@@ -290,7 +285,7 @@ public class AdminController {
     }
 
     public void onActionReadXML(ActionEvent actionEvent) {
-        adminDAO.readXmlFile();
+        employeeDAO.readXmlFile();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         if (resourceBundle.getLocale().getLanguage().equals("eng")) {
             alert.setTitle("Reading XML file");
@@ -305,7 +300,7 @@ public class AdminController {
     }
 
     public void onActionWriteXML(ActionEvent actionEvent) throws MalformedURLException {
-        adminDAO.createAndWriteXmlFile();
+        employeeDAO.createAndWriteXmlFile();
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         if (resourceBundle.getLocale().getLanguage().equals("eng")) {

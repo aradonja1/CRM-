@@ -1,9 +1,8 @@
 package ba.unsa.etf.rpr.projekat;
 
-import ba.unsa.etf.rpr.projekat.DAL.AdminDAO;
+import ba.unsa.etf.rpr.projekat.DAL.EmployeeDAO;
 import ba.unsa.etf.rpr.projekat.DAL.CustomerDAO;
 import ba.unsa.etf.rpr.projekat.DAL.DatabaseConnection;
-import ba.unsa.etf.rpr.projekat.DAL.PackageDAO;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,7 +19,6 @@ import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
-import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -32,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(ApplicationExtension.class)
 class AdminControllerTest {
     Stage theStage;
-    AdminDAO adminDAO;
+    EmployeeDAO employeeDAO;
     CustomerDAO customerDAO;
 
     @Start
@@ -40,7 +38,7 @@ class AdminControllerTest {
         DatabaseConnection.removeInstance();
         File dbfile = new File("base.db");
         dbfile.delete();
-        adminDAO = new AdminDAO();
+        employeeDAO = new EmployeeDAO();
         customerDAO = new CustomerDAO();
 
         Locale.setDefault(new Locale("eng", "ENG"));
@@ -64,7 +62,7 @@ class AdminControllerTest {
         Button btnAdd = robot.lookup("#addEmployeeBtn").queryAs(Button.class);
         assertNotNull(btnAdd);
 
-        ArrayList<Employee> listEmployees = adminDAO.employees();
+        ArrayList<Employee> listEmployees = employeeDAO.employees();
         assertEquals(2, listEmployees.size());
 
         robot.clickOn("#addEmployeeBtn");
@@ -80,7 +78,7 @@ class AdminControllerTest {
         robot.write("novi123");
         robot.clickOn("#btnOk");
 
-        listEmployees = adminDAO.employees();
+        listEmployees = employeeDAO.employees();
         assertEquals(3, listEmployees.size());
 
         boolean ok = false;
@@ -96,7 +94,7 @@ class AdminControllerTest {
         Button btdEdit = robot.lookup("#btnEdit").queryAs(Button.class);
         assertNotNull(btdEdit);
 
-        ArrayList<Employee> listEmployees = adminDAO.employees();
+        ArrayList<Employee> listEmployees = employeeDAO.employees();
         assertEquals(2, listEmployees.size());
 
         robot.clickOn("Senid Hodžić");
@@ -120,7 +118,7 @@ class AdminControllerTest {
         robot.write("izmjena123");
         robot.clickOn("#btnOk");
 
-        listEmployees = adminDAO.employees();
+        listEmployees = employeeDAO.employees();
         assertEquals(2, listEmployees.size());
 
         boolean ok = false;
@@ -133,7 +131,7 @@ class AdminControllerTest {
 
     @Test
     public void onActionDelete(FxRobot robot) {
-        ArrayList<Employee> employees = adminDAO.employees();
+        ArrayList<Employee> employees = employeeDAO.employees();
         assertEquals(2, employees.size());
 
         robot.clickOn("Senid Hodžić");
@@ -145,7 +143,7 @@ class AdminControllerTest {
         Button okButton = (Button) dialogPane.lookupButton(ButtonType.OK);
         robot.clickOn(okButton);
 
-        employees = adminDAO.employees();
+        employees = employeeDAO.employees();
         assertEquals(1, employees.size());
     }
 

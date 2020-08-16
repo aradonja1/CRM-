@@ -256,4 +256,9 @@ public class CustomerFormController {
         listPackages = FXCollections.observableArrayList(packageDAO.packages());
         this.resourceBundle = resourceBundle;
     }
+
+    public CustomerFormController(ResourceBundle resourceBundle) {
+        this.resourceBundle = resourceBundle;
+    }
+
 }

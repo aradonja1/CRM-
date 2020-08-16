@@ -1,7 +1,6 @@
 package ba.unsa.etf.rpr.projekat;
 
-import ba.unsa.etf.rpr.projekat.DAL.AdminDAO;
-import javafx.application.Platform;
+import ba.unsa.etf.rpr.projekat.DAL.EmployeeDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,13 +8,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.PopupControl;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -30,7 +27,7 @@ public class LoginController {
     public TextField fldUsername;
     public PasswordField fldPassword;
 
-    private AdminDAO adminDAO = new AdminDAO();
+    private EmployeeDAO employeeDAO = new EmployeeDAO();
 
     private ResourceBundle resourceBundle;
 
@@ -66,8 +63,8 @@ public class LoginController {
     }
 
     public void onActionLogin(ActionEvent actionEvent) throws IOException {
-        ArrayList<Admin> listAdmins = adminDAO.admins();
-        ArrayList<Employee> listEmployees = adminDAO.employees();
+        ArrayList<Admin> listAdmins = employeeDAO.admins();
+        ArrayList<Employee> listEmployees = employeeDAO.employees();
 
         for (Admin a : listAdmins) {
             if (a.getUsername().equals(fldUsername.getText()) && a.getPassword().equals(fldPassword.getText())) {
