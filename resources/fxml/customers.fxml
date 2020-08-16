@@ -52,15 +52,15 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <Button mnemonicParsing="false" onAction="#onActionAdd" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%customersadd">
+            <Button fx:id="btnAddCst" mnemonicParsing="false" onAction="#onActionAdd" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%customersadd">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button mnemonicParsing="false" onAction="#onActionEdit" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%customersedit2">
+            <Button fx:id="btnEditCst" mnemonicParsing="false" onAction="#onActionEdit" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%customersedit2">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button mnemonicParsing="false" onAction="#onActionDelete" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%customersdelete2">
+            <Button fx:id="btnDeleteCst" mnemonicParsing="false" onAction="#onActionDelete" prefHeight="86.0" prefWidth="353.0" styleClass="btnLeftSide" stylesheets="@../css/customers.css" text="%customersdelete2">
                <font>
                   <Font size="15.0" />
                </font></Button>

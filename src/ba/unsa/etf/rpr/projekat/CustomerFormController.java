@@ -15,7 +15,10 @@ import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class CustomerFormController {
@@ -66,6 +69,8 @@ public class CustomerFormController {
 
             ok = true;
         } else {
+            dpBeginContract.setValue(convertToLocalDateViaInstant(yesterday()));
+            dpEndContract.setValue(LocalDate.now());
             fldName.textProperty().addListener((obs, oldName, newName) -> {
                 if (fldName.getText().trim().isEmpty() || !isAlpha(fldName.getText())) {
                     fldName.getStyleClass().removeAll("correctField");
@@ -259,6 +264,16 @@ public class CustomerFormController {
 
     public CustomerFormController(ResourceBundle resourceBundle) {
         this.resourceBundle = resourceBundle;
+    }
+
+    private Date yesterday() {
+        final Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -1);
+        return cal.getTime();
+    }
+
+    private LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+        return dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
 }
