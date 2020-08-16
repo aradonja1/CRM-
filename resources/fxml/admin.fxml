@@ -101,11 +101,11 @@
             </GridPane>
             <Pane fx:id="pane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../css/admin.css" VBox.vgrow="ALWAYS">
                <children>
-                  <Button layoutX="237.0" layoutY="42.0" mnemonicParsing="false" onAction="#onActionWriteXML" prefHeight="100.0" prefWidth="236.0" styleClass="btnXML" stylesheets="@../css/admin.css" text="Write XML">
+                  <Button fx:id="wXML" layoutX="237.0" layoutY="42.0" mnemonicParsing="false" onAction="#onActionWriteXML" prefHeight="100.0" prefWidth="236.0" styleClass="btnXML" stylesheets="@../css/admin.css" text="Write XML">
                      <font>
                         <Font size="15.0" />
                      </font></Button>
-                  <Button layoutY="42.0" mnemonicParsing="false" onAction="#onActionReadXML" prefHeight="100.0" prefWidth="236.0" styleClass="btnXML" stylesheets="@../css/admin.css" text="Read XML">
+                  <Button fx:id="rXML" layoutY="42.0" mnemonicParsing="false" onAction="#onActionReadXML" prefHeight="100.0" prefWidth="236.0" styleClass="btnXML" stylesheets="@../css/admin.css" text="Read XML">
                      <font>
                         <Font size="15.0" />
                      </font></Button>
@@ -173,12 +173,12 @@
          <children>
             <MenuBar prefHeight="38.0" prefWidth="1167.0" styleClass="topSection" stylesheets="@../css/admin.css">
               <menus>
-                <Menu text="%fileadmin">
+                <Menu fx:id="file" text="%fileadmin">
                   <items>
                         <Menu fx:id="newCustomer" mnemonicParsing="false" text="%newadmin">
                           <items>
-                              <MenuItem mnemonicParsing="false" onAction="#onActionCustomer" text="%newadmincustomernewadmincustomer" />
-                            <MenuItem mnemonicParsing="false" onAction="#onActionEmployee" text="%newadminemployee" />
+                              <MenuItem fx:id="newCstmer" mnemonicParsing="false" onAction="#onActionCustomer" text="%newadmincustomernewadmincustomer" />
+                            <MenuItem fx:id="empl" mnemonicParsing="false" onAction="#onActionEmployee" text="%newadminemployee" />
                           </items>
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
@@ -198,23 +198,23 @@
                         <MenuItem onAction="#onActionExit" text="%adminexit" />
                   </items>
                 </Menu>
-                <Menu text="%adminedit">
+                <Menu fx:id="edit" text="%adminedit">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#onActionEditEmployee" text="%admineditemployee" />
+                        <MenuItem fx:id="edit2" mnemonicParsing="false" onAction="#onActionEditEmployee" text="%admineditemployee" />
                         <MenuItem fx:id="dltCstmr" mnemonicParsing="false" onAction="#onActionDeleteEmployee" text="%admineditdeleteemployee">
                            <accelerator>
                               <KeyCodeCombination alt="DOWN" code="DELETE" control="UP" meta="UP" shift="UP" shortcut="UP" />
                            </accelerator></MenuItem>
                      </items>
                 </Menu>
-                  <Menu text="%adminview">
+                  <Menu fx:id="view" text="%adminview">
                     <items>
-                      <MenuItem mnemonicParsing="false" onAction="#onActionViewCustomer" text="%adminviewcustomers" />
-                        <MenuItem mnemonicParsing="false" onAction="#onActionViewPackage" text="%adminviewpackages" />
-                        <MenuItem mnemonicParsing="false" onAction="#onActionViewService" text="%adminviewservices" />
+                      <MenuItem fx:id="cstms" mnemonicParsing="false" onAction="#onActionViewCustomer" text="%adminviewcustomers" />
+                        <MenuItem fx:id="pcks" mnemonicParsing="false" onAction="#onActionViewPackage" text="%adminviewpackages" />
+                        <MenuItem fx:id="srvs" mnemonicParsing="false" onAction="#onActionViewService" text="%adminviewservices" />
                     </items>
                   </Menu>
-                <Menu text="%adminhelp">
+                <Menu fx:id="help" text="%adminhelp">
                   <items>
                     <MenuItem fx:id="abt" onAction="#onActionAbout" text="%adminhelpabout" />
                   </items>
