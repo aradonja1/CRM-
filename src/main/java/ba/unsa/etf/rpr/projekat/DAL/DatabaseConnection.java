@@ -1,7 +1,10 @@
 package ba.unsa.etf.rpr.projekat.DAL;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,9 +17,10 @@ public class DatabaseConnection {
 
     private DatabaseConnection() {
         try {
+            Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection("jdbc:sqlite:base.db");
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException | ClassNotFoundException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -46,7 +50,8 @@ public class DatabaseConnection {
     public void regenerateBase() {
         Scanner ulaz = null;
         try {
-            ulaz = new Scanner(new FileInputStream("base.db.sql"));
+            URL url = getClass().getResource("/sql/base.db.sql");
+            ulaz = new Scanner(new FileInputStream(new File(url.toURI())));
             String sqlUpit = "";
             while (ulaz.hasNext()) {
                 sqlUpit += ulaz.nextLine();
@@ -61,7 +66,7 @@ public class DatabaseConnection {
                 }
             }
             ulaz.close();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | URISyntaxException e) {
             System.out.println("Ne postoji SQL datoteka… nastavljam sa praznom bazom");
         }
     }

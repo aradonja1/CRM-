@@ -1,0 +1,33 @@
+.correctField {
+    -fx-background-color: yellowgreen;
+}
+
+.incorrectField {
+    -fx-background-color: lightpink;
+}
+
+#gridPane {
+    -fx-background-image: url("../img/service_background.jpg");
+    -fx-background-size: 700px 180px;
+}
+
+.table-view {
+    -fx-base: #4edae4;
+    -fx-control-inner-background: #3a1780;
+    -fx-background-color: #4edae4;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 4;
+    -fx-font-size: 13;
+}
+
+
+.choice-box {
+    -fx-base: #83dbeb;
+    -fx-control-inner-background: #83dbeb;
+    -fx-background-color: #83dbeb;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 4;
+    -fx-font-size: 13;
+}

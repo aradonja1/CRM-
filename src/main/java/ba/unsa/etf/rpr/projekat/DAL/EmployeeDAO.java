@@ -31,13 +31,14 @@ import static java.lang.Integer.parseInt;
 
 
 public class EmployeeDAO {
-    private DatabaseConnection db = DatabaseConnection.getInstance();
+    private DatabaseConnection db;
     private Connection conn;
 
     private PreparedStatement addEmployeeStatement, getIdForNewEmployeeStatement, editEmployeeStatement, deleteEmployeeStatement, allEmployeesStatement,
             allAdminsStatement;
 
     public EmployeeDAO() {
+        db = DatabaseConnection.getInstance();
         conn = db.getConn();
         try {
             addEmployeeStatement = conn.prepareStatement("INSERT INTO employee VALUES (?,?,?,?,?)");

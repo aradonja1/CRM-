@@ -1,0 +1,67 @@
+#borderPane {
+    -fx-background-image: url("../img/background_login.jpg");
+    -fx-background-color: #cccccc;
+    -fx-background-size: 60px;
+}
+
+.labels {
+    -fx-background-color: #a1f5f2;
+    -fx-font-size: 20px Arial, sans-serif;
+}
+
+#gridPane {
+    -fx-background-color: black;
+}
+
+#btnLogin {
+    -fx-background-color: #0589e8;
+}
+
+#btnLogin:hover {
+    -fx-background-color: blue;
+}
+
+#btnUKLanguage {
+    -fx-background-color: transparent;
+    -fx-graphic: url("../img/uk_flag.png");
+    -fx-border-width: 0;
+}
+
+#btnUKLanguage: hover {
+    -fx-background-color: black;
+}
+
+#btnUKLanguage: pressed {
+    -fx-background-color: green;
+}
+
+
+#buttonBosnia {
+    -fx-background-color: transparent;
+    -fx-graphic: url("../img/bosnia_flag.png");
+    -fx-border-width: 0;
+}
+
+
+#buttonBosnia: hover {
+    -fx-background-color: black;
+}
+
+#buttonBosnia: pressed {
+    -fx-background-color: green;
+}
+
+#btnShutDown {
+    -fx-background-color: transparent;
+    -fx-graphic: url("../img/shutdown.png");
+    -fx-border-width: 0;
+}
+
+
+#btnShutDown: hover {
+    -fx-background-color: black;
+}
+
+#btnShutDown: pressed {
+    -fx-background-color: green;
+}

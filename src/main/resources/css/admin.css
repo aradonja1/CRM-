@@ -1,0 +1,168 @@
+.correctField {
+    -fx-background-color: yellowgreen;
+}
+
+.incorrectField {
+    -fx-background-color: lightpink;
+}
+
+#leftSide {
+    -fx-background-color: #690eae;
+}
+
+.btnLeftSide {
+    -fx-background-color: #9222e8;
+    -fx-border-style: solid;
+    -fx-border-color: #863681;
+    -fx-border-width: 2;
+}
+
+.btnLeftSide:hover {
+    -fx-background-color: #c888fc;
+}
+
+#rightSide {
+    -fx-background-color: black;
+}
+
+.table-view {
+    -fx-base: #3a1780;
+    -fx-control-inner-background: #3a1780;
+    -fx-background-color: #3a1780;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+    -fx-font-size: 28;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-border-color:
+        transparent
+        transparent
+        derive(-fx-base, 80%)
+        transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 28pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
+}
+
+.topSection {
+    -fx-background-color: gray;
+    -fx-border-width: 0.7px;
+    -fx-border-color: white;
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+.centerSection {
+    -fx-background-color: #5d26d3;
+}
+
+#addEmployeeBtn > .label{
+    -fx-graphic: url("../img/add_employee1.png");
+}
+
+#addEmployeeBtn .accelerator-text{
+    -fx-graphic: none;
+}
+
+#btnAdd {
+    -fx-graphic: url("../img/add_employee1.png");
+    -fx-background-color: transparent;
+}
+
+#btnAdd: hover {
+    -fx-background-color: black;
+}
+
+#btnAdd: pressed {
+    -fx-background-color: green;
+}
+
+#editEmployeeBtn {
+    -fx-graphic: url("../img/edit_employee1.png");
+    -fx-background-color: transparent;
+}
+
+#editEmployeeBtn: hover {
+    -fx-background-color: black;
+}
+
+#editEmployeeBtn: pressed {
+    -fx-background-color: green;
+}
+
+#btnDeleteEmployee {
+    -fx-graphic: url("../img/delete_employee1.png");
+    -fx-background-color: transparent;
+}
+
+
+#btnDeleteEmployee: hover {
+    -fx-background-color: black;
+}
+
+#btnDeleteEmployee: pressed {
+    -fx-background-color: green;
+}
+
+#pane {
+    -fx-background-color: #dd5ec2;
+}
+
+.btnXML {
+    -fx-background-color: #f892e2;
+    -fx-border-style: solid;
+    -fx-border-color: #863681;
+    -fx-border-width: 2;
+}
+
+.btnXML:hover {
+    -fx-background-color: red;
+}
+
+.btnXML:pressed {
+    -fx-background-color: green;
+}
+
+
+#newCustomer > .label{
+    -fx-graphic: url("../img/plus.png");
+}
+#newCustomer .accelerator-text{
+    -fx-graphic: none;
+}
+
+#dltCstmr > .label{
+    -fx-graphic: url("../img/delete.png");
+}
+#dltCstmr .accelerator-text{
+    -fx-graphic: none;
+}
+
+#abt > .label{
+    -fx-graphic: url("../img/question-mark.png");
+}
+#abt .accelerator-text{
+    -fx-graphic: none;
+}
