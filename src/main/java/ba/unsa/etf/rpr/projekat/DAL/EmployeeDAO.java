@@ -2,8 +2,6 @@ package ba.unsa.etf.rpr.projekat.DAL;
 
 import ba.unsa.etf.rpr.projekat.Admin;
 import ba.unsa.etf.rpr.projekat.Employee;
-import com.github.tsijercic1.InvalidXMLException;
-import com.github.tsijercic1.XMLParser;
 import org.w3c.dom.*;
 
 
