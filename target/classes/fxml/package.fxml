@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane fx:id="gridPane" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="159.0" prefWidth="483.0" vgap="5.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@/css/package.css" />
+    </stylesheets>
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="192.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="114.0" minWidth="10.0" prefWidth="70.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="179.0" minWidth="10.0" prefWidth="179.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+    <children>
+        <Label text="%Name5" GridPane.columnIndex="1">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+        <TextField fx:id="fldName" prefHeight="25.0" prefWidth="148.0" GridPane.columnIndex="2">
+         <font>
+            <Font size="15.0" />
+         </font></TextField>
+      <ButtonBar prefHeight="31.0" prefWidth="309.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+        <buttons>
+          <Button fx:id="btnOk" defaultButton="true" minWidth="52.0" mnemonicParsing="false" onAction="#onActionOk" prefHeight="21.0" prefWidth="94.0" text="%Ok5">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button fx:id="btnCancel" cancelButton="true" mnemonicParsing="false" onAction="#onActionCancel" prefHeight="39.0" prefWidth="127.0" text="%Cancel5">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+            <Button fx:id="btnArchive" mnemonicParsing="false" onAction="#onActionArchive" prefHeight="31.0" prefWidth="100.0" text="%Archive5">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+        </buttons>
+      </ButtonBar>
+      <ListView fx:id="fldListView" prefHeight="135.0" prefWidth="193.0" styleClass="table-view" stylesheets="@../css/package.css" GridPane.rowSpan="4" />
+    </children>
+</GridPane>

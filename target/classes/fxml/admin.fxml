@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="525.0" minWidth="1167.0" stylesheets="@../css/admin.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox>
+         <children>
+            <GridPane hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="317.0" prefWidth="409.0" vgap="5.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+               <children>
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="150.0" text="%adminname" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="%adminsurname" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="%adminusername" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="%adminpassword" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <Separator prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </Separator>
+                  <TextField fx:id="fldName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="fldSurname" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="fldUsername" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="3" GridPane.vgrow="SOMETIMES">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField fx:id="fldPassword" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </PasswordField>
+                  <PasswordField fx:id="fldRptPassword" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </PasswordField>
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="%adminrepeatpassword" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="5" GridPane.vgrow="SOMETIMES">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="6">
+                    <buttons>
+                      <Button fx:id="btnOk" defaultButton="true" mnemonicParsing="false" onAction="#onActionOk" prefHeight="32.0" prefWidth="119.0" text="%adminok">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnCancel" cancelButton="true" mnemonicParsing="false" onAction="#onActionCancel" text="%admincancel">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                    </buttons>
+                  </ButtonBar>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </GridPane>
+            <Pane fx:id="pane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../css/admin.css" VBox.vgrow="ALWAYS">
+               <children>
+                  <Button fx:id="wXML" layoutX="237.0" layoutY="42.0" mnemonicParsing="false" onAction="#onActionWriteXML" prefHeight="100.0" prefWidth="236.0" styleClass="btnXML" stylesheets="@../css/admin.css" text="Write XML">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
+                  <Button fx:id="rXML" layoutY="42.0" mnemonicParsing="false" onAction="#onActionReadXML" prefHeight="100.0" prefWidth="236.0" styleClass="btnXML" stylesheets="@../css/admin.css" text="Read XML">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Button>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </center>
+   <left>
+      <VBox fx:id="leftSide" prefHeight="512.0" prefWidth="353.0" stylesheets="@../css/admin.css" BorderPane.alignment="CENTER">
+         <children>
+             <VBox prefHeight="514.0" prefWidth="353.0">
+                 <children>
+                     <Button fx:id="addEmployeeBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAdd" prefHeight="60.0" prefWidth="331.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminAddemployee" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
+                         <font>
+                             <Font size="15.0" />
+                         </font>
+                  </Button>
+                     <Button fx:id="btnEdit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionEdit" prefHeight="60.0" prefWidth="340.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminEditemployee" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
+                         <font>
+                             <Font size="15.0" />
+                         </font>
+                  </Button>
+                     <Button fx:id="btnDelete" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionDelete" prefHeight="60.0" prefWidth="340.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminDeleteemployee" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
+                         <font>
+                             <Font size="15.0" />
+                         </font>
+                  </Button>
+                     <Button fx:id="btnCustomers" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionCustomers" prefHeight="60.0" prefWidth="340.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminCustomers" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
+                         <font>
+                             <Font size="15.0" />
+                         </font>
+                  </Button>
+                     <Button fx:id="btnServices" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAddService" prefHeight="60.0" prefWidth="340.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminServices" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
+                         <font>
+                             <Font size="15.0" />
+                         </font>
+                  </Button>
+                     <Button fx:id="btnPackages" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onActionAddPackage" prefHeight="60.0" prefWidth="361.0" styleClass="btnLeftSide" stylesheets="@../css/admin.css" text="%adminPackages" textFill="#fffdfd" VBox.vgrow="SOMETIMES">
+                         <font>
+                             <Font size="15.0" />
+                         </font>
+                  </Button>
+                 </children>
+             </VBox>
+         </children>
+      </VBox>
+   </left>
+   <right>
+       <VBox fx:id="rightSide" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="525.0" prefWidth="417.0" styleClass="table-view" stylesheets="@../css/admin.css" BorderPane.alignment="CENTER">
+           <children>
+            <Label prefHeight="61.0" prefWidth="407.0" text="%adminEmployees" textAlignment="JUSTIFY">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></Label>
+               <ListView fx:id="lstView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="515.0" prefWidth="427.0" styleClass="table-view" stylesheets="@../css/admin.css" VBox.vgrow="SOMETIMES" />
+           </children>
+           <padding>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+           </padding>
+       </VBox>
+   </right>
+   <top>
+      <VBox prefHeight="100.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar prefHeight="38.0" prefWidth="1167.0" styleClass="topSection" stylesheets="@../css/admin.css">
+              <menus>
+                <Menu fx:id="file" text="%fileadmin">
+                  <items>
+                        <Menu fx:id="newCustomer" mnemonicParsing="false" text="%newadmin">
+                          <items>
+                              <MenuItem fx:id="newCstmer" mnemonicParsing="false" onAction="#onActionCustomer" text="%newadmincustomernewadmincustomer" />
+                            <MenuItem fx:id="empl" mnemonicParsing="false" onAction="#onActionEmployee" text="%newadminemployee" />
+                          </items>
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </Menu>
+                    <MenuItem mnemonicParsing="false" onAction="#onActionClose" text="%adminclose" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#onActionExport" text="%exportemployeestoXML">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#onActionImport" text="%importemployeesfromXML">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem onAction="#onActionExit" text="%adminexit" />
+                  </items>
+                </Menu>
+                <Menu fx:id="edit" text="%adminedit">
+                     <items>
+                        <MenuItem fx:id="edit2" mnemonicParsing="false" onAction="#onActionEditEmployee" text="%admineditemployee" />
+                        <MenuItem fx:id="dltCstmr" mnemonicParsing="false" onAction="#onActionDeleteEmployee" text="%admineditdeleteemployee">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="DELETE" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                     </items>
+                </Menu>
+                  <Menu fx:id="view" text="%adminview">
+                    <items>
+                      <MenuItem fx:id="cstms" mnemonicParsing="false" onAction="#onActionViewCustomer" text="%adminviewcustomers" />
+                        <MenuItem fx:id="pcks" mnemonicParsing="false" onAction="#onActionViewPackage" text="%adminviewpackages" />
+                        <MenuItem fx:id="srvs" mnemonicParsing="false" onAction="#onActionViewService" text="%adminviewservices" />
+                    </items>
+                  </Menu>
+                <Menu fx:id="help" text="%adminhelp">
+                  <items>
+                    <MenuItem fx:id="abt" onAction="#onActionAbout" text="%adminhelpabout" />
+                  </items>
+                </Menu>
+              </menus>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </MenuBar>
+            <ToolBar fx:id="btnEditEmployee" prefHeight="68.0" prefWidth="1167.0" styleClass="topSection" stylesheets="@../css/admin.css">
+              <items>
+                <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#onActionbtnAdd" stylesheets="@../css/admin.css" />
+                  <Separator orientation="VERTICAL" />
+                  <Button fx:id="editEmployeeBtn" mnemonicParsing="false" onAction="#onActionEditEmployee2" stylesheets="@../css/admin.css" />
+                  <Separator orientation="VERTICAL" />
+                  <Button fx:id="btnDeleteEmployee" mnemonicParsing="false" onAction="#onActionDeleteEmployee2" />
+              </items>
+            </ToolBar>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>
